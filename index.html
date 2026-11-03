@@ -1373,6 +1373,208 @@
   }
 
   /* ==========================================================================
+     THE INFINITE VOID (SCROLL, FIND NOTHING & GO TO WORK - INFINITE SCROLL)
+     ========================================================================== */
+  .void-quick-detox-pill {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 16px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-md);
+    margin-bottom: 14px;
+    box-shadow: var(--shadow-sm);
+    transition: border-color var(--anim-fast);
+  }
+  .void-quick-detox-pill:hover {
+    border-color: var(--accent-blue);
+  }
+  .void-detox-pulse-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-blue);
+    box-shadow: 0 0 10px var(--accent-blue);
+    animation: detoxPulse 2s infinite ease-in-out;
+  }
+  @keyframes detoxPulse {
+    0%, 100% { transform: scale(0.9); opacity: 0.6; }
+    50% { transform: scale(1.3); opacity: 1; }
+  }
+  .btn-enter-void-pill {
+    background: var(--bg-surface-elevated);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    padding: 5px 12px;
+    border-radius: var(--radius-full);
+    font-size: 11.5px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background var(--anim-fast), color var(--anim-fast);
+  }
+  .btn-enter-void-pill:hover {
+    background: var(--accent-blue);
+    color: #000;
+    border-color: var(--accent-blue);
+  }
+
+  /* Detox Stream Header Card */
+  .void-detox-header-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-md);
+    padding: 20px 22px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow-sm);
+  }
+  .void-detox-header-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+  .void-infinite-badge {
+    font-size: 10px;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    color: var(--accent-blue);
+    background: rgba(56, 189, 248, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    padding: 2px 7px;
+    border-radius: var(--radius-full);
+    letter-spacing: 0.04em;
+  }
+  .void-detox-stats-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .detox-stat {
+    display: flex;
+    flex-direction: column;
+  }
+  .detox-stat b {
+    font-size: 17px;
+    font-family: var(--font-mono);
+    color: var(--text-primary);
+    line-height: 1.2;
+  }
+  .detox-stat span {
+    font-size: 11px;
+    color: var(--text-tertiary);
+  }
+  .btn-detox-exit {
+    background: var(--success);
+    color: #000;
+    border: none;
+    border-radius: var(--radius-full);
+    padding: 7px 16px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform var(--anim-fast), opacity var(--anim-fast);
+  }
+  .btn-detox-exit:hover {
+    transform: translateY(-1px);
+    opacity: 0.92;
+  }
+
+  /* Individual Nothing Card */
+  .void-nothing-card {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, var(--bg-surface) 0%, var(--bg-base) 100%);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 24px 22px;
+    transition: border-color var(--anim-fast);
+  }
+  .void-nothing-card:hover {
+    border-color: var(--border-strong);
+  }
+  .nothing-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .nothing-depth-pill {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent-blue);
+    background: rgba(56, 189, 248, 0.08);
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+  }
+  .nothing-card-text {
+    font-size: 15.5px;
+    line-height: 1.6;
+    color: var(--text-primary);
+    font-weight: 400;
+    margin-bottom: 14px;
+  }
+  .nothing-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 12px;
+    border-top: 1px solid var(--border-subtle);
+  }
+  .btn-nothing-ready {
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-full);
+    color: var(--text-secondary);
+    font-size: 11.5px;
+    font-weight: 500;
+    padding: 4px 12px;
+    cursor: pointer;
+    transition: all var(--anim-fast);
+  }
+  .btn-nothing-ready:hover {
+    border-color: var(--success);
+    color: var(--success);
+    background: rgba(52, 211, 153, 0.08);
+  }
+
+  /* Embedded Interactive Box-Breathing Ring */
+  .nothing-breathing-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 22px 0 10px;
+    text-align: center;
+  }
+  .nothing-breathing-ring {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 2px solid var(--accent-blue);
+    background: rgba(56, 189, 248, 0.1);
+    animation: boxBreathe 8s infinite ease-in-out;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-family: var(--font-mono);
+    color: var(--accent-blue);
+  }
+  @keyframes boxBreathe {
+    0%, 100% { transform: scale(0.8); opacity: 0.5; }
+    50% { transform: scale(1.3); opacity: 1; }
+  }
+
+  
+/* ==========================================================================
      REELS FEATURE DESIGN SYSTEM (100% FULL-SCREEN SNAP INSTAGRAM/TIKTOK STYLE)
      ========================================================================== */
   .reels-feed-wrapper {
@@ -2064,6 +2266,9 @@
     <button class="center-nav-tab" data-tab="reels" title="Void Reels (Infinite Moments)">
       <svg class="icon-svg" width="20" height="20" viewBox="0 0 24 24"><rect width="20" height="20" x="2" y="2" rx="4" ry="4"/><line x1="2" x2="22" y1="8" y2="8"/><line x1="6" x2="9" y1="2" y2="8"/><line x1="13" x2="16" y1="2" y2="8"/><polygon points="10 12 15 15 10 18 10 12"/></svg>
     </button>
+    <button class="center-nav-tab" data-tab="void" title="The Infinite Void (Scroll, Find Nothing & Go to Work)">
+      <svg class="icon-svg" width="20" height="20" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-width="2"/><circle cx="12" cy="12" r="3" fill="currentColor"/></svg>
+    </button>
     <button class="center-nav-tab" data-tab="saved" title="Saved Bookmarks">
       <svg class="icon-svg" width="20" height="20" viewBox="0 0 24 24"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
     </button>
@@ -2142,6 +2347,14 @@
           <span>Reels</span>
         </div>
         <span class="nav-pill-badge" style="background:var(--like-red);color:#fff;">NEW</span>
+      </button>
+
+      <button class="social-nav-link" data-tab="void">
+        <div class="social-nav-link-left">
+          <svg class="icon-svg" width="18" height="18" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-width="2"/><circle cx="12" cy="12" r="3"/></svg>
+          <span>The Infinite Void</span>
+        </div>
+        <span class="nav-pill-badge" style="background:rgba(56,189,248,0.12);color:var(--accent-blue);font-size:10px;font-weight:700;">FIND NOTHING</span>
       </button>
 
       <button class="social-nav-link" data-tab="saved">
@@ -2234,6 +2447,15 @@
       </div>
     </div>
 
+    <!-- QUICK DOOMSCROLL DETOX SWITCHER -->
+    <div class="void-quick-detox-pill" id="btnQuickEnterVoid">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <span class="void-detox-pulse-dot"></span>
+        <span style="font-size:12.5px;color:var(--text-secondary);">Procrastinating? <b>Enter The Infinite Void</b>: scroll endlessly, find nothing, and go to work.</span>
+      </div>
+      <button class="btn-enter-void-pill">Scroll Nothingness →</button>
+    </div>
+
     <!-- FACEBOOK STYLE COMPOSER -->
     <div class="fb-composer-card" id="composerCard">
       <div class="composer-top-row">
@@ -2266,6 +2488,51 @@
 
     <!-- ALTERNATIVE TAB CONTAINER (SAVED, CIRCLES) -->
     <div class="social-feed-stream" id="altTabContainer" style="display:none;"></div>
+
+    <!-- DEDICATED INFINITE VOID NOTHING STREAM (SCROLL, FIND NOTHING & GO TO WORK - INFINITE SCROLL) -->
+    <div class="social-feed-stream" id="voidDetoxContainer" style="display:none;">
+      <!-- Header Card -->
+      <div class="void-detox-header-card">
+        <div class="void-detox-header-top">
+          <div class="void-orb-mini" style="width:40px;height:40px;border-radius:50%;background:rgba(56,189,248,0.12);border:1px solid rgba(56,189,248,0.3);display:flex;align-items:center;justify-content:center;color:var(--accent-blue);flex-shrink:0;">
+            <svg class="icon-svg" width="20" height="20" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3" fill="currentColor"/></svg>
+          </div>
+          <div style="flex:1;">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <h2 style="font-size:17.5px;font-weight:700;color:var(--text-primary);letter-spacing:-0.02em;">The Infinite Void</h2>
+              <span class="void-infinite-badge">∞ NO END</span>
+            </div>
+            <p style="font-size:12.5px;color:var(--text-secondary);margin-top:3px;line-height:1.5;">Scroll as far as your fingers want. You will find zero dopamine traps. When your urge to scroll is satisfied, close this tab and return to your craft.</p>
+          </div>
+        </div>
+
+        <div class="void-detox-stats-row">
+          <div class="detox-stat">
+            <b id="detoxDepthCounter">0</b>
+            <span>Levels Scrolled</span>
+          </div>
+          <div class="detox-stat">
+            <b style="color:var(--success);">0</b>
+            <span>Distractions Found</span>
+          </div>
+          <div class="detox-stat">
+            <b style="color:var(--accent-blue);">100%</b>
+            <span>Mindful Stillness</span>
+          </div>
+          <button class="btn-detox-exit" id="btnDetoxReadyToWork">I'm Ready to Work →</button>
+        </div>
+      </div>
+
+      <!-- Dynamic Stream List -->
+      <div id="voidDetoxStreamList" style="display:flex;flex-direction:column;gap:14px;width:100%;"></div>
+
+      <!-- Infinite Sentinel (Triggers endlessly on scroll - NEVER ENDS) -->
+      <div id="voidDetoxSentinel" style="height:44px;width:100%;display:flex;align-items:center;justify-content:center;color:var(--text-tertiary);font-size:12px;font-family:var(--font-mono);gap:8px;">
+        <span class="feed-loader-dot"></span>
+        <span>Traversing deeper into the infinite void…</span>
+      </div>
+    </div>
+
 
     <!-- DEDICATED REELS FEED CONTAINER (VERTICAL SNAP SCROLL & 100% FULL-SCREEN REELS) -->
     <div class="reels-feed-wrapper" id="reelsWrapper" style="display:none;">
@@ -2370,9 +2637,9 @@
     <svg class="icon-svg" width="22" height="22" viewBox="0 0 24 24"><rect width="20" height="20" x="2" y="2" rx="4" ry="4"/><line x1="2" x2="22" y1="8" y2="8"/><line x1="6" x2="9" y1="2" y2="8"/><line x1="13" x2="16" y1="2" y2="8"/><polygon points="10 12 15 15 10 18 10 12"/></svg>
     <span>Reels</span>
   </button>
-  <button class="mobile-nav-icon-btn" id="mobileCreatePostBtn">
-    <svg class="icon-svg" width="22" height="22" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="16"/><line x1="8" x2="16" y1="12" y2="12"/></svg>
-    <span>Post</span>
+  <button class="mobile-nav-icon-btn" data-tab="void" title="The Infinite Void">
+    <svg class="icon-svg" width="22" height="22" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3" fill="currentColor"/></svg>
+    <span>The Void</span>
   </button>
   <button class="mobile-nav-icon-btn" data-tab="saved">
     <svg class="icon-svg" width="22" height="22" viewBox="0 0 24 24"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
@@ -2497,6 +2764,32 @@
       <input type="text" id="editHandleInput" value="@voidfarer" style="width:100%;padding:8px 12px;border-radius:var(--radius-sm);background:var(--bg-surface-elevated);border:1px solid var(--border);font-size:13.5px;margin-top:4px;outline:none;">
     </div>
     <button class="btn-quick-post" id="btnSaveProfile" style="margin-top:6px;">Save Changes</button>
+  </div>
+</div>
+
+
+<!-- WORK FOCUS COMPLETION MODAL -->
+<div class="modal-backdrop" id="workFocusModal" style="display:none;">
+  <div class="modal-window" style="max-width:440px;text-align:center;padding:32px 24px;">
+    <div style="width:60px;height:60px;border-radius:50%;background:rgba(52,211,153,0.15);color:var(--success);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+      <svg class="icon-svg" width="32" height="32" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <h3 style="font-size:20px;font-weight:700;margin-bottom:8px;">Distraction Loop Broken</h3>
+    <p style="font-size:13.5px;color:var(--text-secondary);line-height:1.6;margin-bottom:20px;">
+      You scrolled <b id="modalDepthCount">0</b> levels into the void and found zero dopamine traps.
+      Your brain has reset. The hardest part of any task is starting the first 2 minutes.
+    </p>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <button class="btn-quick-post" id="btnCloseTabAction" style="padding:12px 18px;font-size:14px;background:var(--success);color:#000;border:none;cursor:pointer;">
+        🚀 Close Tab & Dive Into Work
+      </button>
+      <button class="social-icon-btn" id="btnStartFocus25" style="width:100%;height:auto;padding:11px;border-radius:var(--radius-sm);border:1px solid var(--border-strong);font-size:13px;display:flex;justify-content:center;gap:6px;cursor:pointer;">
+        <span>⏱️ Start 25-Min Silent Monotask</span>
+      </button>
+      <button style="background:none;border:none;color:var(--text-tertiary);font-size:12px;cursor:pointer;margin-top:4px;" id="btnReturnToFeedFromModal">
+        Return to Mindful Feed
+      </button>
+    </div>
   </div>
 </div>
 
@@ -3474,6 +3767,174 @@
     });
   }
 
+
+  // ==========================================================================
+  // THE INFINITE VOID (SCROLL, FIND NOTHING & GO TO WORK - NEVER-ENDING PROCEDURAL ENGINE)
+  // ==========================================================================
+  const VOID_NOTHING_OBSERVATIONS = [
+    "You are scrolling through pure, uninterrupted silence.",
+    "Your thumb is looking for a dopamine hit that does not exist here.",
+    "Look down at your hands holding this glass screen right now.",
+    "Every second you spend here is a deliberate refusal of algorithmic addiction.",
+    "The difficult task you are avoiding gets 80% easier the second you start.",
+    "There are no influencers to compare your life against in this void.",
+    "Notice the gentle ambient sounds in the physical room around you.",
+    "The internet wants your attention to sell ads. The void asks for nothing.",
+    "The dopamine hit you are waiting for comes from finishing what you started.",
+    "Friction creates memory; frictionless doomscrolling erases entire afternoons.",
+    "You could scroll down this stream for 100 miles. It will remain this peaceful.",
+    "Nothing new has happened online in the last 45 seconds.",
+    "Your lifespan is finite. Don't spend it watching a loading spinner for strangers.",
+    "Five minutes of honest, focused work will feel 10x better than scrolling.",
+    "The algorithm here is programmed to celebrate when you close this tab.",
+    "Unclench your jaw. Drop your shoulders down from your ears.",
+    "Look up from your screen right now and count 3 physical objects near you.",
+    "There are no unread notifications waiting for your immediate panic.",
+    "A quiet mind accomplishes in one hour what a distracted mind fails to do all day.",
+    "Imagine closing your laptop tonight knowing you finished what you planned.",
+    "The world outside your window is happening in high resolution without a screen.",
+    "Blink 5 times. Rest your optical nerves from blue light.",
+    "Escaping work is a habit; embracing work is a practice. You can start now.",
+    "No comments to argue with. No trending outrage to raise your cortisol.",
+    "The void is vast, but your life is happening right now in your room.",
+    "Breathe. You have arrived at the end of the internet's demands on you.",
+    "There is literally nothing below this card except more stillness.",
+    "Still scrolling? We respect your stubborn thumb. But your craft misses you.",
+    "The most rebellious act in 2026 is closing a social feed and making something real.",
+    "You came to scroll. You scrolled. The void has witnessed your presence. Now go."
+  ];
+
+  const VOID_NOTHING_NUDGES = [
+    "Breathe deeply. Your work is waiting for your unique human insight.",
+    "The void has satisfied your scroll reflex. Now go back to your craft.",
+    "One single task from start to finish. You can do this.",
+    "Take your clarity back into the real world.",
+    "The hardest part is opening the document. After that, momentum takes over.",
+    "Put your phone face down for 20 minutes. See what happens.",
+    "Your future self will thank you for closing this tab right now.",
+    "Focus is not a punishment; it is the ultimate creative joy.",
+    "The world needs what you build, not what you consume.",
+    "Step away from the screen for 2 minutes. Drink a glass of water.",
+    "Notice the silence. It is not empty; it is full of potential.",
+    "Close this tab and take a single step forward on your task.",
+    "No rush, no panic. Move into your work with unhurried dignity."
+  ];
+
+  let voidDetoxDepth = 0;
+  let voidDetoxObserver = null;
+  let voidDetoxInitialized = false;
+
+  function generateNothingCardData(depth) {
+    const obs = VOID_NOTHING_OBSERVATIONS[(depth * 7 + 3) % VOID_NOTHING_OBSERVATIONS.length];
+    const nudge = VOID_NOTHING_NUDGES[(depth * 11 + 5) % VOID_NOTHING_NUDGES.length];
+    const isBreathing = (depth % 5 === 0);
+    const isSensory = (depth % 4 === 0 && !isBreathing);
+
+    return {
+      depth: depth,
+      text: obs,
+      nudge: nudge,
+      isBreathing: isBreathing,
+      isSensory: isSensory
+    };
+  }
+
+  function renderNothingCardElement(cardData) {
+    const el = document.createElement('div');
+    el.className = 'void-nothing-card';
+
+    let extraHtml = '';
+    if (cardData.isBreathing) {
+      extraHtml = `
+        <div class="nothing-breathing-box">
+          <div class="nothing-breathing-ring">BREATHE</div>
+          <span style="font-size:12px;color:var(--text-secondary);">Inhale 4s · Hold 2s · Exhale 4s</span>
+        </div>
+      `;
+    } else if (cardData.isSensory) {
+      extraHtml = `
+        <div style="padding:10px 14px;background:var(--bg-subtle);border-radius:var(--radius-sm);margin-bottom:12px;font-size:12.5px;color:var(--text-secondary);">
+          👁️ <b>Sensory Grounding:</b> Look away from your screen. Notice 3 physical objects around you. Feel your feet on the floor.
+        </div>
+      `;
+    }
+
+    el.innerHTML = `
+      <div class="nothing-card-header">
+        <span class="nothing-depth-pill">Level #${cardData.depth} in The Void</span>
+        <span style="font-size:11px;font-family:var(--font-mono);color:var(--text-tertiary);">0 distractions found</span>
+      </div>
+      <p class="nothing-card-text">${cardData.text}</p>
+      ${extraHtml}
+      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:14px;font-style:italic;">${cardData.nudge}</p>
+      <div class="nothing-card-footer">
+        <span style="font-size:11px;color:var(--text-tertiary);">Void Stillness Stream</span>
+        <button class="btn-nothing-ready btn-trigger-work-modal">I'm Ready to Work →</button>
+      </div>
+    `;
+
+    el.querySelector('.btn-trigger-work-modal').addEventListener('click', () => {
+      openWorkFocusModal();
+    });
+
+    return el;
+  }
+
+  function appendVoidDetoxBatch(count = 4) {
+    const list = document.getElementById('voidDetoxStreamList');
+    const counter = document.getElementById('detoxDepthCounter');
+    for (let i = 0; i < count; i++) {
+      voidDetoxDepth++;
+      const data = generateNothingCardData(voidDetoxDepth);
+      list.appendChild(renderNothingCardElement(data));
+    }
+    if (counter) counter.textContent = voidDetoxDepth;
+  }
+
+  function initVoidDetoxStream() {
+    if (voidDetoxInitialized) return;
+    voidDetoxInitialized = true;
+
+    // Initial batch of 6 cards
+    appendVoidDetoxBatch(6);
+
+    // Infinite sentinel observer (Infinite, no end)
+    const sentinel = document.getElementById('voidDetoxSentinel');
+    voidDetoxObserver = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting && state.activeTab === 'void') {
+        appendVoidDetoxBatch(4); // Continuously appends more as user scrolls
+      }
+    }, { rootMargin: '350px' });
+    voidDetoxObserver.observe(sentinel);
+  }
+
+  function openWorkFocusModal() {
+    const modal = document.getElementById('workFocusModal');
+    const countEl = document.getElementById('modalDepthCount');
+    if (countEl) countEl.textContent = voidDetoxDepth;
+    modal.style.display = 'flex';
+  }
+
+  document.getElementById('btnDetoxReadyToWork').addEventListener('click', openWorkFocusModal);
+  document.getElementById('btnCloseTabAction').addEventListener('click', () => {
+    showToast('Focus mode engaged! You can now close this tab (Ctrl+W) and dive into work.');
+    try { window.close(); } catch (e) {}
+  });
+  document.getElementById('btnStartFocus25').addEventListener('click', () => {
+    document.getElementById('workFocusModal').style.display = 'none';
+    setTab('feed');
+    showToast('25-minute focus session started. Monotasking active.');
+  });
+  document.getElementById('btnReturnToFeedFromModal').addEventListener('click', () => {
+    document.getElementById('workFocusModal').style.display = 'none';
+    setTab('feed');
+  });
+
+  const btnQuickEnterVoid = document.getElementById('btnQuickEnterVoid');
+  if (btnQuickEnterVoid) {
+    btnQuickEnterVoid.addEventListener('click', () => setTab('void'));
+  }
+
   function setTab(tab) {
     state.activeTab = tab;
 
@@ -3482,6 +3943,8 @@
       else t.classList.remove('active');
     });
 
+    const voidDetoxWrapper = document.getElementById('voidDetoxContainer');
+
     if (tab === 'feed') {
       document.body.classList.remove('reels-active');
       feedStream.style.display = 'flex';
@@ -3489,6 +3952,7 @@
       document.getElementById('composerCard').style.display = 'flex';
       document.getElementById('feedLoader').style.display = 'flex';
       altTabContainer.style.display = 'none';
+      if (voidDetoxWrapper) voidDetoxWrapper.style.display = 'none';
       if (reelsWrapper) reelsWrapper.style.display = 'none';
     } else if (tab === 'reels') {
       document.body.classList.add('reels-active');
@@ -3497,10 +3961,23 @@
       document.getElementById('composerCard').style.display = 'none';
       document.getElementById('feedLoader').style.display = 'none';
       altTabContainer.style.display = 'none';
+      if (voidDetoxWrapper) voidDetoxWrapper.style.display = 'none';
       if (reelsWrapper) {
         reelsWrapper.style.display = 'block';
         initReelsStream();
         reelsContainer.scrollTop = 0;
+      }
+    } else if (tab === 'void') {
+      document.body.classList.remove('reels-active');
+      feedStream.style.display = 'none';
+      document.getElementById('storiesTray').style.display = 'none';
+      document.getElementById('composerCard').style.display = 'none';
+      document.getElementById('feedLoader').style.display = 'none';
+      altTabContainer.style.display = 'none';
+      if (reelsWrapper) reelsWrapper.style.display = 'none';
+      if (voidDetoxWrapper) {
+        voidDetoxWrapper.style.display = 'flex';
+        initVoidDetoxStream();
       }
     } else {
       document.body.classList.remove('reels-active');
@@ -3509,6 +3986,7 @@
       document.getElementById('composerCard').style.display = 'none';
       document.getElementById('feedLoader').style.display = 'none';
       if (reelsWrapper) reelsWrapper.style.display = 'none';
+      if (voidDetoxWrapper) voidDetoxWrapper.style.display = 'none';
       altTabContainer.style.display = 'flex';
       renderAltView(tab);
     }
