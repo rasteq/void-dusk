@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>void — social presence feed</title>
+<title>void</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 34'><rect width='34' height='34' rx='9.5' fill='%2312141a' stroke='rgba(255,255,255,0.15)' stroke-width='1.2'/><path d='M10.5 11L17 22.5L23.5 11' stroke='%23f8fafc' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round' fill='none'/><circle cx='17' cy='15.5' r='4.2' fill='%23090a0d' stroke='%2338bdf8' stroke-width='1.6'/><circle cx='17' cy='15.5' r='1.6' fill='%2338bdf8'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1371,6 +1371,373 @@
     border-radius: 50%;
     background: var(--text-tertiary);
   }
+
+  /* ==========================================================================
+     REELS FEATURE DESIGN SYSTEM (INSTAGRAM / TIKTOK STYLE FULL-SCREEN SNAP)
+     ========================================================================== */
+  .reels-feed-container {
+    width: 100%;
+    max-width: 440px;
+    margin: 0 auto;
+    height: calc(100vh - 84px);
+    max-height: 760px;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    border-radius: var(--radius-lg);
+    position: relative;
+    background: #000;
+    border: 1px solid var(--border-strong);
+    box-shadow: var(--shadow-lg);
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .reels-feed-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .reels-feed-container {
+      max-width: 100%;
+      height: calc(100dvh - 56px - 54px);
+      max-height: none;
+      border-radius: 0;
+      border: none;
+    }
+  }
+
+  .reel-card {
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    position: relative;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+    user-select: none;
+    background-color: #0b0d12;
+  }
+
+  /* Atmospheric Visual Backdrops (GPU Accelerated, 0% Idle CPU) */
+  .reel-visual-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    overflow: hidden;
+  }
+  .reel-scrim-gradient {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.3) 0%,
+      rgba(0, 0, 0, 0.05) 40%,
+      rgba(0, 0, 0, 0.65) 75%,
+      rgba(0, 0, 0, 0.94) 100%
+    );
+    pointer-events: none;
+  }
+
+  /* REEL ATMOSPHERIC THEMES (100% CSS, ZERO CPU IDLE) */
+  .bg-kyoto-rain {
+    background: radial-gradient(circle at 50% 30%, #1e2638 0%, #0d1117 70%, #06080c 100%);
+  }
+  .bg-kyoto-rain::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      105deg,
+      rgba(255, 255, 255, 0.035) 0px,
+      rgba(255, 255, 255, 0.035) 1px,
+      transparent 1px,
+      transparent 22px
+    );
+    opacity: 0.6;
+  }
+
+  .bg-nordic-fog {
+    background: radial-gradient(circle at 50% 25%, #182b26 0%, #0e1714 65%, #070b09 100%);
+  }
+  .bg-nordic-fog::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 0%, rgba(52, 211, 153, 0.06) 50%, transparent 100%);
+  }
+
+  .bg-studio-coffee {
+    background: radial-gradient(circle at 50% 40%, #301f18 0%, #17100d 65%, #080605 100%);
+  }
+  .bg-studio-coffee::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 80%, rgba(245, 158, 11, 0.12) 0%, transparent 60%);
+  }
+
+  .bg-midnight-train {
+    background: radial-gradient(circle at 60% 30%, #1a233a 0%, #0e1320 65%, #07090f 100%);
+  }
+  .bg-midnight-train::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      transparent 40px,
+      rgba(56, 189, 248, 0.045) 40px,
+      rgba(56, 189, 248, 0.045) 42px
+    );
+  }
+
+  .bg-volcanic-tide {
+    background: radial-gradient(circle at 50% 60%, #13242c 0%, #0b1418 60%, #05090b 100%);
+  }
+  .bg-volcanic-tide::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 100%, rgba(56, 189, 248, 0.14) 0%, transparent 70%);
+  }
+
+  .bg-singularity-orbit {
+    background: radial-gradient(circle at 50% 45%, #1f1d2e 0%, #100f18 65%, #07070b 100%);
+  }
+  .bg-singularity-orbit::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    border: 1px dashed rgba(255, 255, 255, 0.14);
+    box-shadow: 0 0 40px rgba(56, 189, 248, 0.14);
+  }
+
+  /* Right Vertical Action Rail */
+  .reel-action-rail {
+    position: absolute;
+    right: 14px;
+    bottom: 84px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+  .reel-action-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    transition: transform var(--anim-fast);
+  }
+  .reel-action-btn:hover {
+    transform: scale(1.1);
+  }
+  .reel-action-icon-circle {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background var(--anim-fast), color var(--anim-fast), transform var(--anim-fast);
+  }
+  .reel-action-btn:active .reel-action-icon-circle {
+    transform: scale(0.92);
+  }
+  .reel-action-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+  }
+  .reel-action-btn.active-like .reel-action-icon-circle {
+    color: var(--like-red);
+    background: rgba(255, 51, 75, 0.28);
+  }
+  .reel-action-btn.active-save .reel-action-icon-circle {
+    color: var(--save-gold);
+    background: rgba(251, 191, 36, 0.28);
+  }
+
+  /* Bottom Content Info */
+  .reel-content-bottom {
+    position: relative;
+    z-index: 10;
+    padding: 18px 70px 22px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    color: #fff;
+    pointer-events: none;
+  }
+  .reel-content-bottom * {
+    pointer-events: auto;
+  }
+  .reel-author-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .reel-author-name {
+    font-size: 14.5px;
+    font-weight: 600;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+  }
+  .reel-btn-follow {
+    padding: 3px 11px;
+    border-radius: var(--radius-full);
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--anim-fast);
+  }
+  .reel-btn-follow.following {
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.7);
+  }
+  .reel-caption-text {
+    font-size: 13.5px;
+    line-height: 1.45;
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+  }
+  .reel-audio-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3.5px 12px;
+    border-radius: var(--radius-full);
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    font-size: 11.5px;
+    color: rgba(255, 255, 255, 0.85);
+    width: fit-content;
+    cursor: pointer;
+  }
+
+  /* Sound indicator / Volume badge on top */
+  .reel-sound-badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 10;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.18);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform var(--anim-fast);
+  }
+  .reel-sound-badge:hover {
+    transform: scale(1.08);
+  }
+
+  /* Reels Top Bar Controls */
+  .reels-top-bar {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .reels-back-btn {
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: var(--radius-full);
+    color: #fff;
+    padding: 5px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: background var(--anim-fast);
+  }
+  .reels-back-btn:hover {
+    background: rgba(255,255,255,0.15);
+  }
+
+  /* In-Reel Comments Drawer */
+  .reel-comments-drawer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-height: 70%;
+    background: var(--bg-surface);
+    border-top: 1px solid var(--border-strong);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    z-index: 30;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(100%);
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 -12px 36px rgba(0,0,0,0.6);
+  }
+  .reel-comments-drawer.open {
+    transform: translateY(0);
+  }
+  .reel-drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+  }
+  .reel-drawer-comments-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 14px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: 280px;
+  }
+  .reel-drawer-input-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-top: 1px solid var(--border);
+    background: var(--bg-surface);
+  }
 </style>
 </head>
 <body>
@@ -1405,6 +1772,9 @@
   <nav class="header-center-nav">
     <button class="center-nav-tab active" data-tab="feed" title="Home Feed">
       <svg class="icon-svg" width="20" height="20" viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    </button>
+    <button class="center-nav-tab" data-tab="reels" title="Void Reels (Infinite Moments)">
+      <svg class="icon-svg" width="20" height="20" viewBox="0 0 24 24"><rect width="20" height="20" x="2" y="2" rx="4" ry="4"/><line x1="2" x2="22" y1="8" y2="8"/><line x1="6" x2="9" y1="2" y2="8"/><line x1="13" x2="16" y1="2" y2="8"/><polygon points="10 12 15 15 10 18 10 12"/></svg>
     </button>
     <button class="center-nav-tab" data-tab="saved" title="Saved Bookmarks">
       <svg class="icon-svg" width="20" height="20" viewBox="0 0 24 24"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
@@ -1476,6 +1846,14 @@
           <svg class="icon-svg" width="18" height="18" viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
           <span>Feed</span>
         </div>
+      </button>
+
+      <button class="social-nav-link" data-tab="reels">
+        <div class="social-nav-link-left">
+          <svg class="icon-svg" width="18" height="18" viewBox="0 0 24 24"><rect width="20" height="20" x="2" y="2" rx="4" ry="4"/><line x1="2" x2="22" y1="8" y2="8"/><line x1="6" x2="9" y1="2" y2="8"/><line x1="13" x2="16" y1="2" y2="8"/><polygon points="10 12 15 15 10 18 10 12"/></svg>
+          <span>Reels</span>
+        </div>
+        <span class="nav-pill-badge" style="background:var(--like-red);color:#fff;">NEW</span>
       </button>
 
       <button class="social-nav-link" data-tab="saved">
@@ -1601,6 +1979,24 @@
     <!-- ALTERNATIVE TAB CONTAINER (SAVED, CIRCLES) -->
     <div class="social-feed-stream" id="altTabContainer" style="display:none;"></div>
 
+    <!-- DEDICATED REELS FEED CONTAINER (VERTICAL SNAP SCROLL & INFINITE FEED) -->
+    <div class="reels-feed-container" id="reelsContainer" style="display:none;">
+      <!-- Top header bar for Reels -->
+      <div class="reels-top-bar">
+        <button class="reels-back-btn" id="btnExitReels" title="Back to Feed">
+          <svg class="icon-svg" width="14" height="14" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+          <span>Feed</span>
+        </button>
+        <span style="font-size:13px;font-weight:600;color:rgba(255,255,255,0.9);letter-spacing:0.02em;">Void Reels</span>
+      </div>
+
+      <!-- Reels items stream -->
+      <div id="reelsStreamList"></div>
+
+      <!-- Sentinel for infinite auto-loading -->
+      <div id="reelsSentinel" style="height:40px;width:100%;"></div>
+    </div>
+
     <!-- INFINITE STREAM LOADER -->
     <div class="feed-loader" id="feedLoader">
       <span class="feed-loader-dot"></span>
@@ -1666,9 +2062,9 @@
     <svg class="icon-svg" width="22" height="22" viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
     <span>Home</span>
   </button>
-  <button class="mobile-nav-icon-btn" data-tab="search">
-    <svg class="icon-svg" width="22" height="22" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-    <span>Explore</span>
+  <button class="mobile-nav-icon-btn" data-tab="reels">
+    <svg class="icon-svg" width="22" height="22" viewBox="0 0 24 24"><rect width="20" height="20" x="2" y="2" rx="4" ry="4"/><line x1="2" x2="22" y1="8" y2="8"/><line x1="6" x2="9" y1="2" y2="8"/><line x1="13" x2="16" y1="2" y2="8"/><polygon points="10 12 15 15 10 18 10 12"/></svg>
+    <span>Reels</span>
   </button>
   <button class="mobile-nav-icon-btn" id="mobileCreatePostBtn">
     <svg class="icon-svg" width="22" height="22" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="16"/><line x1="8" x2="16" y1="12" y2="12"/></svg>
@@ -1895,20 +2291,96 @@
   }, 1000);
 
   // ==========================================================================
-  // ENRICHED SEED CONTENT POOLS (THOUGHTS, QUOTES, POLLS, AUTHORS, COMMENTS)
+  // PROCEDURAL NON-REPEATING CONTENT ENGINE (100% UNIQUE POSTS ALWAYS)
   // ==========================================================================
-  const AUTHOR_POOL = [
-    { name: 'Elena Rostova', handle: '@elena_mind', initial: 'E', verified: true },
-    { name: 'Dr. Aris Thorne', handle: '@aris_neuro', initial: 'A', verified: true },
-    { name: 'Kaelen Vos', handle: '@kaelen_void', initial: 'K', verified: false },
-    { name: 'Nadia Bloom', handle: '@nadia_bloom', initial: 'N', verified: true },
-    { name: 'Julian Gray', handle: '@juliangray', initial: 'J', verified: false },
-    { name: 'Soren Lindqvist', handle: '@soren_craft', initial: 'S', verified: true },
-    { name: 'Mira Chen', handle: '@mirachen', initial: 'M', verified: true },
-    { name: 'Tarek Al-Mansoor', handle: '@tarek_still', initial: 'T', verified: false }
+  const FIRST_NAMES = [
+    'Elena', 'Aris', 'Soren', 'Nadia', 'Julian', 'Mira', 'Tarek', 'Silas', 'Freja', 'Kenji',
+    'Clara', 'Liam', 'Maya', 'Ethan', 'Astrid', 'Rowan', 'Zoe', 'Caleb', 'Amara', 'Mateo',
+    'Linnea', 'Gabriel', 'Hana', 'Leo', 'Anouk', 'Devon', 'Kavita', 'Jonas', 'Valerie', 'Nico',
+    'Siddharth', 'Yuki', 'Gisela', 'Malik', 'Ingrid', 'Orion', 'Evelyn', 'Tobias', 'Camille', 'Dante'
   ];
 
-  const THOUGHT_POOL = [
+  const LAST_NAMES = [
+    'Rostova', 'Thorne', 'Lindqvist', 'Bloom', 'Gray', 'Chen', 'Al-Mansoor', 'Vance', 'O\'Connor', 'Tanaka',
+    'Jensen', 'Morales', 'Novak', 'Berg', 'Dubois', 'Sharma', 'Kovacs', 'Sinclair', 'Abe', 'Holm',
+    'Mercer', 'Fontaine', 'Vargas', 'Lund', 'Schneider', 'Hashimoto', 'Castillo', 'Lind', 'Garnier', 'Sato'
+  ];
+
+  const HANDLES_SUFFIX = [
+    'mind', 'neuro', 'craft', 'void', 'focus', 'studio', 'still', 'calm', 'depth', 'silence', 'analogue', 'presence'
+  ];
+
+  const CONTEXTS = [
+    "This morning before opening any screen,",
+    "Day 21 of leaving my smartphone in a kitchen drawer overnight:",
+    "Spent 3 hours in a sunlit room with only a blank fountain pen notebook.",
+    "Closed 85 open tabs and shut down my workstation at 4:30 PM.",
+    "Walking through wet gravel in the autumn pine woods with zero audio playing:",
+    "Notice how physical rooms breathe differently when nobody is checking a device.",
+    "After a full week of zero push notifications and total inbox silence:",
+    "Experimented with eating three consecutive meals in pure unhurried silence.",
+    "Replaced my morning news feed with 20 minutes of natural window light and manual coffee brewing.",
+    "Visited an old secondhand bookshop with no Wi-Fi reception.",
+    "Spent the afternoon binding a hardback sketch journal by hand.",
+    "Turned off all badges, red dots, and banner alerts across every operating system.",
+    "Taking the coastal train without headphones for the first time in years.",
+    "Working at an unadorned wooden desk with zero monitors, just paper and ink:",
+    "Sitting beside an open window during steady dusk rain with no background podcast:",
+    "Watched an old watchmaker replace a balance spring through an optical loupe:",
+    "Re-reading a paper novel from 1974 without glancing at a glowing rectangle:",
+    "Unsubscribed from 40 automated marketing digests in a single sweep.",
+    "Sitting quietly on the morning commuter ferry watching sea foam in the wake:",
+    "Cleaning a cast iron skillet with salt and hot water after dinner in silence:",
+    "Waking up naturally without an electronic alarm blaring beside my temple:",
+    "Watching the shadow of a maple branch move across my living room floor over 2 hours:",
+    "Refusing to reply to any email received after 5:00 PM until 10:00 AM tomorrow:",
+    "Walking home through the city under falling snow with my hands deep in my wool coat:",
+    "Deleting three social media apps from my home screen and replacing them with a library card:"
+  ];
+
+  const CORE_INSIGHTS = [
+    "Manufactured urgency is the modern mind's greatest illusion. Almost nothing requires a 10-minute response.",
+    "Your attention span was never broken; it was strip-mined by algorithms engineered to monetize your nervous system.",
+    "The density of original thought multiplies exponentially the moment you remove passive micro-stimuli.",
+    "What we call 'saving for later' is almost always guilt-hoarding information we are simply too exhausted to process.",
+    "The quietest moments of your week are where your subconscious does its heaviest defragmentation.",
+    "Friction is not the enemy of life; hyper-convenience has eliminated the tactile texture that creates memory.",
+    "True luxury in the 21st century is unreachability, unhurried time, and an empty notifications tray.",
+    "We replaced face-to-face community with a synthetic ranking algorithm optimized for outrage and anxiety.",
+    "Multitasking is simply rapid context switching that leaves cognitive residue across all your synaptic channels.",
+    "When you give your mind blank space, it doesn't stay empty — it begins to generate its own authentic gravity.",
+    "You do not need another productivity framework or a 6th task management app; you need the bravery to do fewer things.",
+    "The best software is the one that respects your departure and never begs for your return.",
+    "Attention is the rarest and purest currency you possess. Once spent, no market can refund it.",
+    "Physical objects don't ask for software updates. Their quiet permanence anchors the human spirit.",
+    "Solitude is where you meet yourself without the distorting mirror of social validation.",
+    "The speed of modern communication has outpaced the speed of human emotional digestion.",
+    "If every moment of boredom is immediately filled with a screen, you will never hear what your intuition is trying to say.",
+    "Real life is low-resolution in its speed, but infinite in its depth.",
+    "Silence is not an awkward void to be filled with noise; it is the sanctuary where perspective returns.",
+    "We spend years learning how to build and optimize, but almost zero time learning how to stop.",
+    "A clear conscience and an empty inbox are good, but an empty afternoon is sacred.",
+    "Notice how the natural world never rushes, yet everything is accomplished.",
+    "Your phone was designed to be a tool. The moment it started demanding your attention, it became your manager.",
+    "True craftsmanship requires long periods of uninterrupted focus that modern workplace chats make impossible."
+  ];
+
+  const PRACTICES = [
+    "Try scheduling two hours of completely unscheduled void on your calendar this Saturday.",
+    "Notice the tactile weight of the cup in your hand before reflexively reaching for your pocket.",
+    "Next time you wait in line, let your hands hang empty. Observe the architecture of the ceiling instead.",
+    "Set your phone to grayscale for 48 hours. Watch how quickly the artificial slot-machine allure evaporates.",
+    "Pick one single task today and finish it from start to finish without opening a new browser tab.",
+    "Go for a 40-minute walk with your hands free and your ears open to the wind.",
+    "Keep a physical pocket notebook. Let ideas cool down on paper before sharing them with the world.",
+    "Establish a digital curfew at 8:30 PM. Let darkness be dark and morning be morning.",
+    "Leave your phone in another room during meals. Reclaim the lost art of unhurried chewing and conversation.",
+    "Try saying 'Let me think about that and get back to you tomorrow' instead of instantly replying.",
+    "Spend 15 minutes each evening staring out the window with zero background audio.",
+    "Close all apps on your machine before shutting the lid tonight. Start tomorrow with a clean slate."
+  ];
+
+  const STANDALONE_THOUGHTS = [
     "The single most liberating realization of my 30s: Almost nothing in your notifications requires a response within 10 minutes. If the building is on fire, someone will call. Everything else is manufactured urgency.",
     "The Tab Bankruptcy Protocol: Closed 74 open browser tabs today. Not a single idea was lost. What we call 'saving for later' is usually just hoarding information we're too exhausted to digest.",
     "Spent 90 minutes sketching in a physical notebook with my phone in the kitchen drawer. The density of thought you experience without the micro-distraction of a screen is astonishing.",
@@ -1918,38 +2390,65 @@
     "Notice how physical conversations don't have algorithmic rankings or like buttons. You just speak, listen, and the words dissolve into the room. We need more ephemeral moments.",
     "The best feature on any modern operating system is 'Do Not Disturb'. It should probably be the default state.",
     "Morning routine experiment: No phone until 8:30 AM. First 2 hours dedicated to natural sunlight, physical coffee, and handwritten journaling. Productivity doubled; anxiety halved.",
-    "If an app is free, your nervous system is the commodity. Guard your attention with the same ferocity you guard your bank account."
+    "If an app is free, your nervous system is the commodity. Guard your attention with the same ferocity you guard your bank account.",
+    "When you sit with someone and neither of you checks a phone for two hours, you leave feeling physically restored. True human presence is an endangered nutrient.",
+    "Read an entire 300-page physical book over the weekend with the Wi-Fi router unplugged. My attention span isn't broken; it was just starving for peace.",
+    "Every red notification dot was designed by someone whose annual bonus depended on stealing 4 seconds of your life today. Reclaim the wheel.",
+    "Writing on high-grain cotton paper with an old fountain pen. The speed of hand ink matches the speed of human contemplation. Keyboards were built for transcription, not thinking.",
+    "An empty calendar is not a failure of ambition; it is the prerequisite for genius. The greatest breakthroughs in history occurred during long, unstructured walks.",
+    "The feeling of phantom vibrations in your pocket is your nervous system begging for a break from Pavlovian conditioning. Give it a weekend off.",
+    "Notice how nobody reminisces about an afternoon spent scrolling through automated short-form clips. Memories are formed by friction, presence, and tactile experience.",
+    "We collect articles we'll never read, save links we'll never open, and buy courses we'll never finish. Sometimes the most radical act is simply letting go of the backlog.",
+    "A quiet house at 6:00 AM before anyone else stirs. The smell of fresh espresso beans and cold dawn air. You don't need an exotic retreat to experience paradise.",
+    "In an age of hyper-connectivity, the ability to go missing for three hours without an explanation is the ultimate status symbol."
   ];
 
-  const QUOTE_POOL = [
-    "“The ability to observe without evaluating is the highest form of intelligence.” — J. Krishnamurti",
-    "“To be everywhere is to be nowhere. People who spend their whole life traveling end up having plenty of places where they can find hospitality, but no real friendships.” — Seneca",
-    "“You have power over your mind — not outside events. Realize this, and you will find strength.” — Marcus Aurelius",
-    "“Simplicity is about subtracting the obvious and adding the meaningful.” — John Maeda",
-    "“Attention is the rarest and purest form of generosity.” — Simone Weil",
-    "“Deep work is the superpower of the 21st century. In an economy of distraction, the quiet mind produces disproportionate value.” — Cal Newport"
+  const QUOTES_POOL = [
+    { text: "“The ability to observe without evaluating is the highest form of intelligence.”", author: "J. Krishnamurti" },
+    { text: "“To be everywhere is to be nowhere. Travel without solitude leaves plenty of acquaintances but no friends.”", author: "Seneca" },
+    { text: "“You have power over your mind — not outside events. Realize this, and you will find stillness.”", author: "Marcus Aurelius" },
+    { text: "“Simplicity is about subtracting the obvious and adding the meaningful.”", author: "John Maeda" },
+    { text: "“Attention is the rarest and purest form of generosity.”", author: "Simone Weil" },
+    { text: "“In an economy of distraction, the quiet mind produces disproportionate value.”", author: "Cal Newport" },
+    { text: "“Muddy water is best cleared by leaving it alone.”", author: "Alan Watts" },
+    { text: "“It is not that we have a short time to live, but that we waste a great deal of it.”", author: "Seneca" },
+    { text: "“Almost everything will work again if you unplug it for a few minutes, including you.”", author: "Anne Lamott" },
+    { text: "“Solitude is the place of purification.”", author: "Martin Buber" },
+    { text: "“In the midst of movement and chaos, keep stillness inside of you.”", author: "Deepak Chopra" },
+    { text: "“The quieter you become, the more you are able to hear.”", author: "Rumi" },
+    { text: "“I went to the woods because I wished to live deliberately, to front only the essential facts of life.”", author: "Henry David Thoreau" },
+    { text: "“Beware the barrenness of a busy life.”", author: "Socrates" },
+    { text: "“We are drowning in information, while starving for wisdom.”", author: "E.O. Wilson" }
   ];
 
-  const POLL_POOL = [
+  const POLLS_POOL = [
     {
-      question: "What is your primary phone habit the minute you wake up?",
-      options: ["Check notifications immediately (Cortisol spike)", "Look at time, then leave it on nightstand", "Keep phone in another room overnight (Serene)"]
+      question: "What is your primary phone habit the minute your eyes open in the morning?",
+      options: ["Check alerts immediately (Cortisol spike)", "Check the time, then leave it on nightstand", "Phone sleeps in another room overnight (Serene)"]
     },
     {
-      question: "How many open browser tabs are currently running on your machine?",
-      options: ["Under 10 (Clean focus)", "10 to 30 (Organized chaos)", "50+ (Complete tab bankruptcy)"]
+      question: "How many open browser tabs are currently running on your workstation?",
+      options: ["Under 10 (Clean focus)", "10 to 30 (Organized chaos)", "50+ (Tab bankruptcy imminent)"]
     },
     {
       question: "When was your last 60-minute walk with ZERO headphones or screens?",
       options: ["Earlier today / yesterday", "Sometime this week", "Honestly can't remember"]
     },
     {
-      question: "Which distraction steals the most hours of your week?",
-      options: ["Short-form video reels & infinite scrolls", "Work messaging (Slack/Teams/Email)", "Group chats & social feeds"]
+      question: "Which digital habit steals the most intentional hours from your week?",
+      options: ["Short-form reels & endless feeds", "Work chat apps (Slack/Teams/Email)", "Passive tab browsing & rabbit holes"]
+    },
+    {
+      question: "If you could remove ONE notification badge type forever, which would it be?",
+      options: ["Red counter badges on app icons", "Banner popups while working", "Promotional push notifications"]
+    },
+    {
+      question: "How long can you sit in an empty room with nothing to do before feeling restless?",
+      options: ["Under 5 minutes (Itches for screen)", "10 to 20 minutes (Calming down)", "Over 30 minutes (Deeply peaceful)"]
     }
   ];
 
-  const COMMENT_POOL = [
+  const COMMENTS_POOL = [
     "I tried leaving my phone in the kitchen overnight last week. My sleep quality score jumped by 30%. Never going back.",
     "The 'close all tabs' shortcut (Ctrl+Shift+W) is the ultimate liberating button.",
     "We don't have an attention deficit crisis; we have an attention exploitation crisis.",
@@ -1957,36 +2456,96 @@
     "So true. It's funny how when you don't reply in 5 minutes, people actually figure things out on their own.",
     "Needed this reminder today. Screen time was creeping up to 6 hours.",
     "Physical notebooks have zero push notifications. Still the best invention in human history.",
-    "Practicing this exact exercise right now. Deep breath."
+    "Practicing this exact exercise right now. Deep breath.",
+    "The feeling of a clear desk and a muted phone is worth more than any productivity hack.",
+    "I turned off all red badge counters three months ago. The drop in ambient anxiety is palpable.",
+    "This perspective completely shifted how I structure my mornings.",
+    "Reading this while taking a mindful pause in Kyoto. The timing was uncanny.",
+    "Friction creates memory. When everything is frictionless, the days blur together into nothing.",
+    "My partner and I started leaving phones at the entryway basket at 7 PM. Game changer for our evenings.",
+    "We mistake urgency for importance. Thank you for this grounding thought.",
+    "Unsubscribed from 20 newsletters after reading this. Feels like opening a window in a dusty room."
   ];
 
-  function generateSocialPost(id) {
-    const author = AUTHOR_POOL[id % AUTHOR_POOL.length];
-    const postType = (id % 4 === 1) ? 'quote' : (id % 4 === 2) ? 'poll' : 'text';
-    const baseLikes = 28 + ((id * 23) % 115);
-    const baseComments = 4 + ((id * 7) % 18);
-    const baseShares = 1 + ((id * 4) % 11);
+  // Persistent Set of shown posts to guarantee zero duplicates across sessions and infinite scrolls
+  const seenFeedTexts = new Set(JSON.parse(localStorage.getItem('void-seen-feed-texts') || '[]'));
 
-    const c1 = COMMENT_POOL[(id * 2) % COMMENT_POOL.length];
-    const c2 = COMMENT_POOL[(id * 2 + 1) % COMMENT_POOL.length];
+  function recordSeenFeedText(text) {
+    seenFeedTexts.add(text);
+    if (seenFeedTexts.size > 500) {
+      const arr = Array.from(seenFeedTexts).slice(-500);
+      try { localStorage.setItem('void-seen-feed-texts', JSON.stringify(arr)); } catch (e) {}
+    }
+  }
+
+  function generateSocialPost(id) {
+    // Unique Author
+    const f = FIRST_NAMES[(id * 7 + 3) % FIRST_NAMES.length];
+    const l = LAST_NAMES[(id * 11 + 5) % LAST_NAMES.length];
+    const suffix = HANDLES_SUFFIX[(id * 3 + 1) % HANDLES_SUFFIX.length];
+    const authorName = `${f} ${l}`;
+    const authorHandle = `@${f.toLowerCase()}_${suffix}`;
+    const verified = (id % 3 === 0);
+
+    // Dynamic Post Type
+    const postType = (id % 4 === 1) ? 'quote' : (id % 4 === 2) ? 'poll' : 'text';
+
+    // Unique non-repeating text
+    let text = '';
+    let attempts = 0;
+    while (attempts < 100) {
+      attempts++;
+      if (id <= STANDALONE_THOUGHTS.length && attempts === 1) {
+        text = STANDALONE_THOUGHTS[id - 1];
+      } else {
+        const c = CONTEXTS[(id * 13 + attempts * 7) % CONTEXTS.length];
+        const ins = CORE_INSIGHTS[(id * 17 + attempts * 5) % CORE_INSIGHTS.length];
+        const p = PRACTICES[(id * 19 + attempts * 11) % PRACTICES.length];
+        text = `${c} ${ins} ${p}`;
+      }
+      if (!seenFeedTexts.has(text)) {
+        recordSeenFeedText(text);
+        break;
+      }
+    }
+    if (!text || seenFeedTexts.has(text)) {
+      text = `Reflection #${id}: ${CORE_INSIGHTS[id % CORE_INSIGHTS.length]} ${PRACTICES[id % PRACTICES.length]}`;
+      recordSeenFeedText(text);
+    }
+
+    // Dynamic Quote
+    const quoteObj = QUOTES_POOL[(id * 3 + 1) % QUOTES_POOL.length];
+
+    // Dynamic Poll
+    const pollObj = POLLS_POOL[(id * 5 + 2) % POLLS_POOL.length];
+
+    // Dynamic Unique Comments
+    const c1Text = COMMENTS_POOL[(id * 2) % COMMENTS_POOL.length];
+    const c2Text = COMMENTS_POOL[(id * 2 + 1) % COMMENTS_POOL.length];
+    const c1Author = FIRST_NAMES[(id * 4 + 1) % FIRST_NAMES.length] + ' ' + LAST_NAMES[(id * 5 + 2) % LAST_NAMES.length];
+    const c2Author = FIRST_NAMES[(id * 6 + 3) % FIRST_NAMES.length] + ' ' + LAST_NAMES[(id * 7 + 4) % LAST_NAMES.length];
+
+    // Dynamic Time
+    let timeStr = `${3 + (id * 4) % 52}m ago`;
+    if (id > 15) timeStr = `${Math.floor(id / 6)}h ago`;
 
     return {
-      id: `post_${id}`,
-      author: author.name,
-      handle: author.handle,
-      initial: author.initial,
-      verified: author.verified,
-      time: `${3 + (id % 52)}m ago`,
+      id: `post_${id}_${Date.now()}_${Math.floor(Math.random() * 1000)}`,
+      author: authorName,
+      handle: authorHandle,
+      initial: f[0],
+      verified: verified,
+      time: timeStr,
       type: postType,
-      text: THOUGHT_POOL[id % THOUGHT_POOL.length],
-      quote: QUOTE_POOL[id % QUOTE_POOL.length],
-      poll: POLL_POOL[id % POLL_POOL.length],
-      likes: baseLikes,
-      commentsCount: baseComments,
-      sharesCount: baseShares,
+      text: text,
+      quote: `${quoteObj.text} — ${quoteObj.author}`,
+      poll: pollObj,
+      likes: 32 + ((id * 37) % 210),
+      commentsCount: 3 + ((id * 7) % 24),
+      sharesCount: 1 + ((id * 5) % 15),
       comments: [
-        { author: 'Marcus Vance', text: c1 },
-        { author: 'Aria Thorne', text: c2 }
+        { author: c1Author, text: c1Text },
+        { author: c2Author, text: c2Text }
       ]
     };
   }
@@ -2495,8 +3054,15 @@
     onlineContainer.appendChild(item);
   });
 
-  // --- TAB NAVIGATION (FEED, SAVED BOOKMARKS, CIRCLES) ---
+  // --- TAB NAVIGATION (FEED, REELS, SAVED BOOKMARKS, CIRCLES) ---
   const navTabs = document.querySelectorAll('.center-nav-tab, .social-nav-link[data-tab], .mobile-nav-icon-btn[data-tab]');
+  const reelsContainer = document.getElementById('reelsContainer');
+  const reelsStreamList = document.getElementById('reelsStreamList');
+  const reelsSentinel = document.getElementById('reelsSentinel');
+  const btnExitReels = document.getElementById('btnExitReels');
+  if (btnExitReels) {
+    btnExitReels.addEventListener('click', () => setTab('feed'));
+  }
 
   function setTab(tab) {
     state.activeTab = tab;
@@ -2512,14 +3078,457 @@
       document.getElementById('composerCard').style.display = 'flex';
       document.getElementById('feedLoader').style.display = 'flex';
       altTabContainer.style.display = 'none';
+      if (reelsContainer) reelsContainer.style.display = 'none';
+    } else if (tab === 'reels') {
+      feedStream.style.display = 'none';
+      document.getElementById('storiesTray').style.display = 'none';
+      document.getElementById('composerCard').style.display = 'none';
+      document.getElementById('feedLoader').style.display = 'none';
+      altTabContainer.style.display = 'none';
+      if (reelsContainer) {
+        reelsContainer.style.display = 'block';
+        initReelsStream();
+        // Scroll smoothly to top of reels container
+        reelsContainer.scrollTop = 0;
+      }
     } else {
       feedStream.style.display = 'none';
       document.getElementById('storiesTray').style.display = 'none';
       document.getElementById('composerCard').style.display = 'none';
       document.getElementById('feedLoader').style.display = 'none';
+      if (reelsContainer) reelsContainer.style.display = 'none';
       altTabContainer.style.display = 'flex';
       renderAltView(tab);
     }
+  }
+
+  // ==========================================================================
+  // PROCEDURAL NON-REPEATING REELS ENGINE (100% UNIQUE REELS ALWAYS)
+  // ==========================================================================
+  const REELS_VISUAL_THEMES = [
+    'bg-kyoto-rain', 'bg-nordic-fog', 'bg-studio-coffee',
+    'bg-midnight-train', 'bg-volcanic-tide', 'bg-singularity-orbit'
+  ];
+
+  const REEL_SETTINGS = [
+    "Dawn meditation in Kyoto at 5:45 AM.",
+    "Closing 60+ browser tabs in one single click.",
+    "Nordic timber workshop at twilight in Oslo.",
+    "Midnight train glides through Tokyo rain.",
+    "Icelandic black volcanic sand meets freezing Atlantic tides.",
+    "Sumie ink grinding on natural stone slate in Hokkaido.",
+    "Dawn mist lifting over the Scottish Highlands.",
+    "Pouring black coffee over hand-ground Ethiopian beans.",
+    "Sketching architectural arches with charcoal in Rome.",
+    "Walking the edge of Lake Geneva in deep winter silence.",
+    "Calligraphy practice on rough Japanese washi paper.",
+    "Turning an analog mechanical watch crown 20 times in a quiet room.",
+    "Walking along the misty cliffs of Big Sur with hands in pockets.",
+    "Watching rain stream down the conservatory glass without an umbrella.",
+    "Reading an old leather-bound philosophy text by candle flame.",
+    "Carving a cedar tea scoop with a Japanese kiridashi knife.",
+    "Standing in an empty bamboo forest in Arashiyama as the wind rustles.",
+    "Sipping sencha green tea while dusk falls over the temple garden.",
+    "Rowing an old wooden skiff across Lake Como at sunrise.",
+    "Binding a journal in full grain vegetable-tanned leather in Florence.",
+    "Listening to a mechanical metronome in an empty piano hall.",
+    "Watching fresh snowfall settle on stone lanterns in Kanazawa.",
+    "Writing with walnut ink on handmade French laid paper in Provence.",
+    "Stepping outside after midnight to watch the stars in the Atacama Desert."
+  ];
+
+  const REEL_OBSERVATIONS = [
+    "Notice how stillness doesn't mean empty — it means full of presence.",
+    "Cognitive science shows context-switching fragments dopamine receptors. Reclaim your focus.",
+    "Zero screens, zero notifications. The friction of real wood is pure therapy.",
+    "No headphones, just observing raindrops sliding across the window pane in slow motion.",
+    "The rhythm of the ocean has been the same for 4 billion years. Unshakeable perspective.",
+    "Before writing a single word, 15 minutes of rhythmic preparation centers the breath.",
+    "Watching deer graze through the pine fog. No notifications exist out here.",
+    "Savoring the slow drip. The scent of roasted beans fills the quiet morning air.",
+    "Paper absorbs what digital screens distort: tactile human hand pressure and patience.",
+    "Crisp Alpine air cleanses the mental residue of 40 hours of screen time.",
+    "Each brushstroke is a testament to the irreversible, beautiful present moment.",
+    "Hearing the tiny balance wheel oscillation tick. Pure mechanical life without batteries.",
+    "The silence out here is tangible. You can hear your own pulse settling into calm.",
+    "Real life has no algorithmic ranking. You just breathe, listen, and let go.",
+    "When you remove manufactured urgency, time stretches out into vast unhurried horizons.",
+    "Friction creates memory; smoothness creates amnesia. Embrace the tactile world."
+  ];
+
+  const REEL_TAGS = [
+    "#Mindfulness #Stillness #Presence",
+    "#DeepWork #Focus #DigitalDetox",
+    "#AnalogueCraft #SlowLiving #Handmade",
+    "#UrbanSerenity #NightTrain #RainReflections",
+    "#OceanWaves #Perspective #NatureHealing",
+    "#SumieInk #Zen #Ritual",
+    "#Wilderness #Silence #Highlands",
+    "#SlowCoffee #MorningPresence #QuietHours",
+    "#ArchitecturalSketch #AnalogueArt #Contemplation",
+    "#WinterSolitude #Breathe #AlpineStillness",
+    "#WabiSabi #BrushAndInk #MonoNoAware",
+    "#Horology #MechanicalWatch #QuietMind",
+    "#LakeComo #QuietWaters #Dawn",
+    "#FlorenceCraft #Leatherwork #Artisan",
+    "#KanazawaSnow #ZenGarden #Peace"
+  ];
+
+  const REELS_AUDIO_TITLES = [
+    "Ambient Bell & Water Stream · Original Serene Audio",
+    "White Noise & Rain Shimmer · Serene Focus",
+    "Soft Cedar Carving Ambience · Soundless Tranquility",
+    "Midnight Locomotive & Rain Glass · Gentle Ambience",
+    "Black Sand Rhythmic Tide · Soundless Rest",
+    "Stone & Water Ink Grinding · Pure Presence",
+    "Highland Wind & Distant Stream · Soundless Peace",
+    "Morning Coffee Kettle Drip · Soft Presence",
+    "Charcoal on Cotton Paper · Tactile Rhythm",
+    "Atacama Starlight Breeze · Infinite Calm"
+  ];
+
+  const seenReelsCaptions = new Set(JSON.parse(localStorage.getItem('void-seen-reels-captions') || '[]'));
+
+  function recordSeenReelCaption(cap) {
+    seenReelsCaptions.add(cap);
+    if (seenReelsCaptions.size > 500) {
+      const arr = Array.from(seenReelsCaptions).slice(-500);
+      try { localStorage.setItem('void-seen-reels-captions', JSON.stringify(arr)); } catch (e) {}
+    }
+  }
+
+  let reelGlobalCount = 0;
+  let reelsObserver = null;
+  let reelsInitialized = false;
+
+  function generateReelData(idx) {
+    const f = FIRST_NAMES[(idx * 9 + 5) % FIRST_NAMES.length];
+    const l = LAST_NAMES[(idx * 13 + 7) % LAST_NAMES.length];
+    const suffix = HANDLES_SUFFIX[(idx * 4 + 2) % HANDLES_SUFFIX.length];
+    const authorName = `${f} ${l}`;
+    const authorHandle = `@${f.toLowerCase()}_${suffix}`;
+    const verified = (idx % 2 === 0);
+
+    // Unique non-repeating caption
+    let caption = '';
+    let attempts = 0;
+    while (attempts < 100) {
+      attempts++;
+      const s = REEL_SETTINGS[(idx * 17 + attempts * 7) % REEL_SETTINGS.length];
+      const o = REEL_OBSERVATIONS[(idx * 23 + attempts * 11) % REEL_OBSERVATIONS.length];
+      const t = REEL_TAGS[(idx * 31 + attempts * 13) % REEL_TAGS.length];
+      caption = `${s} ${o} ${t}`;
+      if (!seenReelsCaptions.has(caption)) {
+        recordSeenReelCaption(caption);
+        break;
+      }
+    }
+    if (!caption || seenReelsCaptions.has(caption)) {
+      caption = `Moment #${idx}: ${REEL_SETTINGS[idx % REEL_SETTINGS.length]} Finding quiet space in an unhurried world. #Presence`;
+      recordSeenReelCaption(caption);
+    }
+
+    const bgTheme = REELS_VISUAL_THEMES[idx % REELS_VISUAL_THEMES.length];
+    const audio = REELS_AUDIO_TITLES[idx % REELS_AUDIO_TITLES.length];
+    const c1Text = COMMENTS_POOL[(idx * 3 + 1) % COMMENTS_POOL.length];
+    const c1Author = FIRST_NAMES[(idx * 5 + 2) % FIRST_NAMES.length] + ' ' + LAST_NAMES[(idx * 6 + 3) % LAST_NAMES.length];
+
+    return {
+      id: `reel_${idx}_${Date.now()}_${Math.floor(Math.random() * 1000)}`,
+      author: authorName,
+      handle: authorHandle,
+      initial: f[0],
+      verified: verified,
+      caption: caption,
+      audio: audio,
+      bgTheme: bgTheme,
+      likes: 650 + ((idx * 87) % 2400),
+      commentsCount: 38 + ((idx * 13) % 95),
+      sharesCount: 18 + ((idx * 7) % 65),
+      comments: [
+        { author: c1Author, text: c1Text }
+      ]
+    };
+  }
+
+  function renderReelElement(reel) {
+    const card = document.createElement('div');
+    card.className = 'reel-card';
+    card.id = `reelCard_${reel.id}`;
+
+    const isLiked = state.likedPosts.has(reel.id);
+    const isSaved = state.savedPosts.some(p => p.id === reel.id);
+    const isFollowing = state.followedUsers.has(reel.author);
+
+    card.innerHTML = `
+      <!-- Visual Atmosphere Background -->
+      <div class="reel-visual-bg ${reel.bgTheme}"></div>
+      <div class="reel-scrim-gradient"></div>
+
+      <!-- Sound Toggle Badge -->
+      <button class="reel-sound-badge" title="Soundless Ambient Mode">
+        <svg class="icon-svg" width="16" height="16" viewBox="0 0 24 24"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" x2="17" y1="9" y2="15"/><line x1="17" x2="23" y1="9" y2="15"/></svg>
+      </button>
+
+      <!-- Right Action Rail -->
+      <div class="reel-action-rail">
+        <!-- Like -->
+        <button class="reel-action-btn btn-reel-like ${isLiked ? 'active-like' : ''}">
+          <div class="reel-action-icon-circle">
+            <svg class="icon-svg" width="22" height="22" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+          </div>
+          <span class="reel-action-label reel-like-count">${reel.likes + (isLiked ? 1 : 0)}</span>
+        </button>
+
+        <!-- Comments -->
+        <button class="reel-action-btn btn-reel-comment">
+          <div class="reel-action-icon-circle">
+            <svg class="icon-svg" width="22" height="22" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+          </div>
+          <span class="reel-action-label reel-comment-count">${reel.comments.length}</span>
+        </button>
+
+        <!-- Save / Bookmark -->
+        <button class="reel-action-btn btn-reel-save ${isSaved ? 'active-save' : ''}">
+          <div class="reel-action-icon-circle">
+            <svg class="icon-svg" width="22" height="22" viewBox="0 0 24 24"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
+          </div>
+          <span class="reel-action-label">Save</span>
+        </button>
+
+        <!-- Share -->
+        <button class="reel-action-btn btn-reel-share">
+          <div class="reel-action-icon-circle">
+            <svg class="icon-svg" width="22" height="22" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </div>
+          <span class="reel-action-label">${reel.sharesCount}</span>
+        </button>
+      </div>
+
+      <!-- Bottom Overlay Information -->
+      <div class="reel-content-bottom">
+        <div class="reel-author-row">
+          <div class="avatar-circle" style="width:36px;height:36px;border:1.5px solid rgba(255,255,255,0.6);">${reel.initial}</div>
+          <span class="reel-author-name">
+            ${reel.author}
+            ${reel.verified ? '<svg class="icon-svg" width="13" height="13" viewBox="0 0 24 24" style="color:var(--accent-blue);fill:currentColor;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>' : ''}
+          </span>
+          <button class="reel-btn-follow ${isFollowing ? 'following' : ''}">${isFollowing ? 'Following' : 'Follow'}</button>
+        </div>
+
+        <p class="reel-caption-text">${reel.caption}</p>
+
+        <div class="reel-audio-pill">
+          <svg class="icon-svg" width="12" height="12" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+          <span>${reel.audio}</span>
+        </div>
+      </div>
+
+      <!-- Slide-up In-Reel Comments Drawer -->
+      <div class="reel-comments-drawer">
+        <div class="reel-drawer-header">
+          <b style="font-size:14px;color:var(--text-primary);">Comments (${reel.comments.length})</b>
+          <button class="modal-close-x btn-close-drawer" style="position:static;">✕</button>
+        </div>
+        <div class="reel-drawer-comments-list">
+          ${reel.comments.map(c => `
+            <div class="comment-bubble">
+              <div class="avatar-circle" style="width:26px;height:26px;font-size:11px;">${c.author[0]}</div>
+              <div class="comment-body">
+                <span class="comment-author">${c.author}</span>
+                <span class="comment-text">${c.text}</span>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+        <div class="reel-drawer-input-row">
+          <input type="text" class="reel-drawer-input" placeholder="Add a mindful comment..." style="flex:1;padding:8px 12px;border-radius:var(--radius-full);background:var(--bg-surface-elevated);border:1px solid var(--border);font-size:12.5px;outline:none;">
+          <button class="btn-comment-send btn-send-reel-comment">Post</button>
+        </div>
+      </div>
+    `;
+
+    bindReelEvents(card, reel);
+    return card;
+  }
+
+  function bindReelEvents(card, reel) {
+    const btnLike = card.querySelector('.btn-reel-like');
+    const likeCountLabel = card.querySelector('.reel-like-count');
+
+    // LIKE TOGGLE
+    btnLike.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (state.likedPosts.has(reel.id)) {
+        state.likedPosts.delete(reel.id);
+        btnLike.classList.remove('active-like');
+        likeCountLabel.textContent = reel.likes;
+      } else {
+        state.likedPosts.add(reel.id);
+        btnLike.classList.add('active-like');
+        likeCountLabel.textContent = reel.likes + 1;
+        showToast(`Liked ${reel.author}'s reel`);
+      }
+      localStorage.setItem('void-liked-ids', JSON.stringify(Array.from(state.likedPosts)));
+    });
+
+    // DOUBLE TAP / DOUBLE CLICK TO LIKE (Instagram Heart Burst)
+    card.addEventListener('dblclick', () => {
+      const burst = document.createElement('div');
+      burst.className = 'insta-heart-burst';
+      burst.innerHTML = '❤️';
+      card.appendChild(burst);
+      setTimeout(() => burst.remove(), 600);
+
+      if (!state.likedPosts.has(reel.id)) {
+        btnLike.click();
+      }
+    });
+
+    // SAVE TOGGLE
+    const btnSave = card.querySelector('.btn-reel-save');
+    btnSave.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const idx = state.savedPosts.findIndex(p => p.id === reel.id);
+      if (idx > -1) {
+        state.savedPosts.splice(idx, 1);
+        btnSave.classList.remove('active-save');
+        showToast('Reel removed from saved bookmarks');
+      } else {
+        state.savedPosts.unshift({
+          id: reel.id,
+          author: reel.author,
+          handle: reel.handle,
+          initial: reel.initial,
+          verified: reel.verified,
+          time: 'Reels Moment',
+          type: 'text',
+          text: reel.caption,
+          likes: reel.likes,
+          commentsCount: reel.commentsCount,
+          sharesCount: reel.sharesCount,
+          comments: reel.comments
+        });
+        btnSave.classList.add('active-save');
+        showToast('Reel saved to bookmarks');
+      }
+      localStorage.setItem('void-saved-data', JSON.stringify(state.savedPosts));
+      updateProfileUI();
+    });
+
+    // SHARE REEL
+    card.querySelector('.btn-reel-share').addEventListener('click', (e) => {
+      e.stopPropagation();
+      navigator.clipboard?.writeText(window.location.href);
+      showToast('Reel link copied to clipboard');
+    });
+
+    // SOUND TOGGLE BADGE
+    card.querySelector('.reel-sound-badge').addEventListener('click', (e) => {
+      e.stopPropagation();
+      showToast('Quiet Mode: Void stays tranquil and soundless');
+    });
+
+    // FOLLOW TOGGLE
+    const btnFollow = card.querySelector('.reel-btn-follow');
+    btnFollow.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (state.followedUsers.has(reel.author)) {
+        state.followedUsers.delete(reel.author);
+        btnFollow.classList.remove('following');
+        btnFollow.textContent = 'Follow';
+        showToast(`Unfollowed ${reel.author}`);
+      } else {
+        state.followedUsers.add(reel.author);
+        btnFollow.classList.add('following');
+        btnFollow.textContent = 'Following';
+        showToast(`Following ${reel.author}`);
+      }
+    });
+
+    // COMMENTS DRAWER TOGGLE
+    const btnComment = card.querySelector('.btn-reel-comment');
+    const drawer = card.querySelector('.reel-comments-drawer');
+    const btnCloseDrawer = card.querySelector('.btn-close-drawer');
+    const drawerCommentsList = card.querySelector('.reel-drawer-comments-list');
+    const drawerInput = card.querySelector('.reel-drawer-input');
+    const btnSendReelComment = card.querySelector('.btn-send-reel-comment');
+    const commentCountLabel = card.querySelector('.reel-comment-count');
+
+    btnComment.addEventListener('click', (e) => {
+      e.stopPropagation();
+      drawer.classList.add('open');
+      drawerInput.focus();
+    });
+
+    btnCloseDrawer.addEventListener('click', (e) => {
+      e.stopPropagation();
+      drawer.classList.remove('open');
+    });
+
+    function submitReelComment() {
+      const val = drawerInput.value.trim();
+      if (!val) return;
+      reel.comments.push({ author: state.userName, text: val });
+
+      const bubble = document.createElement('div');
+      bubble.className = 'comment-bubble';
+      bubble.innerHTML = `
+        <div class="avatar-circle" style="width:26px;height:26px;font-size:11px;">${state.userInitial}</div>
+        <div class="comment-body">
+          <span class="comment-author">${state.userName}</span>
+          <span class="comment-text">${val}</span>
+        </div>
+      `;
+      drawerCommentsList.appendChild(bubble);
+      drawerInput.value = '';
+      commentCountLabel.textContent = reel.comments.length;
+      showToast('Your perspective was shared on this reel');
+    }
+
+    btnSendReelComment.addEventListener('click', submitReelComment);
+    drawerInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') submitReelComment();
+    });
+  }
+
+  function appendReelsBatch(count = 3) {
+    for (let i = 0; i < count; i++) {
+      reelGlobalCount++;
+      const data = generateReelData(reelGlobalCount);
+      reelsStreamList.appendChild(renderReelElement(data));
+    }
+  }
+
+  function initReelsStream() {
+    if (reelsInitialized) return;
+    reelsInitialized = true;
+
+    // Initial 4 reels
+    appendReelsBatch(4);
+
+    // Infinite observer on sentinel
+    reelsObserver = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting && state.activeTab === 'reels') {
+        appendReelsBatch(3);
+      }
+    }, { root: reelsContainer, rootMargin: '200px' });
+
+    reelsObserver.observe(reelsSentinel);
+
+    // Keyboard navigation (Arrow Down / Up snaps to next/prev reel)
+    window.addEventListener('keydown', (e) => {
+      if (state.activeTab !== 'reels') return;
+      if (['input', 'textarea'].includes(document.activeElement.tagName.toLowerCase())) return;
+
+      if (e.key === 'ArrowDown' || e.key === 'j') {
+        e.preventDefault();
+        reelsContainer.scrollBy({ top: reelsContainer.clientHeight * 0.9, behavior: 'smooth' });
+      } else if (e.key === 'ArrowUp' || e.key === 'k') {
+        e.preventDefault();
+        reelsContainer.scrollBy({ top: -reelsContainer.clientHeight * 0.9, behavior: 'smooth' });
+      }
+    });
   }
 
   navTabs.forEach(btn => {
