@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>void</title>
+<title>Void</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 34'><rect width='34' height='34' rx='9.5' fill='%2312141a' stroke='rgba(255,255,255,0.15)' stroke-width='1.2'/><path d='M10.5 11L17 22.5L23.5 11' stroke='%23f8fafc' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round' fill='none'/><circle cx='17' cy='15.5' r='4.2' fill='%23090a0d' stroke='%2338bdf8' stroke-width='1.6'/><circle cx='17' cy='15.5' r='1.6' fill='%2338bdf8'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1284,15 +1284,35 @@
   }
   .modal-close-x {
     position: absolute;
-    top: 16px;
-    right: 16px;
-    background: none;
-    border: none;
-    color: var(--text-tertiary);
-    font-size: 18px;
+    top: 14px;
+    right: 14px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    color: var(--text-secondary);
+    font-size: 16px;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
+    z-index: 1000;
+    pointer-events: auto;
+    transition: all 0.18s ease;
+    padding: 0;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
   }
-  .modal-close-x:hover { color: var(--text-primary); }
+  .modal-close-x:hover {
+    background: rgba(255, 255, 255, 0.18);
+    color: var(--text-primary);
+    transform: scale(1.08);
+  }
+  .modal-close-x:active {
+    transform: scale(0.95);
+  }
 
   /* Instagram Full Story Viewer */
   .story-viewer-card {
@@ -2245,14 +2265,15 @@
         <circle cx="17" cy="15.5" r="1.6" class="void-logo-dot"/>
       </svg>
       <div class="brand-wordmark-wrap">
-        <span class="brand-wordmark">void</span>
+        <span class="brand-wordmark">Void</span>
         <span class="brand-badge">presence</span>
       </div>
     </div>
     <div class="header-search">
-      <div class="search-input-wrap">
+      <div class="search-input-wrap" style="position:relative;">
         <svg class="icon-svg" width="14" height="14" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         <input type="text" id="searchInput" placeholder="Search Void reflections, topics, people..." autocomplete="off">
+        <button id="btnClearSearchInput" class="search-clear-btn" aria-label="Clear search" title="Clear search" style="display:none;position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--text-tertiary);cursor:pointer;font-size:14px;line-height:1;padding:4px;border-radius:50%;z-index:10;">✕</button>
       </div>
       <div class="search-dropdown" id="searchDropdown"></div>
     </div>
@@ -2529,7 +2550,7 @@
       <!-- Infinite Sentinel (Triggers endlessly on scroll - NEVER ENDS) -->
       <div id="voidDetoxSentinel" style="height:44px;width:100%;display:flex;align-items:center;justify-content:center;color:var(--text-tertiary);font-size:12px;font-family:var(--font-mono);gap:8px;">
         <span class="feed-loader-dot"></span>
-        <span>Traversing deeper into the infinite void…</span>
+        <span>Traversing deeper into the infinite Void…</span>
       </div>
     </div>
 
@@ -2617,7 +2638,7 @@
           <path d="M10.5 11L17 22.5L23.5 11" stroke="var(--text-primary)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
           <circle cx="17" cy="15.5" r="4.2" stroke="var(--accent-blue)" stroke-width="1.8"/>
         </svg>
-        <b style="color:var(--text-primary);font-size:12px;letter-spacing:-0.03em;">void</b>
+        <b style="color:var(--text-primary);font-size:12px;letter-spacing:-0.03em;">Void</b>
         <span style="font-size:11px;color:var(--text-tertiary);">· deliberate social presence</span>
       </div>
       Privacy · Terms · Digital Health Guidelines · Void Feed © 2026<br>
@@ -2669,7 +2690,7 @@
           <small style="display:block;font-size:11px;color:rgba(255,255,255,0.6);" id="storyTimestamp">2h ago</small>
         </div>
       </div>
-      <button class="modal-close-x" id="btnCloseStory" style="color:#fff;top:auto;right:auto;position:static;">✕</button>
+      <button class="modal-close-x" id="btnCloseStory" data-close="storyModal" aria-label="Close story" title="Close" style="position:static;color:#fff;background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;">✕</button>
     </div>
 
     <!-- Story Main Content -->
@@ -2689,8 +2710,8 @@
 <!-- MESSENGER DM MODAL -->
 <div class="modal-backdrop" id="messengerModal">
   <div class="modal-window">
-    <button class="modal-close-x" data-close="messengerModal">✕</button>
-    <div style="display:flex;align-items:center;gap:10px;">
+    <button class="modal-close-x" data-close="messengerModal" aria-label="Close direct messages" title="Close">✕</button>
+    <div style="display:flex;align-items:center;gap:10px;padding-right:36px;">
       <div class="avatar-circle" style="width:34px;height:34px;">V</div>
       <div>
         <h3 style="font-size:15px;font-weight:600;">Direct Conversations</h3>
@@ -2723,8 +2744,10 @@
 <!-- NOTIFICATIONS FLYOUT MODAL -->
 <div class="modal-backdrop" id="notifsModal">
   <div class="modal-window">
-    <button class="modal-close-x" data-close="notifsModal">✕</button>
-    <h3 style="font-size:15px;font-weight:600;">Activity & Notifications</h3>
+    <button class="modal-close-x" data-close="notifsModal" aria-label="Close notifications" title="Close">✕</button>
+    <div style="padding-right:36px;">
+      <h3 style="font-size:15px;font-weight:600;">Activity & Notifications</h3>
+    </div>
     <div style="display:flex;flex-direction:column;gap:8px;" id="notifsList">
       <div style="padding:10px 12px;background:var(--bg-surface-elevated);border-radius:var(--radius-sm);font-size:13px;display:flex;align-items:center;gap:10px;">
         <svg class="icon-svg" width="16" height="16" viewBox="0 0 24 24" style="color:var(--like-red);fill:currentColor;"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
@@ -2749,8 +2772,10 @@
 <!-- PROFILE EDIT MODAL -->
 <div class="modal-backdrop" id="profileModal">
   <div class="modal-window">
-    <button class="modal-close-x" data-close="profileModal">✕</button>
-    <h3 style="font-size:15px;font-weight:600;">Edit Profile Identity</h3>
+    <button class="modal-close-x" data-close="profileModal" aria-label="Close profile" title="Close">✕</button>
+    <div style="padding-right:36px;">
+      <h3 style="font-size:15px;font-weight:600;">Edit Profile Identity</h3>
+    </div>
     <div style="display:flex;align-items:center;gap:12px;">
       <div class="avatar-circle" id="modalProfileAvatar" style="width:54px;height:54px;font-size:18px;">V</div>
       <button style="padding:6px 12px;background:var(--bg-surface-elevated);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;cursor:pointer;" id="btnRandomizeAvatar">Cycle Initial</button>
@@ -2770,13 +2795,14 @@
 
 <!-- WORK FOCUS COMPLETION MODAL -->
 <div class="modal-backdrop" id="workFocusModal" style="display:none;">
-  <div class="modal-window" style="max-width:440px;text-align:center;padding:32px 24px;">
+  <div class="modal-window" style="max-width:440px;text-align:center;padding:32px 24px;position:relative;">
+    <button class="modal-close-x" data-close="workFocusModal" aria-label="Close focus dialog" title="Close">✕</button>
     <div style="width:60px;height:60px;border-radius:50%;background:rgba(52,211,153,0.15);color:var(--success);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
       <svg class="icon-svg" width="32" height="32" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
     </div>
     <h3 style="font-size:20px;font-weight:700;margin-bottom:8px;">Distraction Loop Broken</h3>
     <p style="font-size:13.5px;color:var(--text-secondary);line-height:1.6;margin-bottom:20px;">
-      You scrolled <b id="modalDepthCount">0</b> levels into the void and found zero dopamine traps.
+      You scrolled <b id="modalDepthCount">0</b> levels into the Void and found zero dopamine traps.
       Your brain has reset. The hardest part of any task is starting the first 2 minutes.
     </p>
     <div style="display:flex;flex-direction:column;gap:10px;">
@@ -2786,7 +2812,7 @@
       <button class="social-icon-btn" id="btnStartFocus25" style="width:100%;height:auto;padding:11px;border-radius:var(--radius-sm);border:1px solid var(--border-strong);font-size:13px;display:flex;justify-content:center;gap:6px;cursor:pointer;">
         <span>⏱️ Start 25-Min Silent Monotask</span>
       </button>
-      <button style="background:none;border:none;color:var(--text-tertiary);font-size:12px;cursor:pointer;margin-top:4px;" id="btnReturnToFeedFromModal">
+      <button style="background:none;border:none;color:var(--text-tertiary);font-size:12px;cursor:pointer;margin-top:4px;" id="btnReturnToFeedFromModal" data-close="workFocusModal">
         Return to Mindful Feed
       </button>
     </div>
@@ -2944,7 +2970,7 @@
   ];
 
   const HANDLES_SUFFIX = [
-    'mind', 'neuro', 'craft', 'void', 'focus', 'studio', 'still', 'calm', 'depth', 'silence', 'analogue', 'presence'
+    'mind', 'neuro', 'craft', 'Void', 'focus', 'studio', 'still', 'calm', 'depth', 'silence', 'analogue', 'presence'
   ];
 
   const CONTEXTS = [
@@ -2994,7 +3020,7 @@
     "The speed of modern communication has outpaced the speed of human emotional digestion.",
     "If every moment of boredom is immediately filled with a screen, you will never hear what your intuition is trying to say.",
     "Real life is low-resolution in its speed, but infinite in its depth.",
-    "Silence is not an awkward void to be filled with noise; it is the sanctuary where perspective returns.",
+    "Silence is not an awkward Void to be filled with noise; it is the sanctuary where perspective returns.",
     "We spend years learning how to build and optimize, but almost zero time learning how to stop.",
     "A clear conscience and an empty inbox are good, but an empty afternoon is sacred.",
     "Notice how the natural world never rushes, yet everything is accomplished.",
@@ -3003,7 +3029,7 @@
   ];
 
   const PRACTICES = [
-    "Try scheduling two hours of completely unscheduled void on your calendar this Saturday.",
+    "Try scheduling two hours of completely unscheduled Void on your calendar this Saturday.",
     "Notice the tactile weight of the cup in your hand before reflexively reaching for your pocket.",
     "Next time you wait in line, let your hands hang empty. Observe the architecture of the ceiling instead.",
     "Set your phone to grayscale for 48 hours. Watch how quickly the artificial slot-machine allure evaporates.",
@@ -3777,9 +3803,9 @@
     "Look down at your hands holding this glass screen right now.",
     "Every second you spend here is a deliberate refusal of algorithmic addiction.",
     "The difficult task you are avoiding gets 80% easier the second you start.",
-    "There are no influencers to compare your life against in this void.",
+    "There are no influencers to compare your life against in this Void.",
     "Notice the gentle ambient sounds in the physical room around you.",
-    "The internet wants your attention to sell ads. The void asks for nothing.",
+    "The internet wants your attention to sell ads. The Void asks for nothing.",
     "The dopamine hit you are waiting for comes from finishing what you started.",
     "Friction creates memory; frictionless doomscrolling erases entire afternoons.",
     "You could scroll down this stream for 100 miles. It will remain this peaceful.",
@@ -3796,17 +3822,17 @@
     "Blink 5 times. Rest your optical nerves from blue light.",
     "Escaping work is a habit; embracing work is a practice. You can start now.",
     "No comments to argue with. No trending outrage to raise your cortisol.",
-    "The void is vast, but your life is happening right now in your room.",
+    "The Void is vast, but your life is happening right now in your room.",
     "Breathe. You have arrived at the end of the internet's demands on you.",
     "There is literally nothing below this card except more stillness.",
     "Still scrolling? We respect your stubborn thumb. But your craft misses you.",
     "The most rebellious act in 2026 is closing a social feed and making something real.",
-    "You came to scroll. You scrolled. The void has witnessed your presence. Now go."
+    "You came to scroll. You scrolled. The Void has witnessed your presence. Now go."
   ];
 
   const VOID_NOTHING_NUDGES = [
     "Breathe deeply. Your work is waiting for your unique human insight.",
-    "The void has satisfied your scroll reflex. Now go back to your craft.",
+    "The Void has satisfied your scroll reflex. Now go back to your craft.",
     "One single task from start to finish. You can do this.",
     "Take your clarity back into the real world.",
     "The hardest part is opening the document. After that, momentum takes over.",
@@ -4229,7 +4255,7 @@
       <div class="reel-comments-drawer">
         <div class="reel-drawer-header">
           <b style="font-size:14px;color:var(--text-primary);">Comments (${reel.comments.length})</b>
-          <button class="modal-close-x btn-close-drawer" style="position:static;">✕</button>
+          <button class="modal-close-x btn-close-drawer" aria-label="Close comments" title="Close" style="position:static;width:30px;height:30px;font-size:14px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;">✕</button>
         </div>
         <div class="reel-drawer-comments-list">
           ${reel.comments.map(c => `
@@ -4562,10 +4588,12 @@
         <svg class="icon-svg" width="16" height="16" viewBox="0 0 24 24" style="color:var(--accent-blue);"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         <span style="font-size:13px;color:var(--text-secondary);">Filtered reflections for: <b style="color:var(--text-primary);">${q.replace(/</g, '&lt;')}</b></span>
       </div>
-      <button id="btnClearSearchFilter" style="background:none;border:none;color:var(--accent-blue);font-size:12px;font-weight:600;cursor:pointer;padding:4px 8px;">Clear filter</button>
+      <button id="btnClearSearchFilter" style="background:none;border:none;color:var(--accent-blue);font-size:12px;font-weight:600;cursor:pointer;padding:4px 8px;display:inline-flex;align-items:center;gap:4px;"><span>Clear filter</span> <span style="font-size:13px;font-weight:bold;">✕</span></button>
     `;
     banner.querySelector('#btnClearSearchFilter').addEventListener('click', () => {
       searchInput.value = '';
+      const clearBtn = document.getElementById('btnClearSearchInput');
+      if (clearBtn) clearBtn.style.display = 'none';
       filterFeedStream('');
     });
 
@@ -4601,6 +4629,8 @@
       `;
       emptyState.querySelector('#btnEmptyClear').addEventListener('click', () => {
         searchInput.value = '';
+        const clearBtn = document.getElementById('btnClearSearchInput');
+        if (clearBtn) clearBtn.style.display = 'none';
         filterFeedStream('');
       });
     } else if (emptyState) {
@@ -4655,18 +4685,62 @@
     composerInput.focus();
   });
 
-  // Close modals on X or outside click
-  document.querySelectorAll('[data-close]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const modalId = btn.dataset.close;
-      document.getElementById(modalId).style.display = 'none';
-    });
-  });
-  document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
-    backdrop.addEventListener('click', (e) => {
-      if (e.target === backdrop) backdrop.style.display = 'none';
-    });
-  });
+  // UNIVERSAL & BULLETPROOF MODAL / OVERLAY / DRAWER / (X) CLOSE SYSTEM
+  function closeAnyModal(modalEl) {
+    if (!modalEl) return;
+    modalEl.style.display = 'none';
+    if (modalEl.id === 'storyModal' || modalEl.classList.contains('storyModal')) {
+      if (typeof state !== 'undefined' && state.activeStoryTimer) {
+        clearInterval(state.activeStoryTimer);
+      }
+    }
+  }
+
+  // Capturing click listener guarantees close action cannot be cancelled by child propagation
+  document.addEventListener('click', (e) => {
+    // 1. Any (X) close button or element marked for closing
+    const closeBtn = e.target.closest('[data-close], .modal-close-x, .modal-close-btn, .btn-close-drawer, #btnCloseStory');
+    if (closeBtn) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const modalId = closeBtn.dataset.close;
+      if (modalId) {
+        const targetModal = document.getElementById(modalId);
+        if (targetModal) closeAnyModal(targetModal);
+      }
+
+      if (closeBtn.id === 'btnCloseStory' || closeBtn.closest('#storyModal')) {
+        if (typeof closeStory === 'function') {
+          closeStory();
+        } else {
+          const storyModal = document.getElementById('storyModal');
+          if (storyModal) closeAnyModal(storyModal);
+        }
+      }
+
+      if (closeBtn.classList.contains('btn-close-drawer') || closeBtn.closest('.reel-comments-drawer')) {
+        const drawer = closeBtn.closest('.reel-comments-drawer');
+        if (drawer) drawer.classList.remove('open');
+      }
+
+      if (closeBtn.closest('#workFocusModal')) {
+        const workModal = document.getElementById('workFocusModal');
+        if (workModal) closeAnyModal(workModal);
+      }
+
+      const parentModal = closeBtn.closest('.modal-backdrop, .modal-overlay');
+      if (parentModal) {
+        closeAnyModal(parentModal);
+      }
+      return;
+    }
+
+    // 2. Direct click on backdrop outside modal content closes the modal
+    if (e.target.classList.contains('modal-backdrop') || e.target.classList.contains('modal-overlay')) {
+      closeAnyModal(e.target);
+    }
+  }, true);
 
   // SEND DM LOGIC (WITH AUTO-SCROLL & MINDFUL SIMULATED RESPONSE)
   const dmInput = document.getElementById('dmInput');
@@ -4735,9 +4809,24 @@
     showToast('Profile configuration updated');
   });
 
-  // SEARCH DROPDOWN & INPUT FILTER
+  // SEARCH DROPDOWN & INPUT FILTER WITH CLEAR (X) BUTTON
+  const btnClearSearchInput = document.getElementById('btnClearSearchInput');
+  if (btnClearSearchInput) {
+    btnClearSearchInput.addEventListener('click', (e) => {
+      e.stopPropagation();
+      searchInput.value = '';
+      btnClearSearchInput.style.display = 'none';
+      searchDropdown.style.display = 'none';
+      filterFeedStream('');
+      searchInput.focus();
+    });
+  }
+
   searchInput.addEventListener('input', () => {
     const query = searchInput.value.toLowerCase().trim();
+    if (btnClearSearchInput) {
+      btnClearSearchInput.style.display = searchInput.value ? 'inline-flex' : 'none';
+    }
     if (!query) {
       searchDropdown.style.display = 'none';
       filterFeedStream('');
