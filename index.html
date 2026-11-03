@@ -4671,21 +4671,35 @@
     document.getElementById('profileModal').style.display = 'flex';
   }
 
-  document.getElementById('userHeaderAvatar').addEventListener('click', openProfileModal);
-  document.getElementById('btnEditProfileSnippet').addEventListener('click', openProfileModal);
-  document.getElementById('navOpenSettingsBtn').addEventListener('click', openProfileModal);
-  document.getElementById('mobileProfileBtn').addEventListener('click', openProfileModal);
+  const userHeaderAvatar = document.getElementById('userHeaderAvatar');
+  if (userHeaderAvatar) userHeaderAvatar.addEventListener('click', openProfileModal);
 
-  document.getElementById('mobileCreatePostBtn').addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    setTab('feed');
-    composerInput.focus();
-  });
-  document.getElementById('btnFocusComposer').addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    setTab('feed');
-    composerInput.focus();
-  });
+  const btnEditProfile = document.getElementById('btnEditProfileSnippet');
+  if (btnEditProfile) btnEditProfile.addEventListener('click', openProfileModal);
+
+  const navOpenSettings = document.getElementById('navOpenSettingsBtn');
+  if (navOpenSettings) navOpenSettings.addEventListener('click', openProfileModal);
+
+  const mobileProfile = document.getElementById('mobileProfileBtn');
+  if (mobileProfile) mobileProfile.addEventListener('click', openProfileModal);
+
+  const mobileCreatePost = document.getElementById('mobileCreatePostBtn');
+  if (mobileCreatePost) {
+    mobileCreatePost.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setTab('feed');
+      if (composerInput) composerInput.focus();
+    });
+  }
+
+  const btnFocusComp = document.getElementById('btnFocusComposer');
+  if (btnFocusComp) {
+    btnFocusComp.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setTab('feed');
+      if (composerInput) composerInput.focus();
+    });
+  }
 
   // UNIVERSAL & BULLETPROOF MODAL / OVERLAY / DRAWER / (X) CLOSE SYSTEM
   window.closeAnyModal = function(idOrEl) {
