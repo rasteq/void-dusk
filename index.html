@@ -2690,7 +2690,7 @@
           <small style="display:block;font-size:11px;color:rgba(255,255,255,0.6);" id="storyTimestamp">2h ago</small>
         </div>
       </div>
-      <button class="modal-close-x" id="btnCloseStory" data-close="storyModal" aria-label="Close story" title="Close" style="position:static;color:#fff;background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;">✕</button>
+      <button class="modal-close-x" id="btnCloseStory" data-close="storyModal" onclick="closeStory()" aria-label="Close story" title="Close" style="position:static;color:#fff;background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;">✕</button>
     </div>
 
     <!-- Story Main Content -->
@@ -2710,7 +2710,7 @@
 <!-- MESSENGER DM MODAL -->
 <div class="modal-backdrop" id="messengerModal">
   <div class="modal-window">
-    <button class="modal-close-x" data-close="messengerModal" aria-label="Close direct messages" title="Close">✕</button>
+    <button class="modal-close-x" data-close="messengerModal" onclick="document.getElementById('messengerModal').style.display='none'" aria-label="Close direct messages" title="Close">✕</button>
     <div style="display:flex;align-items:center;gap:10px;padding-right:36px;">
       <div class="avatar-circle" style="width:34px;height:34px;">V</div>
       <div>
@@ -2744,7 +2744,7 @@
 <!-- NOTIFICATIONS FLYOUT MODAL -->
 <div class="modal-backdrop" id="notifsModal">
   <div class="modal-window">
-    <button class="modal-close-x" data-close="notifsModal" aria-label="Close notifications" title="Close">✕</button>
+    <button class="modal-close-x" data-close="notifsModal" onclick="document.getElementById('notifsModal').style.display='none'" aria-label="Close notifications" title="Close">✕</button>
     <div style="padding-right:36px;">
       <h3 style="font-size:15px;font-weight:600;">Activity & Notifications</h3>
     </div>
@@ -2772,7 +2772,7 @@
 <!-- PROFILE EDIT MODAL -->
 <div class="modal-backdrop" id="profileModal">
   <div class="modal-window">
-    <button class="modal-close-x" data-close="profileModal" aria-label="Close profile" title="Close">✕</button>
+    <button class="modal-close-x" data-close="profileModal" onclick="document.getElementById('profileModal').style.display='none'" aria-label="Close profile" title="Close">✕</button>
     <div style="padding-right:36px;">
       <h3 style="font-size:15px;font-weight:600;">Edit Profile Identity</h3>
     </div>
@@ -2796,7 +2796,7 @@
 <!-- WORK FOCUS COMPLETION MODAL -->
 <div class="modal-backdrop" id="workFocusModal" style="display:none;">
   <div class="modal-window" style="max-width:440px;text-align:center;padding:32px 24px;position:relative;">
-    <button class="modal-close-x" data-close="workFocusModal" aria-label="Close focus dialog" title="Close">✕</button>
+    <button class="modal-close-x" data-close="workFocusModal" onclick="document.getElementById('workFocusModal').style.display='none'" aria-label="Close focus dialog" title="Close">✕</button>
     <div style="width:60px;height:60px;border-radius:50%;background:rgba(52,211,153,0.15);color:var(--success);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
       <svg class="icon-svg" width="32" height="32" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
     </div>
@@ -2806,13 +2806,13 @@
       Your brain has reset. The hardest part of any task is starting the first 2 minutes.
     </p>
     <div style="display:flex;flex-direction:column;gap:10px;">
-      <button class="btn-quick-post" id="btnCloseTabAction" style="padding:12px 18px;font-size:14px;background:var(--success);color:#000;border:none;cursor:pointer;">
+      <button class="btn-quick-post" id="btnCloseTabAction" onclick="document.getElementById('workFocusModal').style.display='none'; showToast('Focus mode engaged! You can now close this tab (Ctrl+W) and dive into work.'); try { window.close(); } catch(e){}" style="padding:12px 18px;font-size:14px;background:var(--success);color:#000;border:none;cursor:pointer;">
         🚀 Close Tab & Dive Into Work
       </button>
-      <button class="social-icon-btn" id="btnStartFocus25" style="width:100%;height:auto;padding:11px;border-radius:var(--radius-sm);border:1px solid var(--border-strong);font-size:13px;display:flex;justify-content:center;gap:6px;cursor:pointer;">
+      <button class="social-icon-btn" id="btnStartFocus25" onclick="document.getElementById('workFocusModal').style.display='none'; if(typeof setTab==='function')setTab('feed'); showToast('25-minute focus session started. Monotasking active.');" style="width:100%;height:auto;padding:11px;border-radius:var(--radius-sm);border:1px solid var(--border-strong);font-size:13px;display:flex;justify-content:center;gap:6px;cursor:pointer;">
         <span>⏱️ Start 25-Min Silent Monotask</span>
       </button>
-      <button style="background:none;border:none;color:var(--text-tertiary);font-size:12px;cursor:pointer;margin-top:4px;" id="btnReturnToFeedFromModal" data-close="workFocusModal">
+      <button style="background:none;border:none;color:var(--text-tertiary);font-size:12px;cursor:pointer;margin-top:4px;" id="btnReturnToFeedFromModal" data-close="workFocusModal" onclick="document.getElementById('workFocusModal').style.display='none'; if(typeof setTab==='function')setTab('feed');">
         Return to Mindful Feed
       </button>
     </div>
@@ -3943,6 +3943,8 @@
 
   document.getElementById('btnDetoxReadyToWork').addEventListener('click', openWorkFocusModal);
   document.getElementById('btnCloseTabAction').addEventListener('click', () => {
+    document.getElementById('workFocusModal').style.display = 'none';
+    setTab('feed');
     showToast('Focus mode engaged! You can now close this tab (Ctrl+W) and dive into work.');
     try { window.close(); } catch (e) {}
   });
@@ -4255,7 +4257,7 @@
       <div class="reel-comments-drawer">
         <div class="reel-drawer-header">
           <b style="font-size:14px;color:var(--text-primary);">Comments (${reel.comments.length})</b>
-          <button class="modal-close-x btn-close-drawer" aria-label="Close comments" title="Close" style="position:static;width:30px;height:30px;font-size:14px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;">✕</button>
+          <button class="modal-close-x btn-close-drawer" onclick="this.closest('.reel-comments-drawer').classList.remove('open')" aria-label="Close comments" title="Close" style="position:static;width:30px;height:30px;font-size:14px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;">✕</button>
         </div>
         <div class="reel-drawer-comments-list">
           ${reel.comments.map(c => `
@@ -4686,37 +4688,32 @@
   });
 
   // UNIVERSAL & BULLETPROOF MODAL / OVERLAY / DRAWER / (X) CLOSE SYSTEM
-  function closeAnyModal(modalEl) {
-    if (!modalEl) return;
-    modalEl.style.display = 'none';
-    if (modalEl.id === 'storyModal' || modalEl.classList.contains('storyModal')) {
+  window.closeAnyModal = function(idOrEl) {
+    const el = typeof idOrEl === 'string' ? document.getElementById(idOrEl) : idOrEl;
+    if (!el) return;
+    el.style.display = 'none';
+    if (el.id === 'storyModal' || el.classList.contains('storyModal')) {
       if (typeof state !== 'undefined' && state.activeStoryTimer) {
         clearInterval(state.activeStoryTimer);
       }
     }
-  }
+  };
+  window.closeStory = closeStory;
+  window.setTab = setTab;
 
-  // Capturing click listener guarantees close action cannot be cancelled by child propagation
-  document.addEventListener('click', (e) => {
-    // 1. Any (X) close button or element marked for closing
-    const closeBtn = e.target.closest('[data-close], .modal-close-x, .modal-close-btn, .btn-close-drawer, #btnCloseStory');
+  function handleCloseEvent(e) {
+    const targetEl = e.target && e.target.nodeType === 3 ? e.target.parentElement : e.target;
+    if (!targetEl || typeof targetEl.closest !== 'function') return;
+
+    const closeBtn = targetEl.closest('[data-close], .modal-close-x, .modal-close-btn, .btn-close-drawer, #btnCloseStory, #btnReturnToFeedFromModal');
     if (closeBtn) {
-      e.preventDefault();
-      e.stopPropagation();
-
       const modalId = closeBtn.dataset.close;
       if (modalId) {
-        const targetModal = document.getElementById(modalId);
-        if (targetModal) closeAnyModal(targetModal);
+        window.closeAnyModal(modalId);
       }
 
       if (closeBtn.id === 'btnCloseStory' || closeBtn.closest('#storyModal')) {
-        if (typeof closeStory === 'function') {
-          closeStory();
-        } else {
-          const storyModal = document.getElementById('storyModal');
-          if (storyModal) closeAnyModal(storyModal);
-        }
+        closeStory();
       }
 
       if (closeBtn.classList.contains('btn-close-drawer') || closeBtn.closest('.reel-comments-drawer')) {
@@ -4725,22 +4722,33 @@
       }
 
       if (closeBtn.closest('#workFocusModal')) {
-        const workModal = document.getElementById('workFocusModal');
-        if (workModal) closeAnyModal(workModal);
+        window.closeAnyModal('workFocusModal');
+        setTab('feed');
       }
 
       const parentModal = closeBtn.closest('.modal-backdrop, .modal-overlay');
       if (parentModal) {
-        closeAnyModal(parentModal);
+        window.closeAnyModal(parentModal);
       }
       return;
     }
 
-    // 2. Direct click on backdrop outside modal content closes the modal
-    if (e.target.classList.contains('modal-backdrop') || e.target.classList.contains('modal-overlay')) {
-      closeAnyModal(e.target);
+    // Direct click on backdrop outside modal content closes the modal
+    if (e.target && e.target.classList && (e.target.classList.contains('modal-backdrop') || e.target.classList.contains('modal-overlay'))) {
+      window.closeAnyModal(e.target);
     }
-  }, true);
+  }
+
+  document.addEventListener('click', handleCloseEvent, true);
+  document.addEventListener('touchend', handleCloseEvent, { passive: true, capture: true });
+
+  // Direct element binding as ultimate fallback
+  document.querySelectorAll('[data-close]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const modalId = btn.dataset.close;
+      if (modalId) window.closeAnyModal(modalId);
+    });
+  });
 
   // SEND DM LOGIC (WITH AUTO-SCROLL & MINDFUL SIMULATED RESPONSE)
   const dmInput = document.getElementById('dmInput');
