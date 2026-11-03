@@ -3,102 +3,97 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>void — nothing to catch up on</title>
+<title>void — social presence feed</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
   /* ==========================================================================
-     THEME VARIABLES & BASE DESIGN SYSTEM
+     AUTHENTIC SOCIAL FEED DESIGN SYSTEM (FB / INSTA / THREADS AESTHETIC)
      ========================================================================== */
   :root {
-    /* Transitions */
-    --theme-transition: background 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease, border-color 0.3s ease;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --font-mono: 'JetBrains Mono', Menlo, Consolas, monospace;
 
-    /* Common metrics */
-    --radius-xl: 24px;
-    --radius: 18px;
-    --radius-sm: 12px;
-    --radius-xs: 8px;
+    --radius-xs: 6px;
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
     --radius-full: 9999px;
+
+    --ease-tactile: cubic-bezier(0.16, 1, 0.3, 1);
+    --anim-fast: 0.15s var(--ease-tactile);
+    --anim-base: 0.22s var(--ease-tactile);
   }
 
-  /* DARK THEME (Default) */
+  /* DARK THEME (Refined Nocturne / Threads Style) */
   [data-theme="dark"] {
-    --bg-0: #060810;
-    --bg-1: #0a0e1c;
-    --bg-2: #0f152a;
-    --bg-mesh-1: radial-gradient(1200px 700px at 15% -10%, #101c38 0%, transparent 60%);
-    --bg-mesh-2: radial-gradient(1000px 800px at 105% 20%, #151e36 0%, transparent 55%);
-    --bg-mesh-3: radial-gradient(800px 600px at 50% 110%, #0d1527 0%, transparent 50%);
+    --bg-base: #0b0c0e;
+    --bg-surface: #121316;
+    --bg-surface-elevated: #181a1f;
+    --bg-subtle: #20232b;
+    --bg-hover: #262933;
 
-    --glass: rgba(255, 255, 255, 0.045);
-    --glass-strong: rgba(255, 255, 255, 0.08);
-    --glass-hover: rgba(255, 255, 255, 0.12);
-    --glass-card: rgba(14, 20, 38, 0.55);
-    --glass-drawer: rgba(10, 14, 28, 0.94);
-    
-    --border: rgba(255, 255, 255, 0.09);
-    --border-soft: rgba(255, 255, 255, 0.05);
-    --border-active: rgba(142, 203, 255, 0.5);
+    --border: rgba(255, 255, 255, 0.08);
+    --border-strong: rgba(255, 255, 255, 0.14);
+    --border-subtle: rgba(255, 255, 255, 0.04);
 
-    --ink-0: #e8effc;
-    --ink-1: #9db0ce;
-    --ink-2: #5b6c88;
-    --ink-ghost: rgba(255, 255, 255, 0.2);
+    --text-primary: #f3f4f6;
+    --text-secondary: #9ca3af;
+    --text-tertiary: #6b7280;
+    --text-muted: #4b5563;
 
-    --spectral: #8ecbff;
-    --spectral-glow: rgba(142, 203, 255, 0.28);
-    --spectral-dim: #3a5c82;
-    --accent-purple: #c084fc;
-    --accent-teal: #2dd4bf;
-    --warn: #fb923c;
-    --danger: #f87171;
-    --success: #4ade80;
+    --accent: #f3f4f6;
+    --accent-blue: #3b82f6;
+    --like-red: #ef4444;
+    --like-subtle: rgba(239, 68, 68, 0.12);
+    --save-gold: #f59e0b;
+    --save-subtle: rgba(245, 158, 11, 0.12);
+    --success: #10b981;
 
-    --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
-    --topbar-bg: rgba(6, 8, 16, 0.72);
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.6);
+
+    --topbar-bg: rgba(11, 12, 14, 0.88);
+    --story-ring: linear-gradient(45deg, #f59e0b, #ec4899, #8b5cf6);
   }
 
-  /* LIGHT THEME */
+  /* LIGHT THEME (Clean Facebook / Instagram White) */
   [data-theme="light"] {
-    --bg-0: #f2f5fa;
-    --bg-1: #e5ebf5;
-    --bg-2: #d8e1f0;
-    --bg-mesh-1: radial-gradient(1200px 700px at 15% -10%, #dee8f7 0%, transparent 60%);
-    --bg-mesh-2: radial-gradient(1000px 800px at 105% 20%, #e2eaf6 0%, transparent 55%);
-    --bg-mesh-3: radial-gradient(800px 600px at 50% 110%, #d5e0f2 0%, transparent 50%);
+    --bg-base: #f0f2f5;
+    --bg-surface: #ffffff;
+    --bg-surface-elevated: #f0f2f5;
+    --bg-subtle: #e4e6eb;
+    --bg-hover: #dadde1;
 
-    --glass: rgba(255, 255, 255, 0.75);
-    --glass-strong: rgba(255, 255, 255, 0.92);
-    --glass-hover: #ffffff;
-    --glass-card: rgba(255, 255, 255, 0.82);
-    --glass-drawer: rgba(248, 250, 254, 0.96);
+    --border: rgba(0, 0, 0, 0.08);
+    --border-strong: rgba(0, 0, 0, 0.15);
+    --border-subtle: rgba(0, 0, 0, 0.04);
 
-    --border: rgba(30, 45, 75, 0.1);
-    --border-soft: rgba(30, 45, 75, 0.05);
-    --border-active: rgba(2, 132, 199, 0.5);
+    --text-primary: #050505;
+    --text-secondary: #65676b;
+    --text-tertiary: #8a8d91;
+    --text-muted: #bcc0c4;
 
-    --ink-0: #0d1527;
-    --ink-1: #3b4e6d;
-    --ink-2: #72849f;
-    --ink-ghost: rgba(15, 25, 45, 0.25);
+    --accent: #050505;
+    --accent-blue: #1877f2;
+    --like-red: #ed4956;
+    --like-subtle: rgba(237, 73, 86, 0.08);
+    --save-gold: #d97706;
+    --save-subtle: rgba(217, 119, 6, 0.08);
+    --success: #059669;
 
-    --spectral: #0284c7;
-    --spectral-glow: rgba(2, 132, 199, 0.2);
-    --spectral-dim: #93c5fd;
-    --accent-purple: #7c3aed;
-    --accent-teal: #0d9488;
-    --warn: #ea580c;
-    --danger: #e11d48;
-    --success: #16a34a;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.1);
 
-    --card-shadow: 0 10px 25px -8px rgba(30, 45, 80, 0.08);
-    --topbar-bg: rgba(242, 245, 250, 0.85);
+    --topbar-bg: rgba(255, 255, 255, 0.92);
+    --story-ring: linear-gradient(45deg, #f59e0b, #e1306c, #833ab4);
   }
 
-  /* Reset & Typography */
+  /* Reset & Baseline */
   *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -106,31 +101,14 @@
   }
 
   html, body {
-    background-color: var(--bg-0);
-    background-image: var(--bg-mesh-1), var(--bg-mesh-2), var(--bg-mesh-3);
-    background-attachment: fixed;
-    color: var(--ink-0);
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    min-height: 100vh;
+    width: 100%;
+    min-height: 100%;
+    background-color: var(--bg-base);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
-    overflow-x: clip;
-    line-height: 1.5;
-    transition: var(--theme-transition);
-  }
-
-  ::selection {
-    background: var(--spectral-glow);
-    color: var(--ink-0);
-  }
-
-  ::-webkit-scrollbar { width: 8px; }
-  ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb {
-    background: var(--border);
-    border-radius: 999px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: var(--spectral-dim);
+    overflow-x: clip; /* Fixes sticky positioning bugs */
+    line-height: 1.45;
   }
 
   button, input, textarea {
@@ -138,3451 +116,2390 @@
     color: inherit;
   }
 
-  /* Glassmorphism primitives */
-  .glass {
-    background: var(--glass-card);
-    backdrop-filter: blur(20px) saturate(140%);
-    -webkit-backdrop-filter: blur(20px) saturate(140%);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    box-shadow: var(--card-shadow);
-    transition: border-color 0.25s ease, background 0.3s ease, transform 0.2s ease, box-shadow 0.25s ease;
+  /* Custom Clean Scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border-strong);
+    border-radius: var(--radius-full);
   }
 
-  .glass:hover {
-    border-color: rgba(142, 203, 255, 0.25);
+  /* SVG Helper */
+  .icon-svg {
+    display: inline-block;
+    vertical-align: middle;
+    flex-shrink: 0;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
   }
 
   /* ==========================================================================
-     TOPBAR NAVIGATION
+     STICKY TOPBAR (FB / INSTA / THREADS STYLE)
      ========================================================================== */
-  .topbar {
+  .social-header {
     position: -webkit-sticky;
     position: sticky;
     top: 0;
     z-index: 1000;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    padding: 12px 24px;
+    height: 56px;
     background: var(--topbar-bg);
-    backdrop-filter: blur(24px) saturate(160%);
-    -webkit-backdrop-filter: blur(24px) saturate(160%);
-    border-bottom: 1px solid var(--border-soft);
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-    transition: var(--theme-transition);
-  }
-
-  .wordmark {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    font-size: 20px;
-    color: var(--ink-0);
-    text-decoration: none;
-    cursor: pointer;
-    user-select: none;
-  }
-
-  .wordmark .ring {
-    width: 26px;
-    height: 26px;
-    border-radius: 50%;
-    border: 2px solid var(--spectral);
-    box-shadow: 0 0 12px var(--spectral-glow) inset, 0 0 12px var(--spectral-glow);
-    animation: pulseRing 4s ease-in-out infinite alternate;
-  }
-
-  @keyframes pulseRing {
-    0% { transform: scale(0.96); box-shadow: 0 0 8px var(--spectral-glow) inset; }
-    100% { transform: scale(1.04); box-shadow: 0 0 18px var(--spectral-glow) inset, 0 0 14px var(--spectral-glow); }
-  }
-
-  .wordmark span.dim {
-    color: var(--ink-2);
-    font-weight: 500;
-    font-size: 13px;
-    margin-left: 2px;
-  }
-
-  /* Search Pill */
-  .search-wrapper {
-    position: relative;
-    flex: 1;
-    max-width: 460px;
-  }
-
-  .search-pill {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 9px 18px;
-    border-radius: var(--radius-full);
-    background: var(--glass);
-    border: 1px solid var(--border);
-    transition: border-color 0.25s, box-shadow 0.25s, background 0.3s;
-  }
-
-  .search-pill:focus-within {
-    border-color: var(--spectral);
-    box-shadow: 0 0 0 3px var(--spectral-glow);
-    background: var(--glass-strong);
-  }
-
-  .search-pill svg {
-    flex-shrink: 0;
-    color: var(--ink-2);
-  }
-
-  .search-pill input {
-    flex: 1;
-    background: none;
-    border: none;
-    outline: none;
-    color: var(--ink-0);
-    font-size: 14px;
-  }
-
-  .search-pill input::placeholder {
-    color: var(--ink-2);
-  }
-
-  .search-clear-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: var(--ink-2);
-    display: none;
-    align-items: center;
-    justify-content: center;
-  }
-  .search-clear-btn:hover { color: var(--ink-0); }
-
-  /* Search dropdown results */
-  .search-dropdown {
-    position: absolute;
-    top: calc(100% + 8px);
-    left: 0;
-    right: 0;
-    background: var(--glass-drawer);
-    backdrop-filter: blur(28px);
-    -webkit-backdrop-filter: blur(28px);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    padding: 10px;
-    box-shadow: 0 16px 36px rgba(0,0,0,0.3);
-    z-index: 100;
-    display: none;
-    flex-direction: column;
-    gap: 6px;
-    animation: fadeInDown 0.2s ease-out;
-  }
-
-  .search-item {
-    padding: 8px 12px;
-    border-radius: var(--radius-xs);
-    font-size: 13px;
-    color: var(--ink-1);
-    cursor: pointer;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    transition: background 0.15s, color 0.15s;
-  }
-  .search-item:hover {
-    background: var(--glass-hover);
-    color: var(--spectral);
-  }
-  .search-item small {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    color: var(--ink-2);
+    padding: 0 18px;
+    box-shadow: var(--shadow-sm);
   }
 
-  /* Topbar Actions */
-  .top-icons {
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .brand-logo {
     display: flex;
     align-items: center;
     gap: 8px;
-    margin-left: auto;
-    flex-shrink: 0;
+    cursor: pointer;
+    user-select: none;
+    text-decoration: none;
   }
-
-  .icon-btn {
-    width: 40px;
-    height: 40px;
+  .brand-glyph {
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
+    background: var(--bg-subtle);
+    border: 1.5px solid var(--border-strong);
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--glass);
-    border: 1px solid var(--border);
-    color: var(--ink-1);
-    cursor: pointer;
     position: relative;
-    transition: border-color 0.2s ease, color 0.2s ease, transform 0.15s ease, background 0.25s ease;
+    transition: transform var(--anim-fast);
   }
-
-  .icon-btn:hover {
-    border-color: var(--spectral);
-    color: var(--spectral);
-    background: var(--glass-hover);
-    transform: translateY(-1px);
-  }
-
-  .icon-btn:active {
-    transform: scale(0.94);
-  }
-
-  .badge-dot {
-    position: absolute;
-    top: 6px;
-    right: 6px;
+  .brand-glyph::after {
+    content: '';
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: var(--spectral);
-    box-shadow: 0 0 8px var(--spectral);
+    background: var(--text-primary);
+  }
+  .brand-logo:hover .brand-glyph {
+    transform: scale(1.05);
+  }
+  .brand-wordmark {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    color: var(--text-primary);
   }
 
-  .avatar-mini-btn {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: linear-gradient(145deg, var(--spectral-glow), transparent);
-    border: 1.5px solid var(--border);
+  /* Search Pill */
+  .header-search {
+    position: relative;
+    width: 260px;
+  }
+  .search-input-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg-surface-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-full);
+    padding: 7px 14px;
+    transition: border-color var(--anim-fast), background-color var(--anim-fast);
+  }
+  .search-input-wrap:focus-within {
+    border-color: var(--border-strong);
+    background: var(--bg-surface);
+  }
+  .search-input-wrap input {
+    width: 100%;
+    background: none;
+    border: none;
+    outline: none;
+    font-size: 13px;
+    color: var(--text-primary);
+  }
+  .search-input-wrap input::placeholder {
+    color: var(--text-tertiary);
+  }
+
+  .search-dropdown {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    width: 320px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    display: none;
+    flex-direction: column;
+    padding: 6px;
+    gap: 2px;
+    z-index: 200;
+  }
+  .search-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
     cursor: pointer;
+    color: var(--text-secondary);
+    transition: background-color var(--anim-fast), color var(--anim-fast);
+  }
+  .search-item:hover {
+    background: var(--bg-subtle);
+    color: var(--text-primary);
+  }
+
+  /* Center Nav Tabs (Desktop) */
+  .header-center-nav {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    height: 100%;
+  }
+  .center-nav-tab {
+    height: 48px;
+    padding: 0 24px;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
+    border: none;
+    background: none;
+    color: var(--text-tertiary);
+    cursor: pointer;
     position: relative;
-    transition: border-color 0.2s, transform 0.15s;
+    border-radius: var(--radius-sm);
+    transition: color var(--anim-fast), background-color var(--anim-fast);
   }
-  .avatar-mini-btn:hover {
-    border-color: var(--spectral);
-    transform: scale(1.05);
+  .center-nav-tab:hover {
+    background: var(--bg-surface-elevated);
+    color: var(--text-primary);
   }
-  .avatar-canvas-mini {
-    width: 100%;
-    height: 100%;
+  .center-nav-tab.active {
+    color: var(--text-primary);
+  }
+  .center-nav-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 12px;
+    right: 12px;
+    height: 3px;
+    border-radius: 999px;
+    background: var(--text-primary);
+  }
+
+  /* Right Action Buttons (Messenger, Alerts, Theme, Profile) */
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .social-icon-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--bg-surface-elevated);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    cursor: pointer;
+    position: relative;
+    transition: background-color var(--anim-fast), color var(--anim-fast), transform var(--anim-fast);
+  }
+  .social-icon-btn:hover {
+    background: var(--bg-subtle);
+    color: var(--text-primary);
+  }
+  .social-icon-btn:active {
+    transform: scale(0.94);
+  }
+
+  .badge-count {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    background: var(--like-red);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    min-width: 17px;
+    height: 17px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+    border: 2px solid var(--bg-base);
+  }
+
+  .avatar-circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--bg-subtle);
+    border: 1px solid var(--border-strong);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+    cursor: pointer;
+    user-select: none;
+    overflow: hidden;
+    flex-shrink: 0;
   }
 
   /* ==========================================================================
-     LAYOUT STRUCTURE
+     3-COLUMN MODERN FEED ARCHITECTURE (FB / INSTA WEB STYLE)
      ========================================================================== */
-  .layout {
-    display: grid;
-    grid-template-columns: 270px minmax(0, 1fr) 310px;
-    gap: 24px;
+  .social-container {
     max-width: 1280px;
     margin: 0 auto;
-    padding: 24px 20px 140px;
+    padding: 18px 18px 80px;
+    display: grid;
+    grid-template-columns: 280px minmax(0, 600px) 300px;
+    justify-content: center;
+    gap: 24px;
   }
 
-  .sidebar {
+  /* LEFT SIDEBAR (Navigation & Profile) */
+  .social-left-col {
     position: sticky;
-    top: 84px;
+    top: 74px;
     align-self: start;
     display: flex;
     flex-direction: column;
     gap: 16px;
-    max-height: calc(100vh - 100px);
+    max-height: calc(100vh - 90px);
     overflow-y: auto;
-    scrollbar-width: none;
-  }
-  .sidebar::-webkit-scrollbar { display: none; }
-
-  /* ==========================================================================
-     LEFT SIDEBAR
-     ========================================================================== */
-  .profile-card {
-    padding: 22px;
-    text-align: left;
-    position: relative;
-    overflow: hidden;
   }
 
-  .profile-top {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 12px;
-  }
-
-  .profile-avatar-wrap {
-    position: relative;
-    width: 58px;
-    height: 58px;
-    border-radius: 50%;
-    border: 2px solid var(--border);
-    cursor: pointer;
-    overflow: hidden;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.2);
-    transition: border-color 0.25s, transform 0.2s;
-  }
-  .profile-avatar-wrap:hover {
-    border-color: var(--spectral);
-    transform: scale(1.04);
-  }
-  .profile-avatar-canvas {
-    width: 100%;
-    height: 100%;
-    display: block;
-  }
-
-  .profile-info {
-    flex: 1;
-    min-width: 0;
-  }
-
-  .profile-name {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--ink-0);
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    cursor: pointer;
-  }
-  .profile-name:hover {
-    color: var(--spectral);
-  }
-  .profile-handle {
-    font-size: 12px;
-    color: var(--ink-2);
-    font-family: 'IBM Plex Mono', monospace;
-  }
-
-  .profile-sub {
-    font-size: 12px;
-    color: var(--ink-2);
-    font-family: 'IBM Plex Mono', monospace;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin-top: 4px;
-  }
-  .status-pulse {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--success);
-    box-shadow: 0 0 6px var(--success);
-    animation: blink 2s infinite ease-in-out;
-  }
-  @keyframes blink {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 1; }
-  }
-
-  .profile-stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-    margin-top: 16px;
-    padding-top: 14px;
-    border-top: 1px solid var(--border-soft);
-    text-align: center;
-  }
-
-  .stat-btn {
-    background: none;
-    border: none;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    cursor: pointer;
-    border-radius: var(--radius-xs);
-    padding: 4px;
-    transition: background 0.15s;
-  }
-  .stat-btn:hover {
-    background: var(--glass-hover);
-  }
-  .stat-btn b {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 16px;
-    color: var(--ink-0);
-  }
-  .stat-btn span {
-    font-size: 10px;
-    color: var(--ink-2);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-  }
-
-  /* Navigation Pills */
-  .nav-list {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    padding: 10px;
-  }
-
-  .nav-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 14px;
-    border-radius: var(--radius-sm);
-    color: var(--ink-1);
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    background: transparent;
-    border: none;
-    width: 100%;
-    text-align: left;
-    transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
-  }
-
-  .nav-item-left {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .nav-item .dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    border: 1.5px solid currentColor;
-    opacity: 0.5;
-    flex-shrink: 0;
-    transition: transform 0.2s, background 0.2s, border-color 0.2s;
-  }
-
-  .nav-item:hover {
-    background: var(--glass-strong);
-    color: var(--ink-0);
-  }
-
-  .nav-item.active {
-    background: rgba(142, 203, 255, 0.12);
-    color: var(--spectral);
-    font-weight: 600;
-  }
-  [data-theme="light"] .nav-item.active {
-    background: rgba(2, 132, 199, 0.1);
-  }
-
-  .nav-item.active .dot {
-    background: var(--spectral);
-    border-color: var(--spectral);
-    opacity: 1;
-    transform: scale(1.2);
-    box-shadow: 0 0 8px var(--spectral-glow);
-  }
-
-  .nav-badge {
-    font-size: 11px;
-    font-family: 'IBM Plex Mono', monospace;
-    padding: 2px 7px;
-    border-radius: 999px;
-    background: var(--border-soft);
-    color: var(--ink-2);
-  }
-
-  /* Quick Actions Widget */
-  .quick-actions-card {
+  .profile-snippet-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
     padding: 16px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 12px;
+    box-shadow: var(--shadow-sm);
   }
-  .quick-title {
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--ink-2);
-    margin-bottom: 4px;
-  }
-  .quick-btn {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 8px 12px;
-    border-radius: var(--radius-sm);
-    background: var(--glass);
-    border: 1px solid var(--border-soft);
-    color: var(--ink-1);
-    font-size: 13px;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  .quick-btn:hover {
-    background: var(--glass-hover);
-    color: var(--spectral);
-    border-color: var(--spectral-dim);
-  }
-
-  /* ==========================================================================
-     FEED & COMPOSER
-     ========================================================================== */
-  .main-content {
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  /* Tab View Header (when in other tabs) */
-  .view-header {
-    display: none;
-    align-items: center;
-    justify-content: space-between;
-    padding: 16px 20px;
-    border-radius: var(--radius);
-  }
-  .view-title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 18px;
-    font-weight: 700;
-  }
-  .view-sub {
-    font-size: 12.5px;
-    color: var(--ink-2);
-    margin-top: 2px;
-  }
-
-  /* Active Filter Notice */
-  .filter-bar {
-    display: none;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 16px;
-    background: rgba(142, 203, 255, 0.08);
-    border: 1px solid var(--border-active);
-    border-radius: var(--radius-sm);
-    font-size: 13px;
-    color: var(--spectral);
-  }
-  .filter-clear-btn {
-    background: none;
-    border: none;
-    color: var(--ink-1);
-    cursor: pointer;
-    font-size: 12px;
-    text-decoration: underline;
-  }
-
-  /* Composer */
-  .composer {
-    padding: 18px 20px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .composer-top {
-    display: flex;
-    gap: 14px;
-    align-items: flex-start;
-  }
-
-  .composer-avatar {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    flex-shrink: 0;
-    background: linear-gradient(150deg, var(--spectral-glow), transparent);
-    border: 1.5px solid var(--border);
-    overflow: hidden;
-  }
-
-  .composer-main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .composer-textarea {
-    width: 100%;
-    min-height: 44px;
-    max-height: 160px;
-    background: transparent;
-    border: none;
-    outline: none;
-    color: var(--ink-0);
-    font-size: 15px;
-    line-height: 1.5;
-    resize: none;
-    padding: 8px 0;
-  }
-
-  .composer-textarea::placeholder {
-    color: var(--ink-2);
-  }
-
-  /* Mood tags */
-  .mood-pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 4px;
-  }
-
-  .mood-pill {
-    padding: 4px 10px;
-    border-radius: 999px;
-    background: var(--glass);
-    border: 1px solid var(--border-soft);
-    font-size: 12px;
-    color: var(--ink-2);
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  .mood-pill:hover, .mood-pill.active {
-    background: var(--glass-strong);
-    color: var(--spectral);
-    border-color: var(--spectral-dim);
-  }
-
-  .composer-bottom {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: 12px;
-    border-top: 1px solid var(--border-soft);
-    margin-top: 4px;
-  }
-
-  .composer-meta {
-    font-size: 12px;
-    color: var(--ink-2);
-    font-family: 'IBM Plex Mono', monospace;
-  }
-
-  .composer-actions {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .btn-void {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 18px;
-    border-radius: 999px;
-    background: var(--spectral);
-    color: #060912;
-    border: none;
-    font-weight: 600;
-    font-size: 13.5px;
-    cursor: pointer;
-    box-shadow: 0 4px 14px var(--spectral-glow);
-    transition: all 0.2s ease;
-  }
-  [data-theme="light"] .btn-void {
-    color: #ffffff;
-  }
-  .btn-void:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 6px 20px var(--spectral-glow);
-    filter: brightness(1.1);
-  }
-  .btn-void:active {
-    transform: scale(0.96);
-  }
-
-  /* Dissolution canvas for composer particles */
-  #dissolveCanvas {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 10;
-  }
-
-  /* ==========================================================================
-     POST CARDS & LOOP
-     ========================================================================== */
-  .feed {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-    min-width: 0;
-  }
-
-  .post-card {
-    padding: 20px 22px 14px;
-    animation: fadeIn 0.4s ease-out;
-    position: relative;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(12px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  /* Ephemeral user post indicator */
-  .ephemeral-badge {
-    position: absolute;
-    top: 14px;
-    right: 18px;
-    font-size: 11px;
-    font-family: 'IBM Plex Mono', monospace;
-    color: var(--accent-purple);
-    background: rgba(192, 132, 252, 0.12);
-    border: 1px solid rgba(192, 132, 252, 0.3);
-    padding: 2px 8px;
-    border-radius: 999px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
-  .ephemeral-bar {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 2px;
-    background: var(--accent-purple);
-    transition: width 1s linear;
-  }
-
-  .post-head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 14px;
-  }
-
-  .post-author {
+  .snippet-top {
     display: flex;
     align-items: center;
     gap: 12px;
+    cursor: pointer;
   }
-
-  .post-avatar {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    flex-shrink: 0;
-    background: linear-gradient(155deg, var(--glass-strong), transparent);
-    border: 1px solid var(--border-soft);
+  .snippet-info {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
+    flex-direction: column;
+  }
+  .snippet-name {
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  .snippet-handle {
+    font-size: 12px;
+    color: var(--text-tertiary);
   }
 
-  .post-author-info {
+  .snippet-stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border-subtle);
+    text-align: center;
+  }
+  .snippet-stat-item b {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+  .snippet-stat-item span {
+    font-size: 10.5px;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  /* Left Nav Links (Like FB / Twitter / Threads) */
+  .social-nav-menu {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 8px;
     display: flex;
     flex-direction: column;
     gap: 2px;
+    box-shadow: var(--shadow-sm);
   }
 
-  .post-name {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--ink-0);
-  }
-
-  .post-meta {
-    font-size: 11.5px;
-    color: var(--ink-2);
-    font-family: 'IBM Plex Mono', monospace;
-  }
-
-  .post-menu-btn {
-    background: none;
-    border: none;
-    color: var(--ink-2);
-    cursor: pointer;
-    padding: 6px;
-    border-radius: 50%;
+  .social-nav-link {
     display: flex;
     align-items: center;
-    justify-content: center;
-    transition: color 0.15s, background 0.15s;
-  }
-  .post-menu-btn:hover {
-    color: var(--ink-0);
-    background: var(--glass-hover);
-  }
-
-  .post-line {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 16px;
-    color: var(--ink-0);
-    line-height: 1.6;
-    margin-bottom: 16px;
-  }
-  .post-line b {
-    color: var(--spectral);
-    font-weight: 600;
-  }
-
-  /* Interactive Poll Cards */
-  .poll-card {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-bottom: 16px;
-  }
-
-  .poll-option {
-    position: relative;
-    padding: 10px 14px;
-    border-radius: var(--radius-sm);
-    background: var(--glass);
-    border: 1px solid var(--border-soft);
-    color: var(--ink-1);
-    font-size: 14px;
-    cursor: pointer;
-    overflow: hidden;
-    display: flex;
     justify-content: space-between;
-    align-items: center;
-    transition: border-color 0.2s, color 0.2s;
-  }
-  .poll-option:hover {
-    border-color: var(--spectral);
-    color: var(--ink-0);
-  }
-  .poll-fill {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    background: rgba(142, 203, 255, 0.14);
-    width: 0%;
-    transition: width 0.5s ease-out;
-    pointer-events: none;
-  }
-  .poll-percent {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
-    color: var(--spectral);
-    z-index: 1;
-  }
-
-  /* Canvas Generative Visuals */
-  .post-canvas-wrap {
-    width: 100%;
-    aspect-ratio: 16/8;
+    padding: 10px 12px;
     border-radius: var(--radius-sm);
-    margin-bottom: 16px;
-    background: var(--bg-1);
-    border: 1px solid var(--border-soft);
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .art-canvas {
-    width: 100%;
-    height: 100%;
-    display: block;
-  }
-  .canvas-caption {
-    position: absolute;
-    bottom: 8px;
-    right: 12px;
-    font-size: 11px;
-    font-family: 'IBM Plex Mono', monospace;
-    color: var(--ink-2);
-    background: rgba(0,0,0,0.4);
-    padding: 2px 6px;
-    border-radius: 4px;
-  }
-
-  /* Post Actions */
-  .post-actions {
-    display: flex;
-    gap: 6px;
-    padding-top: 12px;
-    border-top: 1px solid var(--border-soft);
-  }
-
-  .post-action {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 7px;
-    padding: 8px;
-    border-radius: var(--radius-sm);
-    color: var(--ink-2);
-    font-size: 13px;
+    color: var(--text-secondary);
+    font-size: 13.5px;
     font-weight: 500;
+    text-decoration: none;
+    border: none;
     background: transparent;
-    border: none;
     cursor: pointer;
-    transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
+    width: 100%;
+    transition: background-color var(--anim-fast), color var(--anim-fast);
   }
-
-  .post-action:hover {
-    background: var(--glass-strong);
-    color: var(--ink-0);
-  }
-
-  .post-action:active {
-    transform: scale(0.95);
-  }
-
-  .post-action.liked {
-    color: var(--danger);
-  }
-  .post-action.saved {
-    color: var(--spectral);
-  }
-
-  .post-action svg {
-    width: 16px;
-    height: 16px;
-    stroke-width: 2;
-    transition: transform 0.2s ease;
-  }
-
-  .post-action:hover svg {
-    transform: scale(1.15);
-  }
-
-  /* Inline Comment Drawer */
-  .comment-drawer {
-    display: none;
-    flex-direction: column;
-    gap: 10px;
-    padding-top: 14px;
-    margin-top: 12px;
-    border-top: 1px dashed var(--border-soft);
-    animation: fadeIn 0.2s ease-out;
-  }
-
-  .comment-input-row {
-    display: flex;
-    gap: 8px;
-  }
-  .comment-input {
-    flex: 1;
-    padding: 8px 14px;
-    border-radius: var(--radius-full);
-    background: var(--glass);
-    border: 1px solid var(--border-soft);
-    color: var(--ink-0);
-    font-size: 13px;
-    outline: none;
-  }
-  .comment-input:focus {
-    border-color: var(--spectral);
-  }
-  .comment-send-btn {
-    padding: 6px 14px;
-    border-radius: var(--radius-full);
-    background: var(--glass-strong);
-    border: 1px solid var(--border);
-    color: var(--ink-1);
-    font-size: 12px;
-    cursor: pointer;
-  }
-  .comment-send-btn:hover {
-    background: var(--spectral);
-    color: #000;
-  }
-
-  .comments-list {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    max-height: 140px;
-    overflow-y: auto;
-  }
-  .comment-item {
-    font-size: 12.5px;
-    color: var(--ink-1);
-    padding: 6px 10px;
-    background: var(--glass);
-    border-radius: var(--radius-xs);
-    display: flex;
-    justify-content: space-between;
-  }
-  .comment-item small {
-    color: var(--ink-2);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-  }
-
-  /* Loop & Milestone Banners */
-  .milestone-banner {
-    padding: 16px 20px;
-    background: linear-gradient(135deg, rgba(142, 203, 255, 0.08), rgba(192, 132, 252, 0.06));
-    border: 1px dashed var(--border-active);
-    border-radius: var(--radius);
-    text-align: center;
-  }
-  .milestone-badge {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--spectral);
-    margin-bottom: 4px;
-  }
-  .milestone-text {
-    font-size: 14px;
-    color: var(--ink-0);
-    font-weight: 500;
-  }
-
-  /* Infinite Scroll End note */
-  .end-note {
-    text-align: center;
-    padding: 36px 16px;
-    color: var(--ink-2);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 13px;
+  .social-nav-link-left {
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 12px;
   }
-
-  .end-note .spin {
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    border: 2px solid var(--border);
-    border-top-color: var(--spectral);
-    animation: spin 0.8s linear infinite;
+  .social-nav-link:hover {
+    background: var(--bg-surface-elevated);
+    color: var(--text-primary);
+  }
+  .social-nav-link.active {
+    background: var(--bg-subtle);
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+  .nav-pill-badge {
+    font-size: 11px;
+    padding: 2px 7px;
+    border-radius: var(--radius-full);
+    background: var(--bg-surface-elevated);
+    color: var(--text-tertiary);
   }
 
-  @keyframes spin { to { transform: rotate(360deg); } }
+  .btn-quick-post {
+    width: 100%;
+    padding: 11px;
+    border-radius: var(--radius-full);
+    background: var(--text-primary);
+    color: var(--bg-base);
+    font-size: 13.5px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: var(--shadow-sm);
+    transition: opacity var(--anim-fast), transform var(--anim-fast);
+  }
+  .btn-quick-post:hover {
+    opacity: 0.92;
+  }
+  .btn-quick-post:active {
+    transform: scale(0.98);
+  }
 
   /* ==========================================================================
-     RIGHT SIDEBAR (HUD & MINDFULNESS)
+     CENTER STREAM: STORIES TRAY, COMPOSER, FEED
      ========================================================================== */
-  .hud-card {
-    padding: 22px;
-    text-align: center;
+  .social-center-col {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
   }
 
-  .hud-header {
+  /* INSTAGRAM / FB STORIES TRAY */
+  .stories-tray {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 14px 14px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    margin-bottom: 14px;
+    gap: 14px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    box-shadow: var(--shadow-sm);
   }
+  .stories-tray::-webkit-scrollbar { display: none; }
 
-  .hud-label {
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--ink-2);
-    font-weight: 600;
-  }
-
-  .hud-reset-btn {
-    background: none;
-    border: none;
-    color: var(--ink-2);
-    cursor: pointer;
-    font-size: 11px;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    transition: color 0.15s;
-  }
-  .hud-reset-btn:hover { color: var(--spectral); }
-
-  .hud-ring-wrap {
-    position: relative;
-    width: 124px;
-    height: 124px;
-    margin: 0 auto 16px;
-  }
-
-  .hud-ring-wrap svg {
-    width: 100%;
-    height: 100%;
-    transform: rotate(-90deg);
-  }
-
-  .hud-ring-bg {
-    fill: none;
-    stroke: var(--border);
-    stroke-width: 6;
-  }
-
-  .hud-ring-fg {
-    fill: none;
-    stroke: var(--spectral);
-    stroke-width: 6;
-    stroke-linecap: round;
-    transition: stroke 0.6s ease, stroke-dashoffset 1s linear;
-  }
-
-  .hud-time-container {
-    position: absolute;
-    inset: 0;
+  .story-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-  }
-
-  .hud-time {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--ink-0);
-  }
-
-  .hud-unit {
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--ink-2);
-    margin-top: 1px;
-  }
-
-  .hud-msg {
-    font-size: 13px;
-    color: var(--ink-1);
-    line-height: 1.5;
-    min-height: 40px;
-  }
-
-  /* Interactive Breathing Guide */
-  .breathing-box {
-    margin-top: 16px;
-    padding-top: 16px;
-    border-top: 1px solid var(--border-soft);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .breath-circle {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: radial-gradient(circle, var(--spectral-glow), transparent 70%);
-    border: 1.5px solid var(--spectral);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 10px;
-    font-weight: 600;
-    color: var(--spectral);
-    transition: transform 4s ease-in-out;
-  }
-
-  .breath-circle.inhale {
-    transform: scale(1.4);
-  }
-
-  .breath-status {
-    font-size: 12px;
-    font-family: 'IBM Plex Mono', monospace;
-    color: var(--ink-2);
-  }
-
-  .breath-toggle-btn {
-    font-size: 11px;
-    padding: 4px 10px;
-    border-radius: 999px;
-    background: var(--glass);
-    border: 1px solid var(--border-soft);
-    color: var(--ink-1);
+    gap: 6px;
     cursor: pointer;
-    transition: all 0.15s;
-  }
-  .breath-toggle-btn:hover {
-    color: var(--spectral);
-    border-color: var(--spectral);
-  }
-
-  /* People you may know (Interactive) */
-  .suggest-card {
-    padding: 20px;
-  }
-
-  .suggest-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 14px;
-  }
-
-  .suggest-title {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--ink-1);
-  }
-
-  .suggest-refresh-btn {
-    background: none;
-    border: none;
-    color: var(--ink-2);
-    cursor: pointer;
-    font-size: 11px;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-  }
-  .suggest-refresh-btn:hover { color: var(--spectral); }
-
-  .suggest-list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .suggest-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .suggest-avatar {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
     flex-shrink: 0;
-    background: linear-gradient(150deg, var(--glass-strong), transparent);
-    border: 1px solid var(--border-soft);
+    user-select: none;
+  }
+  .story-ring-wrap {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    padding: 2.5px;
+    background: var(--story-ring);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform var(--anim-fast);
+  }
+  .story-ring-wrap.self {
+    background: var(--border-strong);
+    position: relative;
+  }
+  .story-self-badge {
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--accent-blue);
+    color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 14px;
+    font-weight: 700;
+    border: 2px solid var(--bg-surface);
   }
-
-  .suggest-info {
-    flex: 1;
-    min-width: 0;
+  .story-item:hover .story-ring-wrap {
+    transform: scale(1.05);
   }
-
-  .suggest-name {
-    font-size: 13px;
+  .story-inner-avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: var(--bg-surface-elevated);
+    border: 2px solid var(--bg-surface);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-weight: 600;
-    color: var(--ink-0);
+    font-size: 13px;
+    color: var(--text-primary);
+  }
+  .story-label {
+    font-size: 11px;
+    color: var(--text-secondary);
+    max-width: 62px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
-  .suggest-sub {
-    font-size: 11px;
-    color: var(--ink-2);
-    font-family: 'IBM Plex Mono', monospace;
-  }
-
-  .suggest-connect-btn {
-    padding: 5px 12px;
-    border-radius: 999px;
-    font-size: 11.5px;
-    font-weight: 500;
-    background: var(--glass);
+  /* FACEBOOK / THREADS STYLE COMPOSER */
+  .fb-composer-card {
+    background: var(--bg-surface);
     border: 1px solid var(--border);
-    color: var(--ink-1);
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-
-  .suggest-connect-btn:hover {
-    background: var(--glass-hover);
-    color: var(--spectral);
-    border-color: var(--spectral);
-  }
-
-  .suggest-connect-btn.connected {
-    background: rgba(142, 203, 255, 0.12);
-    border-color: var(--spectral);
-    color: var(--spectral);
-  }
-
-  /* ==========================================================================
-     MODALS, DRAWERS & FLOATING ELEMENTS
-     ========================================================================== */
-  .modal-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.65);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    z-index: 200;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    animation: fadeIn 0.2s ease-out;
-  }
-
-  .modal-card {
-    width: 100%;
-    max-width: 480px;
-    background: var(--glass-drawer);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-xl);
-    padding: 26px;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    border-radius: var(--radius-md);
+    padding: 14px 16px;
     display: flex;
     flex-direction: column;
-    gap: 18px;
-    position: relative;
-    animation: scaleUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    gap: 12px;
+    box-shadow: var(--shadow-sm);
   }
-
-  @keyframes scaleUp {
-    from { transform: scale(0.95); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-  }
-
-  .modal-close-btn {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background: none;
-    border: none;
-    color: var(--ink-2);
-    cursor: pointer;
-    font-size: 18px;
+  .composer-top-row {
     display: flex;
     align-items: center;
-    justify-content: center;
-  }
-  .modal-close-btn:hover { color: var(--ink-0); }
-
-  .modal-title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 20px;
-    font-weight: 700;
-  }
-
-  /* Toast Notification */
-  .toast-container {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    z-index: 300;
-    display: flex;
-    flex-direction: column;
     gap: 10px;
-    pointer-events: none;
   }
-
-  .toast {
-    padding: 12px 18px;
-    background: var(--glass-drawer);
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--border-active);
-    border-radius: var(--radius-sm);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    color: var(--ink-0);
+  .composer-dummy-input {
+    flex: 1;
+    background: var(--bg-surface-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-full);
+    padding: 9px 16px;
     font-size: 13.5px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    pointer-events: auto;
-    animation: toastIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    transition: opacity 0.3s, transform 0.3s;
+    color: var(--text-primary);
+    outline: none;
+    transition: background-color var(--anim-fast), border-color var(--anim-fast);
+  }
+  .composer-dummy-input:focus {
+    background: var(--bg-surface);
+    border-color: var(--border-strong);
+  }
+  .composer-dummy-input::placeholder {
+    color: var(--text-tertiary);
   }
 
-  @keyframes toastIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  /* Groups & Events Views inside Feed */
-  .interactive-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 14px;
-  }
-  .interactive-card {
-    padding: 18px;
-    border-radius: var(--radius);
+  .composer-actions-bar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 14px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border-subtle);
   }
-  .interactive-left {
+  .composer-attach-tools {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 6px;
   }
-  .interactive-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    background: var(--glass-strong);
+  .attach-tool-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 6px 10px;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: background-color var(--anim-fast), color var(--anim-fast);
+  }
+  .attach-tool-btn:hover {
+    background: var(--bg-surface-elevated);
+    color: var(--text-primary);
+  }
+
+  .btn-submit-post {
+    padding: 6px 16px;
+    border-radius: var(--radius-full);
+    background: var(--text-primary);
+    color: var(--bg-base);
+    border: none;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity var(--anim-fast), transform var(--anim-fast);
+  }
+  .btn-submit-post:hover {
+    opacity: 0.9;
+  }
+  .btn-submit-post:active {
+    transform: scale(0.96);
+  }
+
+  /* POST STREAM FEED (INSTA / FB STYLE) */
+  .social-feed-stream {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .fb-post-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Post Header */
+  .post-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+  }
+  .post-author-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .post-author-details {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.25;
+  }
+  .post-author-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .post-author-sub {
+    font-size: 11.5px;
+    color: var(--text-tertiary);
+  }
+  .post-options-btn {
+    background: none;
+    border: none;
+    color: var(--text-tertiary);
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
-    flex-shrink: 0;
   }
-  .interactive-body h4 {
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--ink-0);
-  }
-  .interactive-body p {
-    font-size: 12.5px;
-    color: var(--ink-2);
-    margin-top: 2px;
+  .post-options-btn:hover {
+    color: var(--text-primary);
+    background: var(--bg-surface-elevated);
   }
 
-  /* Floating Teleport / Scroll top Button */
-  .teleport-btn {
-    position: fixed;
-    bottom: 24px;
-    left: 24px;
-    padding: 10px 18px;
-    border-radius: 999px;
-    background: var(--glass-card);
-    border: 1px solid var(--border);
-    backdrop-filter: blur(16px);
-    color: var(--ink-1);
-    font-size: 12.5px;
-    font-weight: 500;
-    cursor: pointer;
+  /* Post Body */
+  .post-text-body {
+    padding: 0 16px 12px;
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--text-primary);
+    word-break: break-word;
+  }
+
+  /* Optional Media/Visual Box */
+  .post-visual-box {
+    margin: 0 16px 12px;
+    border-radius: var(--radius-sm);
+    background: var(--bg-surface-elevated);
+    border: 1px solid var(--border-subtle);
+    padding: 24px;
+    text-align: center;
+    font-size: 14px;
+    color: var(--text-secondary);
     display: flex;
-    align-items: center;
-    gap: 8px;
-    box-shadow: var(--card-shadow);
-    z-index: 80;
-    transition: all 0.2s;
-  }
-  .teleport-btn:hover {
-    color: var(--spectral);
-    border-color: var(--spectral);
-    transform: translateY(-2px);
-  }
-
-  /* Blackout Zen Mode */
-  #blackoutOverlay {
-    position: fixed;
-    inset: 0;
-    background: #000;
-    z-index: 999;
-    display: none;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: #444;
-    font-family: 'IBM Plex Mono', monospace;
-    gap: 20px;
-    text-align: center;
-    padding: 20px;
+    gap: 8px;
+    font-style: italic;
+  }
+
+  /* Poll widget inside post */
+  .post-poll-container {
+    margin: 0 16px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .poll-choice-bar {
+    position: relative;
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    background: var(--bg-surface-elevated);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: var(--text-primary);
+    transition: border-color var(--anim-fast);
+  }
+  .poll-choice-bar:hover {
+    border-color: var(--border-strong);
+  }
+  .poll-fill-level {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    background: var(--bg-subtle);
+    width: 0%;
+    pointer-events: none;
+    transition: width 0.3s ease;
+  }
+  .poll-pct {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-secondary);
+    z-index: 1;
+  }
+
+  /* Metrics Counters Line (e.g. 42 likes · 8 comments) */
+  .post-metrics-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 16px 8px;
+    font-size: 12px;
+    color: var(--text-tertiary);
+  }
+
+  /* FB / Instagram Style Action Bar (Like, Comment, Share, Save) */
+  .post-interactive-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 10px;
+    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .post-action-btn {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 6px;
+    border: none;
+    background: transparent;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: background-color var(--anim-fast), color var(--anim-fast), transform var(--anim-fast);
+  }
+  .post-action-btn:hover {
+    background: var(--bg-surface-elevated);
+    color: var(--text-primary);
+  }
+  .post-action-btn:active {
+    transform: scale(0.96);
+  }
+  .post-action-btn.active-like {
+    color: var(--like-red);
+  }
+  .post-action-btn.active-like .icon-svg {
+    fill: currentColor;
+    stroke: currentColor;
+  }
+  .post-action-btn.active-save {
+    color: var(--save-gold);
+  }
+  .post-action-btn.active-save .icon-svg {
+    fill: currentColor;
+    stroke: currentColor;
+  }
+
+  /* Integrated Comment Section (Instagram / Facebook Style) */
+  .post-comments-section {
+    padding: 10px 16px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .comments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .comment-bubble {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .comment-body {
+    background: var(--bg-surface-elevated);
+    border-radius: var(--radius-md);
+    padding: 8px 12px;
+    font-size: 13px;
+    max-width: 90%;
+  }
+  .comment-author {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-right: 6px;
+  }
+  .comment-text {
+    color: var(--text-secondary);
+  }
+
+  /* Inline Comment Input Row */
+  .comment-input-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+  }
+  .comment-input-field {
+    flex: 1;
+    background: var(--bg-surface-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-full);
+    padding: 6px 14px;
+    font-size: 12.5px;
+    color: var(--text-primary);
+    outline: none;
+    transition: border-color var(--anim-fast);
+  }
+  .comment-input-field:focus {
+    border-color: var(--border-strong);
+  }
+  .btn-comment-send {
+    padding: 6px 12px;
+    border-radius: var(--radius-full);
+    background: none;
+    border: none;
+    color: var(--accent-blue);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .btn-comment-send:hover {
+    text-decoration: underline;
   }
 
   /* ==========================================================================
-     RESPONSIVE DESIGN (PHONE, TABLET, PC / DESKTOP)
+     RIGHT SIDEBAR (Suggested Contacts, Trending, Online Now)
      ========================================================================== */
+  .social-right-col {
+    position: sticky;
+    top: 74px;
+    align-self: start;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-height: calc(100vh - 90px);
+    overflow-y: auto;
+  }
 
-  /* Mobile Bottom Navigation (Hidden on PC/Tablet) */
-  .mobile-bottom-nav {
+  .widget-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    box-shadow: var(--shadow-sm);
+  }
+  .widget-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  /* Suggested Users List */
+  .suggested-user-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .suggested-user-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .suggested-names {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.25;
+  }
+  .suggested-names b {
+    font-size: 13px;
+    color: var(--text-primary);
+  }
+  .suggested-names span {
+    font-size: 11.5px;
+    color: var(--text-tertiary);
+  }
+  .btn-follow {
+    padding: 5px 12px;
+    border-radius: var(--radius-full);
+    background: var(--text-primary);
+    color: var(--bg-base);
+    border: none;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--anim-fast);
+  }
+  .btn-follow.following {
+    background: var(--bg-surface-elevated);
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+  }
+
+  /* Trending Topics Tags */
+  .trending-tag-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 0;
+    cursor: pointer;
+    border-radius: var(--radius-xs);
+    transition: color var(--anim-fast);
+  }
+  .trending-tag-row:hover {
+    color: var(--accent-blue);
+  }
+  .trending-tag-info b {
+    display: block;
+    font-size: 13px;
+  }
+  .trending-tag-info span {
+    font-size: 11px;
+    color: var(--text-tertiary);
+  }
+
+  /* Online Presence Indicator Contacts */
+  .online-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 8px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background-color var(--anim-fast);
+  }
+  .online-contact-item:hover {
+    background: var(--bg-surface-elevated);
+  }
+  .online-avatar-wrap {
+    position: relative;
+  }
+  .online-dot {
+    position: absolute;
+    bottom: -1px;
+    right: -1px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--success);
+    border: 2px solid var(--bg-surface);
+  }
+
+  .mini-footer-links {
+    font-size: 11px;
+    color: var(--text-tertiary);
+    line-height: 1.6;
+    padding: 0 4px;
+  }
+
+  /* ==========================================================================
+     MOBILE BOTTOM BAR & RESPONSIVE RULES
+     ========================================================================== */
+  .mobile-bottom-bar {
     display: none;
   }
 
-  @media (max-width: 1080px) {
-    .layout {
+  @media (max-width: 1024px) {
+    .social-container {
       grid-template-columns: 240px minmax(0, 1fr);
-      padding: 18px 16px 100px;
-      gap: 16px;
-      max-width: 1000px;
+      padding: 16px 14px 100px;
     }
-    .sidebar.right {
+    .social-right-col {
       display: none;
     }
-    .search-wrapper {
-      max-width: 260px;
+    .header-center-nav {
+      display: none;
     }
   }
 
   @media (max-width: 768px) {
-    .layout {
+    .social-container {
       grid-template-columns: 1fr;
-      padding: 12px 12px calc(76px + env(safe-area-inset-bottom, 0px));
+      padding: 12px 10px calc(68px + env(safe-area-inset-bottom, 0px));
       gap: 12px;
     }
-    .sidebar.left,
-    .sidebar.right {
+    .social-left-col,
+    .social-right-col {
       display: none;
     }
-    .search-wrapper {
+    .header-search {
       display: none;
     }
-    .wordmark span.dim {
-      display: none;
-    }
-    .topbar {
-      padding: 8px 14px;
-      gap: 8px;
+    .social-header {
+      padding: 0 12px;
     }
 
-    /* Fixed Bottom Navigation Bar for Mobile */
-    .mobile-bottom-nav {
+    /* Fixed Instagram / Facebook Style Mobile Bottom Bar */
+    .mobile-bottom-bar {
       position: fixed;
       bottom: 0;
       left: 0;
       right: 0;
+      height: 52px;
       z-index: 1000;
       display: flex;
       justify-content: space-around;
       align-items: center;
-      background: var(--bg-surface, var(--glass-card));
+      background: var(--topbar-bg);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       border-top: 1px solid var(--border);
-      padding: 4px 6px calc(6px + env(safe-area-inset-bottom, 0px));
-      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+      padding-bottom: env(safe-area-inset-bottom, 0px);
     }
-    .mobile-nav-btn {
-      flex: 1 1 0;
-      min-width: 0;
+    .mobile-nav-icon-btn {
+      flex: 1;
+      height: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       gap: 2px;
-      background: none;
       border: none;
-      color: var(--ink-2);
-      font-size: 10px;
-      font-family: inherit;
+      background: none;
+      color: var(--text-secondary);
       cursor: pointer;
-      padding: 5px 2px;
-      border-radius: var(--radius-sm);
-      transition: color 0.15s ease, transform 0.15s ease;
-      -webkit-tap-highlight-color: transparent;
     }
-    .mobile-nav-btn.active {
-      color: var(--spectral);
-      font-weight: 600;
+    .mobile-nav-icon-btn.active {
+      color: var(--text-primary);
     }
-    .mobile-nav-btn svg {
-      width: 16px;
-      height: 16px;
-    }
-    .mobile-nav-btn span {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 100%;
-    }
-
-    /* Floating Teleport Button sits above bottom bar */
-    .teleport-btn {
-      display: flex;
-      left: auto;
-      right: 12px;
-      bottom: calc(66px + env(safe-area-inset-bottom, 0px));
-      padding: 6px 12px;
-      font-size: 11px;
-    }
-
-    /* Toast Rack sits above mobile nav across screen */
-    #toastContainer {
-      bottom: calc(66px + env(safe-area-inset-bottom, 0px));
-      left: 12px;
-      right: 12px;
-      max-width: none;
-    }
-    .toast {
-      width: 100%;
-    }
-
-    /* Modals fit neatly on mobile */
-    .modal-overlay {
-      padding: 12px;
-    }
-    .modal-card {
-      max-width: 100%;
-      max-height: calc(100vh - 32px);
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
-      padding: 18px 14px;
-      border-radius: var(--radius-lg);
+    .mobile-nav-icon-btn span {
+      font-size: 9.5px;
     }
   }
 
-  @media (max-width: 480px) {
-    .layout {
-      padding: 8px 8px calc(74px + env(safe-area-inset-bottom, 0px));
-      gap: 10px;
-    }
-    .topbar {
-      padding: 8px 10px;
-    }
-    .top-icons {
-      gap: 5px;
-    }
-    .icon-btn {
-      width: 34px;
-      height: 34px;
-    }
-    .composer {
-      padding: 12px 12px;
-    }
-    .composer-textarea {
-      font-size: 16px; /* Prevents unwanted iOS auto-zoom */
-    }
-    .post-card {
-      padding: 12px 12px 10px;
-    }
-    .post-actions {
-      flex-wrap: wrap;
-      gap: 3px;
-    }
-    .post-action-btn {
-      padding: 5px 7px;
-      font-size: 11px;
-    }
+  /* MODALS (STORY VIEWER, MESSENGER, NOTIFICATIONS, PROFILE) */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    z-index: 1200;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+  }
+  .modal-window {
+    width: 100%;
+    max-width: 460px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    padding: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    animation: modalIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  @keyframes modalIn {
+    from { opacity: 0; transform: scale(0.96); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  .modal-close-x {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    color: var(--text-tertiary);
+    font-size: 18px;
+    cursor: pointer;
+  }
+  .modal-close-x:hover { color: var(--text-primary); }
+
+  /* Instagram Full Story Viewer */
+  .story-viewer-card {
+    width: 100%;
+    max-width: 380px;
+    height: 560px;
+    background: #111;
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 16px;
+    overflow: hidden;
+  }
+  .story-progress-bar {
+    width: 100%;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .story-progress-fill {
+    height: 100%;
+    background: #fff;
+    width: 0%;
+    transition: width 0.05s linear;
   }
 
-  @media (max-height: 500px) {
-    .topbar {
-      padding: 5px 12px;
-    }
-    .mobile-bottom-nav {
-      padding: 2px 8px calc(2px + env(safe-area-inset-bottom, 0px));
-    }
-    .modal-card {
-      max-height: 90vh;
-      padding: 12px 14px;
-    }
+  /* Toast Banner */
+  .social-toast-rack {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 1300;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    pointer-events: none;
+  }
+  .social-toast {
+    background: var(--bg-surface-elevated);
+    border: 1px solid var(--border-strong);
+    color: var(--text-primary);
+    padding: 10px 16px;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-md);
+    font-size: 13px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    animation: toastPop 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  @keyframes toastPop {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
-  .footer-note {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 20px 40px;
+  /* Infinite Scroll Loader */
+  .feed-loader {
     text-align: center;
-    color: var(--ink-2);
-    font-size: 12px;
-    font-family: 'IBM Plex Mono', monospace;
+    padding: 24px 16px;
+    color: var(--text-tertiary);
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .feed-loader-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--text-tertiary);
   }
 </style>
 </head>
 <body>
 
-<!-- TOPBAR NAVIGATION -->
-<header class="topbar">
-  <div class="wordmark" id="brandLogo" title="Reset to top of the void">
-    <span class="ring"></span>
-    <span>void</span>
-    <span class="dim">/ nothing new</span>
-  </div>
-
-  <!-- Search pill with live interactive dropdown -->
-  <div class="search-wrapper">
-    <div class="search-pill">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-      </svg>
-      <input type="text" placeholder="search for nothing in the void..." id="searchInput" autocomplete="off">
-      <button class="search-clear-btn" id="searchClearBtn" title="Clear search">✕</button>
+<!-- STICKY TOPBAR HEADER -->
+<header class="social-header">
+  <div class="header-left">
+    <div class="brand-logo" id="brandLogo" title="Void Feed">
+      <div class="brand-glyph"></div>
+      <span class="brand-wordmark">void</span>
     </div>
-    <div class="search-dropdown" id="searchDropdown"></div>
+    <div class="header-search">
+      <div class="search-input-wrap">
+        <svg class="icon-svg" width="14" height="14" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="searchInput" placeholder="Search Void reflections, people..." autocomplete="off">
+      </div>
+      <div class="search-dropdown" id="searchDropdown"></div>
+    </div>
   </div>
 
-  <!-- Top Action Controls -->
-  <div class="top-icons">
-    <!-- Sound Synth Toggle -->
-    <button class="icon-btn" id="audioToggleBtn" title="Toggle zen ambient drone">
-      <svg id="audioIconOff" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-        <line x1="23" y1="9" x2="17" y2="15"></line>
-        <line x1="17" y1="9" x2="23" y2="15"></line>
-      </svg>
-      <svg id="audioIconOn" style="display:none;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-        <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-        <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
-      </svg>
+  <!-- Center Nav Tabs (Desktop FB style) -->
+  <nav class="header-center-nav">
+    <button class="center-nav-tab active" data-tab="feed" title="Home Feed">
+      <svg class="icon-svg" width="20" height="20" viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    </button>
+    <button class="center-nav-tab" data-tab="saved" title="Saved Posts">
+      <svg class="icon-svg" width="20" height="20" viewBox="0 0 24 24"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
+    </button>
+    <button class="center-nav-tab" data-tab="circles" title="Circles / Communities">
+      <svg class="icon-svg" width="20" height="20" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+    </button>
+  </nav>
+
+  <!-- Right Actions (Theme, Messenger, Alerts, Profile) -->
+  <div class="header-right">
+    <!-- Theme Toggle -->
+    <button class="social-icon-btn" id="themeToggleBtn" title="Switch Theme (Dark / Light)">
+      <svg id="themeIconSun" class="icon-svg" width="17" height="17" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      <svg id="themeIconMoon" class="icon-svg" style="display:none;" width="17" height="17" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
     </button>
 
-    <!-- Theme Switcher (Dark / Light) -->
-    <button class="icon-btn" id="themeToggleBtn" title="Switch between Light & Dark mode">
-      <!-- Sun icon for dark mode (click to go light) -->
-      <svg id="themeSun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <circle cx="12" cy="12" r="5"></circle>
-        <line x1="12" y1="1" x2="12" y2="3"></line>
-        <line x1="12" y1="21" x2="12" y2="23"></line>
-        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-        <line x1="1" y1="12" x2="3" y2="12"></line>
-        <line x1="21" y1="12" x2="23" y2="12"></line>
-        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-      </svg>
-      <!-- Moon icon for light mode (click to go dark) -->
-      <svg id="themeMoon" style="display:none;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-      </svg>
+    <!-- Messenger DM Button -->
+    <button class="social-icon-btn" id="btnOpenMessenger" title="Direct Messages">
+      <svg class="icon-svg" width="17" height="17" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+      <span class="badge-count" id="msgBadgeCount">1</span>
     </button>
 
-    <!-- Inbox modal trigger -->
-    <button class="icon-btn" id="inboxBtn" title="Empty inbox">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <rect x="3" y="5" width="18" height="14" rx="2"></rect>
-        <path d="M3 7l9 6 9-6"></path>
-      </svg>
-      <span class="badge-dot" id="inboxBadge"></span>
+    <!-- Notifications Bell -->
+    <button class="social-icon-btn" id="btnOpenNotifs" title="Notifications">
+      <svg class="icon-svg" width="17" height="17" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+      <span class="badge-count" id="notifBadgeCount">3</span>
     </button>
 
-    <!-- Notifications modal trigger -->
-    <button class="icon-btn" id="notificationsBtn" title="Zero notifications">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-      </svg>
-    </button>
-
-    <!-- Profile identity button -->
-    <button class="avatar-mini-btn" id="profileModalTrigger" title="Void identity & stats">
-      <canvas class="avatar-canvas-mini" id="miniAvatarCanvas" width="80" height="80"></canvas>
-    </button>
+    <!-- Profile Circle -->
+    <div class="avatar-circle" id="userHeaderAvatar" title="Your Profile">V</div>
   </div>
 </header>
 
-<!-- MAIN APP GRID LAYOUT -->
-<div class="layout">
+<!-- MAIN 3-COLUMN SOCIAL CONTAINER -->
+<main class="social-container">
 
-  <!-- LEFT SIDEBAR -->
-  <aside class="sidebar left">
-    <!-- Profile Card -->
-    <div class="glass profile-card">
-      <div class="profile-top">
-        <div class="profile-avatar-wrap" id="avatarChangeWrap" title="Click to regenerate abstract avatar">
-          <canvas class="profile-avatar-canvas" id="mainAvatarCanvas" width="116" height="116"></canvas>
-        </div>
-        <div class="profile-info">
-          <div class="profile-name" id="sidebarProfileName" title="Click to edit name">
-            <span>Wanderer #4092</span>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
-          </div>
-          <div class="profile-handle" id="sidebarProfileHandle">@voidfarer</div>
-          <div class="profile-sub">
-            <span class="status-pulse"></span>
-            <span>present right now</span>
-          </div>
+  <!-- LEFT COLUMN: Profile Snippet & Social Navigation -->
+  <aside class="social-left-col">
+    <!-- User Mini Profile -->
+    <div class="profile-snippet-card">
+      <div class="snippet-top" id="btnEditProfileSnippet">
+        <div class="avatar-circle" id="snippetAvatar">V</div>
+        <div class="snippet-info">
+          <span class="snippet-name" id="snippetNameDisplay">Wanderer #409</span>
+          <span class="snippet-handle" id="snippetHandleDisplay">@voidfarer</span>
         </div>
       </div>
-
-      <div class="profile-stats">
-        <button class="stat-btn" id="statDissolvedBtn" title="Thoughts you dispersed">
-          <b id="statsDissolvedCount">0</b>
-          <span>dissolved</span>
-        </button>
-        <button class="stat-btn" id="statSavedBtn" title="Saved posts">
-          <b id="statsSavedCount">0</b>
-          <span>saved</span>
-        </button>
-        <button class="stat-btn" id="statScrolledBtn" title="Total posts scrolled">
-          <b id="statsScrolledCount">0</b>
-          <span>scrolled</span>
-        </button>
+      <div class="snippet-stats-row">
+        <div class="snippet-stat-item">
+          <b id="statReflectionsCount">14</b>
+          <span>Posts</span>
+        </div>
+        <div class="snippet-stat-item">
+          <b id="statSavedCount">0</b>
+          <span>Saved</span>
+        </div>
+        <div class="snippet-stat-item">
+          <b id="statPresenceTime">00:00</b>
+          <span>Session</span>
+        </div>
       </div>
     </div>
 
-    <!-- Navigation Pills -->
-    <nav class="glass nav-list">
-      <button class="nav-item active" data-tab="feed">
-        <div class="nav-item-left"><span class="dot"></span> <span>feed</span></div>
-        <span class="nav-badge">∞</span>
+    <!-- Navigation Menu (Facebook / Twitter style) -->
+    <nav class="social-nav-menu">
+      <button class="social-nav-link active" data-tab="feed">
+        <div class="social-nav-link-left">
+          <svg class="icon-svg" width="18" height="18" viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <span>Feed</span>
+        </div>
       </button>
-      <button class="nav-item" data-tab="saved">
-        <div class="nav-item-left"><span class="dot"></span> <span>saved</span></div>
-        <span class="nav-badge" id="navSavedBadge">0</span>
+
+      <button class="social-nav-link" data-tab="saved">
+        <div class="social-nav-link-left">
+          <svg class="icon-svg" width="18" height="18" viewBox="0 0 24 24"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
+          <span>Saved Bookmarks</span>
+        </div>
+        <span class="nav-pill-badge" id="navSavedBadge">0</span>
       </button>
-      <button class="nav-item" data-tab="memories">
-        <div class="nav-item-left"><span class="dot"></span> <span>memories</span></div>
-        <span class="nav-badge" id="navMemoriesBadge">3</span>
+
+      <button class="social-nav-link" data-tab="circles">
+        <div class="social-nav-link-left">
+          <svg class="icon-svg" width="18" height="18" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span>Circles & Communities</span>
+        </div>
+        <span class="nav-pill-badge">4</span>
       </button>
-      <button class="nav-item" data-tab="groups">
-        <div class="nav-item-left"><span class="dot"></span> <span>groups</span></div>
-        <span class="nav-badge" id="navGroupsBadge">4</span>
+
+      <button class="social-nav-link" id="navOpenMessengerBtn">
+        <div class="social-nav-link-left">
+          <svg class="icon-svg" width="18" height="18" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+          <span>Direct Messages</span>
+        </div>
+        <span class="nav-pill-badge" style="background:var(--accent-blue);color:#fff;">1</span>
       </button>
-      <button class="nav-item" data-tab="events">
-        <div class="nav-item-left"><span class="dot"></span> <span>events</span></div>
-        <span class="nav-badge">3</span>
+
+      <button class="social-nav-link" id="navOpenSettingsBtn">
+        <div class="social-nav-link-left">
+          <svg class="icon-svg" width="18" height="18" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          <span>Preferences</span>
+        </div>
       </button>
     </nav>
 
-    <!-- Quick Zen Actions -->
-    <div class="glass quick-actions-card">
-      <div class="quick-title">Presence shortcuts</div>
-      <button class="quick-btn" id="quickBreathBtn">
-        <span>🌬️</span> Take a conscious breath
-      </button>
-      <button class="quick-btn" id="quickBlackoutBtn">
-        <span>🌑</span> Blackout screen mode
-      </button>
-      <button class="quick-btn" id="quickBreakBtn">
-        <span>🚪</span> Leave the void
-      </button>
-    </div>
+    <!-- Quick Post Button -->
+    <button class="btn-quick-post" id="btnFocusComposer">
+      <svg class="icon-svg" width="16" height="16" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+      <span>Post a Reflection</span>
+    </button>
   </aside>
 
-  <!-- CENTER FEED & VIEWS -->
-  <main class="main-content">
+  <!-- CENTER COLUMN: STORIES, COMPOSER, FEED -->
+  <section class="social-center-col">
 
-    <!-- Active Search Filter Pill (Appears when searching) -->
-    <div class="filter-bar" id="filterBar">
-      <span>Filtered void by: <strong id="filterQueryLabel">query</strong></span>
-      <button class="filter-clear-btn" id="clearFilterBtn">Clear filter (return to all)</button>
-    </div>
-
-    <!-- Tab View Header (When navigating to Saved, Memories, Groups, Events) -->
-    <div class="glass view-header" id="viewHeader">
-      <div>
-        <h2 class="view-title" id="viewTitleText">Feed</h2>
-        <p class="view-sub" id="viewSubText">Endless thoughts looping into nowhere.</p>
-      </div>
-      <button class="btn-void" id="viewBackToFeedBtn" style="padding: 6px 14px; font-size: 12px;">← Back to feed</button>
-    </div>
-
-    <!-- COMPOSER (Active in Feed tab) -->
-    <section class="glass composer" id="composerSection">
-      <canvas id="dissolveCanvas"></canvas>
-      <div class="composer-top">
-        <div class="composer-avatar">
-          <canvas id="composerAvatarCanvas" width="88" height="88" style="width:100%;height:100%;"></canvas>
+    <!-- INSTAGRAM / FACEBOOK STORIES TRAY -->
+    <div class="stories-tray" id="storiesTray">
+      <!-- Your Story Add item -->
+      <div class="story-item" id="btnCreateStory" title="Share your presence story">
+        <div class="story-ring-wrap self">
+          <div class="story-inner-avatar">V</div>
+          <span class="story-self-badge">+</span>
         </div>
-        <div class="composer-main">
-          <textarea class="composer-textarea" id="composerText" placeholder="say something into the void... it will dissolve into nothing." rows="2"></textarea>
-          <div class="mood-pills">
-            <span class="mood-pill active" data-mood="Silent">Silent</span>
-            <span class="mood-pill" data-mood="Existential">Existential</span>
-            <span class="mood-pill" data-mood="Meditative">Meditative</span>
-            <span class="mood-pill" data-mood="Amused">Amused</span>
-            <span class="mood-pill" data-mood="Overstimulated">Overstimulated</span>
-          </div>
-        </div>
+        <span class="story-label">Your story</span>
       </div>
 
-      <div class="composer-bottom">
-        <span class="composer-meta" id="composerCharCount">0 / ∞ thoughts</span>
-        <div class="composer-actions">
-          <button class="btn-void" id="releaseVoidBtn">
-            <span>Release to Void</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+      <!-- Other Contacts' Stories -->
+      <div class="story-item" data-story-id="s1" data-author="Kaelen Vos" data-text="Disconnecting from cellular towers for the next 4 hours. Absolute silence is medicine.">
+        <div class="story-ring-wrap">
+          <div class="story-inner-avatar">K</div>
+        </div>
+        <span class="story-label">kaelen</span>
+      </div>
+
+      <div class="story-item" data-story-id="s2" data-author="Nadia Bloom" data-text="Exhaling longer than inhaling. Your nervous system resets in 90 seconds.">
+        <div class="story-ring-wrap">
+          <div class="story-inner-avatar">N</div>
+        </div>
+        <span class="story-label">nadia</span>
+      </div>
+
+      <div class="story-item" data-story-id="s3" data-author="The Silent Sea" data-text="Waves breaking in Newfoundland with zero listeners. The universe needs no audience.">
+        <div class="story-ring-wrap">
+          <div class="story-inner-avatar">S</div>
+        </div>
+        <span class="story-label">silence</span>
+      </div>
+
+      <div class="story-item" data-story-id="s4" data-author="Julian Gray" data-text="Closed 48 browser tabs without checking them once. The world continued turning.">
+        <div class="story-ring-wrap">
+          <div class="story-inner-avatar">J</div>
+        </div>
+        <span class="story-label">julian</span>
+      </div>
+
+      <div class="story-item" data-story-id="s5" data-author="Zenith Archive" data-text="Nothing you scrolled today will matter in 100 years. Breathe.">
+        <div class="story-ring-wrap">
+          <div class="story-inner-avatar">Z</div>
+        </div>
+        <span class="story-label">zenith</span>
+      </div>
+    </div>
+
+    <!-- FACEBOOK STYLE COMPOSER -->
+    <div class="fb-composer-card" id="composerCard">
+      <div class="composer-top-row">
+        <div class="avatar-circle" id="composerUserAvatar">V</div>
+        <input type="text" class="composer-dummy-input" id="composerInput" placeholder="What reflection is occupying your silence?" autocomplete="off">
+      </div>
+      <div class="composer-actions-bar">
+        <div class="composer-attach-tools">
+          <button class="attach-tool-btn" id="btnAttachQuote">
+            <svg class="icon-svg" width="16" height="16" viewBox="0 0 24 24" style="color:var(--accent-blue);"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+            <span>Quote Card</span>
+          </button>
+          <button class="attach-tool-btn" id="btnAttachPoll">
+            <svg class="icon-svg" width="16" height="16" viewBox="0 0 24 24" style="color:#10b981;"><line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/></svg>
+            <span>Poll</span>
+          </button>
+          <button class="attach-tool-btn" id="btnAttachTag">
+            <svg class="icon-svg" width="16" height="16" viewBox="0 0 24 24" style="color:#f59e0b;"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" x2="9.01" y1="9" y2="9"/><line x1="15" x2="15.01" y1="9" y2="9"/></svg>
+            <span>Mood</span>
           </button>
         </div>
-      </div>
-    </section>
-
-    <!-- MAIN FEED CONTAINER (Infinite Scroll) -->
-    <div class="feed" id="feed">
-      <!-- Posts dynamically injected here -->
-    </div>
-
-    <!-- ALTERNATE TAB CONTAINER (Saved, Memories, Groups, Events) -->
-    <div class="feed" id="altViewContainer" style="display: none;"></div>
-
-    <!-- ENDLESS SCROLL LOADER -->
-    <div class="end-note" id="endNote">
-      <span class="spin"></span>
-      <span id="endNoteText">looping deeper into the void…</span>
-    </div>
-  </main>
-
-  <!-- RIGHT SIDEBAR (HUD, SESSIONS & PEOPLE) -->
-  <aside class="sidebar right">
-    <!-- Time in the void HUD card -->
-    <div class="glass hud-card">
-      <div class="hud-header">
-        <span class="hud-label">time in the void</span>
-        <button class="hud-reset-btn" id="hudResetBtn" title="Reset session time">↻ restart</button>
-      </div>
-
-      <div class="hud-ring-wrap">
-        <svg viewBox="0 0 120 120">
-          <circle class="hud-ring-bg" cx="60" cy="60" r="52"/>
-          <circle class="hud-ring-fg" id="hudRing" cx="60" cy="60" r="52" stroke-dasharray="326.7" stroke-dashoffset="326.7"/>
-        </svg>
-        <div class="hud-time-container">
-          <div class="hud-time" id="hudTime">00:00</div>
-          <div class="hud-unit">elapsed</div>
-        </div>
-      </div>
-
-      <div class="hud-msg" id="hudMsg">you just stepped into the silence.</div>
-
-      <!-- Interactive Breathing guide widget -->
-      <div class="breathing-box">
-        <div class="breath-circle" id="breathCircle">Breathe</div>
-        <div class="breath-status" id="breathStatus">Inhale conscious calm</div>
-        <button class="breath-toggle-btn" id="breathToggleBtn">Pause guide</button>
+        <button class="btn-submit-post" id="btnPublishPost">Post</button>
       </div>
     </div>
 
-    <!-- People You May Know (Interactive Connections) -->
-    <div class="glass suggest-card">
-      <div class="suggest-header">
-        <span class="suggest-title">wanderers nearby</span>
-        <button class="suggest-refresh-btn" id="suggestRefreshBtn">↻ shuffle</button>
+    <!-- POST STREAM FEED -->
+    <div class="social-feed-stream" id="feedStream">
+      <!-- Dynamic posts injected here via JS -->
+    </div>
+
+    <!-- ALTERNATIVE TAB CONTAINER (SAVED, CIRCLES) -->
+    <div class="social-feed-stream" id="altTabContainer" style="display:none;"></div>
+
+    <!-- INFINITE STREAM LOADER -->
+    <div class="feed-loader" id="feedLoader">
+      <span class="feed-loader-dot"></span>
+      <span>Traversing infinite quiet stream…</span>
+    </div>
+  </section>
+
+  <!-- RIGHT COLUMN: Suggested Contacts, Trending, Online Presence -->
+  <aside class="social-right-col">
+    <!-- Suggested Wanderers (Follow/Following) -->
+    <div class="widget-card">
+      <div class="widget-head">
+        <span>Suggested for You</span>
+        <span style="font-size:12px;color:var(--text-tertiary);cursor:pointer;" id="btnShuffleSuggested">Refresh</span>
       </div>
-      <div class="suggest-list" id="suggestList">
+      <div style="display:flex;flex-direction:column;gap:12px;" id="suggestedUsersList">
         <!-- Rendered via JS -->
       </div>
     </div>
+
+    <!-- Trending Reflections / Topics -->
+    <div class="widget-card">
+      <div class="widget-head">
+        <span>Trending in Silence</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:4px;">
+        <div class="trending-tag-row" data-tag="digitaldetox">
+          <div class="trending-tag-info">
+            <b>#digitaldetox</b>
+            <span>12.4k wanderers present</span>
+          </div>
+        </div>
+        <div class="trending-tag-row" data-tag="deepfocus">
+          <div class="trending-tag-info">
+            <b>#deepfocus</b>
+            <span>8.1k wanderers present</span>
+          </div>
+        </div>
+        <div class="trending-tag-row" data-tag="monotasking">
+          <div class="trending-tag-info">
+            <b>#monotasking</b>
+            <span>19.8k wanderers present</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active Contacts / Silent Observers -->
+    <div class="widget-card">
+      <div class="widget-head">
+        <span>Online Contacts</span>
+        <span style="font-size:11px;font-family:var(--font-mono);color:var(--success);">● Active</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:2px;" id="onlineContactsList">
+        <!-- Rendered via JS -->
+      </div>
+    </div>
+
+    <!-- Mini Footer -->
+    <div class="mini-footer-links">
+      Privacy · Terms · Serenity Guidelines · Void Social © 2026<br>
+      No algorithms. No ad tracking. Pure unidirectional feed.
+    </div>
   </aside>
 
-</div>
+</main>
 
-<p class="footer-note">this feed has no end. the algorithm has no grip. leave whenever you are at peace.</p>
-
-<!-- FLOATING TELEPORT BUTTON -->
-<button class="teleport-btn" id="teleportBtn" title="Loop back to the beginning of emptiness">
-  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-  <span>Teleport to top</span>
-</button>
-
-<!-- STICKY MOBILE BOTTOM NAVIGATION BAR -->
-<nav class="mobile-bottom-nav" id="mobileBottomNav">
-  <button class="mobile-nav-btn active" data-tab="feed">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 2 10 5-10 5L2 7z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg>
-    <span>Feed</span>
+<!-- MOBILE STICKY BOTTOM BAR -->
+<nav class="mobile-bottom-bar" id="mobileBottomBar">
+  <button class="mobile-nav-icon-btn active" data-tab="feed">
+    <svg class="icon-svg" width="22" height="22" viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Home</span>
   </button>
-  <button class="mobile-nav-btn" data-tab="saved">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
+  <button class="mobile-nav-icon-btn" data-tab="search">
+    <svg class="icon-svg" width="22" height="22" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <span>Explore</span>
+  </button>
+  <button class="mobile-nav-icon-btn" id="mobileCreatePostBtn">
+    <svg class="icon-svg" width="22" height="22" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="16"/><line x1="8" x2="16" y1="12" y2="12"/></svg>
+    <span>Post</span>
+  </button>
+  <button class="mobile-nav-icon-btn" data-tab="saved">
+    <svg class="icon-svg" width="22" height="22" viewBox="0 0 24 24"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
     <span>Saved</span>
   </button>
-  <button class="mobile-nav-btn" data-tab="memories">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-    <span>Memories</span>
-  </button>
-  <button class="mobile-nav-btn" data-tab="communities">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-    <span>Groups</span>
-  </button>
-  <button class="mobile-nav-btn" data-tab="schedule">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="4" rx="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
-    <span>Events</span>
+  <button class="mobile-nav-icon-btn" id="mobileProfileBtn">
+    <svg class="icon-svg" width="22" height="22" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    <span>Profile</span>
   </button>
 </nav>
 
 <!-- ==========================================================================
-     MODALS
+     MODALS (INSTA STORY VIEWER, MESSENGER, NOTIFICATIONS, PROFILE)
      ========================================================================== -->
 
-<!-- INBOX MODAL -->
-<div class="modal-overlay" id="inboxModal">
-  <div class="modal-card">
-    <button class="modal-close-btn" data-close="inboxModal">✕</button>
-    <h3 class="modal-title">Empty Inbox (0 unread)</h3>
-    <p style="font-size:13px;color:var(--ink-2);margin-top:-10px;">Nobody is trying to sell you anything or demand your attention.</p>
-    
-    <div style="display:flex;flex-direction:column;gap:10px;" id="inboxList">
-      <div style="padding:12px;background:var(--glass);border-radius:12px;border:1px solid var(--border-soft);">
-        <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:600;margin-bottom:4px;">
+<!-- INSTAGRAM STYLE STORY VIEWER MODAL -->
+<div class="modal-backdrop" id="storyModal">
+  <div class="story-viewer-card">
+    <div class="story-progress-bar">
+      <div class="story-progress-fill" id="storyProgressFill"></div>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-top:12px;">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div class="avatar-circle" id="storyAuthorAvatar" style="width:34px;height:34px;">K</div>
+        <div>
+          <b style="font-size:13.5px;color:#fff;" id="storyAuthorName">Kaelen Vos</b>
+          <small style="display:block;font-size:11px;color:rgba(255,255,255,0.6);">2h ago</small>
+        </div>
+      </div>
+      <button class="modal-close-x" id="btnCloseStory" style="color:#fff;top:auto;right:auto;position:static;">✕</button>
+    </div>
+
+    <!-- Story Main Content -->
+    <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:24px;text-align:center;">
+      <p style="font-size:18px;font-weight:500;line-height:1.6;color:#fff;" id="storyBodyText">
+        Disconnecting from cellular towers for the next 4 hours. Absolute silence is medicine.
+      </p>
+    </div>
+
+    <div style="display:flex;gap:8px;">
+      <input type="text" placeholder="Send a quiet reply..." style="flex:1;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:999px;padding:8px 14px;color:#fff;font-size:13px;outline:none;">
+      <button style="background:#fff;border:none;border-radius:999px;padding:8px 16px;font-size:12.5px;font-weight:600;color:#000;cursor:pointer;" id="btnReplyStory">Send</button>
+    </div>
+  </div>
+</div>
+
+<!-- MESSENGER DM MODAL -->
+<div class="modal-backdrop" id="messengerModal">
+  <div class="modal-window">
+    <button class="modal-close-x" data-close="messengerModal">✕</button>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div class="avatar-circle" style="width:34px;height:34px;">V</div>
+      <div>
+        <h3 style="font-size:15px;font-weight:600;">Direct Messages</h3>
+        <span style="font-size:11.5px;color:var(--text-tertiary);">Zero algorithmic notifications or read receipts.</span>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;max-height:240px;overflow-y:auto;padding-right:4px;" id="dmThreadList">
+      <div style="background:var(--bg-surface-elevated);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px;">
+        <div style="display:flex;justify-content:space-between;font-size:12px;font-weight:600;margin-bottom:2px;">
           <span>The Void</span>
-          <small style="color:var(--ink-2);font-family:monospace;">right now</small>
+          <span style="font-family:var(--font-mono);font-size:10px;color:var(--text-tertiary);">just now</span>
         </div>
-        <p style="font-size:13px;color:var(--ink-1);">We noticed you arrived. No reply is expected or necessary.</p>
-      </div>
-      <div style="padding:12px;background:var(--glass);border-radius:12px;border:1px solid var(--border-soft);">
-        <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:600;margin-bottom:4px;">
-          <span>Future You</span>
-          <small style="color:var(--ink-2);font-family:monospace;">10 mins ago</small>
-        </div>
-        <p style="font-size:13px;color:var(--ink-1);">Did you close the tab yet? Remember that you have real sunlight outside.</p>
+        <p style="font-size:12.5px;color:var(--text-secondary);">Your attention belongs to you. No urgent reply expected.</p>
       </div>
     </div>
-
-    <!-- Send a message to Nobody -->
-    <div style="display:flex;gap:8px;margin-top:6px;">
-      <input type="text" id="dmInput" placeholder="message nobody..." style="flex:1;padding:8px 14px;border-radius:999px;background:var(--glass);border:1px solid var(--border);color:var(--ink-0);font-size:13px;outline:none;">
-      <button class="btn-void" id="dmSendBtn" style="padding:6px 16px;font-size:12px;">Send</button>
+    <div style="display:flex;gap:6px;margin-top:4px;">
+      <input type="text" id="dmInput" placeholder="Message nobody..." style="flex:1;padding:8px 14px;border-radius:var(--radius-full);background:var(--bg-surface-elevated);border:1px solid var(--border);font-size:13px;outline:none;">
+      <button class="btn-submit-post" id="btnSendDm">Send</button>
     </div>
   </div>
 </div>
 
-<!-- NOTIFICATIONS MODAL -->
-<div class="modal-overlay" id="notificationsModal">
-  <div class="modal-card">
-    <button class="modal-close-btn" data-close="notificationsModal">✕</button>
-    <div style="display:flex;align-items:center;justify-content:space-between;">
-      <h3 class="modal-title">Quiet Center</h3>
-      <button id="clearNotifsBtn" style="background:none;border:none;color:var(--spectral);font-size:12px;cursor:pointer;">clear all</button>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:8px;" id="notificationsList">
-      <div style="padding:10px 14px;background:var(--glass);border-radius:10px;font-size:13px;color:var(--ink-1);">
-        🔔 <b>0 people</b> viewed your profile today. Absolute privacy.
+<!-- NOTIFICATIONS FLYOUT MODAL -->
+<div class="modal-backdrop" id="notifsModal">
+  <div class="modal-window">
+    <button class="modal-close-x" data-close="notifsModal">✕</button>
+    <h3 style="font-size:15px;font-weight:600;">Activity & Alerts</h3>
+    <div style="display:flex;flex-direction:column;gap:8px;" id="notifsList">
+      <div style="padding:10px 12px;background:var(--bg-surface-elevated);border-radius:var(--radius-sm);font-size:13px;display:flex;align-items:center;gap:10px;">
+        <svg class="icon-svg" width="16" height="16" viewBox="0 0 24 24" style="color:var(--like-red);fill:currentColor;"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+        <span><b>Nadia Bloom</b> and 4 others liked your reflection.</span>
       </div>
-      <div style="padding:10px 14px;background:var(--glass);border-radius:10px;font-size:13px;color:var(--ink-1);">
-        ✨ You avoided <b>19 algorithmic advertisements</b> by being here.
+      <div style="padding:10px 12px;background:var(--bg-surface-elevated);border-radius:var(--radius-sm);font-size:13px;display:flex;align-items:center;gap:10px;">
+        <svg class="icon-svg" width="16" height="16" viewBox="0 0 24 24" style="color:var(--success);"><polyline points="20 6 9 17 4 12"/></svg>
+        <span>Zero targeted behavioral advertisements served today.</span>
       </div>
-      <div style="padding:10px 14px;background:var(--glass);border-radius:10px;font-size:13px;color:var(--ink-1);">
-        🧘 Void Achievement unlocked: <b>Serenity in Emptiness</b>.
+      <div style="padding:10px 12px;background:var(--bg-surface-elevated);border-radius:var(--radius-sm);font-size:13px;display:flex;align-items:center;gap:10px;">
+        <svg class="icon-svg" width="16" height="16" viewBox="0 0 24 24" style="color:var(--save-gold);"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <span>Quiet Milestone: 20 minutes of serene screen time.</span>
       </div>
     </div>
   </div>
 </div>
 
-<!-- PROFILE & STATS MODAL -->
-<div class="modal-overlay" id="profileModal">
-  <div class="modal-card">
-    <button class="modal-close-btn" data-close="profileModal">✕</button>
-    <h3 class="modal-title">Void Identity & Diagnostics</h3>
-    
-    <div style="display:flex;align-items:center;gap:16px;">
-      <div class="profile-avatar-wrap" id="modalAvatarChange" style="width:70px;height:70px;cursor:pointer;" title="Click to cycle avatar">
-        <canvas id="modalAvatarCanvas" width="140" height="140" style="width:100%;height:100%;"></canvas>
-      </div>
-      <div style="flex:1;">
-        <label style="font-size:11px;color:var(--ink-2);text-transform:uppercase;letter-spacing:0.08em;">Void Alias</label>
-        <input type="text" id="profileNameInput" value="Wanderer #4092" style="width:100%;padding:6px 10px;border-radius:8px;background:var(--glass);border:1px solid var(--border);color:var(--ink-0);font-size:14px;margin-top:4px;">
-      </div>
+<!-- PROFILE EDIT MODAL -->
+<div class="modal-backdrop" id="profileModal">
+  <div class="modal-window">
+    <button class="modal-close-x" data-close="profileModal">✕</button>
+    <h3 style="font-size:15px;font-weight:600;">Edit Profile</h3>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div class="avatar-circle" id="modalProfileAvatar" style="width:54px;height:54px;font-size:18px;">V</div>
+      <button style="padding:6px 12px;background:var(--bg-surface-elevated);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;cursor:pointer;" id="btnRandomizeAvatar">Cycle Initial</button>
     </div>
-
-    <!-- Session Diagnostics -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px;">
-      <div style="padding:12px;background:var(--glass);border-radius:12px;border:1px solid var(--border-soft);">
-        <small style="color:var(--ink-2);font-size:11px;text-transform:uppercase;">Scroll Distance</small>
-        <div style="font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;color:var(--spectral);" id="modalScrollDist">0.0 m</div>
-      </div>
-      <div style="padding:12px;background:var(--glass);border-radius:12px;border:1px solid var(--border-soft);">
-        <small style="color:var(--ink-2);font-size:11px;text-transform:uppercase;">Dopamine Saved</small>
-        <div style="font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;color:var(--accent-teal);" id="modalDopamineSaved">100%</div>
-      </div>
+    <div>
+      <label style="font-size:11.5px;color:var(--text-tertiary);text-transform:uppercase;letter-spacing:0.04em;">Display Name</label>
+      <input type="text" id="editNameInput" value="Wanderer #409" style="width:100%;padding:8px 12px;border-radius:var(--radius-sm);background:var(--bg-surface-elevated);border:1px solid var(--border);font-size:13.5px;margin-top:4px;outline:none;">
     </div>
-
-    <button class="btn-void" id="saveProfileBtn" style="justify-content:center;margin-top:6px;">Save Identity</button>
+    <div>
+      <label style="font-size:11.5px;color:var(--text-tertiary);text-transform:uppercase;letter-spacing:0.04em;">Handle</label>
+      <input type="text" id="editHandleInput" value="@voidfarer" style="width:100%;padding:8px 12px;border-radius:var(--radius-sm);background:var(--bg-surface-elevated);border:1px solid var(--border);font-size:13.5px;margin-top:4px;outline:none;">
+    </div>
+    <button class="btn-quick-post" id="btnSaveProfile" style="margin-top:6px;">Save Changes</button>
   </div>
 </div>
 
-<!-- BREAK / LEAVE MODAL -->
-<div class="modal-overlay" id="breakModal">
-  <div class="modal-card" style="text-align:center;align-items:center;">
-    <button class="modal-close-btn" data-close="breakModal">✕</button>
-    <div style="font-size:36px;margin-bottom:6px;">🌿</div>
-    <h3 class="modal-title">Ready to return?</h3>
-    <p style="font-size:14px;color:var(--ink-1);line-height:1.6;">
-      You have spent <strong id="breakTimeCount" style="color:var(--spectral);">a few moments</strong> staring into the void.<br>
-      The real world is waiting for you: drink some water, take a walk, or speak with someone in real life.
-    </p>
-    <div style="display:flex;gap:12px;margin-top:10px;width:100%;">
-      <button class="btn-void" id="stepOutsideBtn" style="flex:1;justify-content:center;background:var(--accent-teal);">Step Outside (Zen Blackout)</button>
-      <button class="btn-void" data-close="breakModal" style="flex:1;justify-content:center;background:var(--glass-strong);color:var(--ink-0);">Stay in Void</button>
-    </div>
-  </div>
-</div>
-
-<!-- BLACKOUT SCREEN OVERLAY -->
-<div id="blackoutOverlay">
-  <div style="font-size:24px;color:#888;">absolute silence.</div>
-  <p style="max-width:380px;line-height:1.8;color:#555;">
-    Rest your eyes. Look away from the display for twenty seconds. Look 20 feet away at something far.
-  </p>
-  <button id="exitBlackoutBtn" style="margin-top:20px;padding:8px 20px;border-radius:999px;background:#151515;border:1px solid #333;color:#888;cursor:pointer;">
-    Click anywhere to awaken
-  </button>
-</div>
-
-<!-- FLOATING TOAST SYSTEM -->
-<div class="toast-container" id="toastContainer"></div>
+<!-- TOAST NOTIFICATION RACK -->
+<div class="social-toast-rack" id="toastRack"></div>
 
 <!-- ==========================================================================
-     APPLICATION SCRIPT (ZERO DEPENDENCY, ROBUST, COMPLETE)
-     ========================================================================== */
--->
+     CORE JAVASCRIPT LOGIC
+     ========================================================================== -->
 <script>
-(function(){
+(function() {
   'use strict';
 
-  // --- STATE ---
+  // --- STATE SYSTEM ---
   const state = {
-    theme: localStorage.getItem('void-theme') || 'dark',
-    postCount: 0,
-    loopCycle: 1,
-    savedPosts: JSON.parse(localStorage.getItem('void-saved-posts') || '[]'),
-    dissolvedCount: parseInt(localStorage.getItem('void-dissolved') || '0', 10),
-    profileName: localStorage.getItem('void-name') || 'Wanderer #4092',
-    profileHandle: localStorage.getItem('void-handle') || '@voidfarer',
-    avatarSeed: parseInt(localStorage.getItem('void-avatar-seed') || '1', 10),
+    theme: localStorage.getItem('void-social-theme') || 'dark',
+    userName: localStorage.getItem('void-user-name') || 'Wanderer #409',
+    userHandle: localStorage.getItem('void-user-handle') || '@voidfarer',
+    userInitial: localStorage.getItem('void-user-initial') || 'V',
     activeTab: 'feed',
-    searchQuery: '',
-    seconds: 0,
-    audioActive: false,
-    breathingActive: true,
-    joinedGroups: new Set(JSON.parse(localStorage.getItem('void-groups') || '["grp1"]')),
-    eventRsvps: new Set(JSON.parse(localStorage.getItem('void-rsvps') || '["ev1"]')),
-    memories: [
-      { time: 'Just now', text: 'Entered the void feed. Silence welcomed you.' },
-      { time: 'Earlier', text: 'Resisted opening an ad-driven infinite feed.' },
-      { time: 'Genesis', text: 'You were born outside this digital rectangle.' }
-    ]
+    postCount: 0,
+    likedPosts: new Set(JSON.parse(localStorage.getItem('void-liked-ids') || '[]')),
+    savedPosts: JSON.parse(localStorage.getItem('void-saved-data') || '[]'),
+    followedUsers: new Set(['Elena Rostova']),
+    secondsElapsed: 0,
+    activeStoryTimer: null,
+    joinedCircles: new Set(['c1'])
   };
 
   // --- DOM SELECTORS ---
-  const docHtml = document.documentElement;
-  const feed = document.getElementById('feed');
-  const altViewContainer = document.getElementById('altViewContainer');
-  const endNote = document.getElementById('endNote');
-  const endNoteText = document.getElementById('endNoteText');
-  const composerSection = document.getElementById('composerSection');
-  const viewHeader = document.getElementById('viewHeader');
-  const viewTitleText = document.getElementById('viewTitleText');
-  const viewSubText = document.getElementById('viewSubText');
-  const viewBackToFeedBtn = document.getElementById('viewBackToFeedBtn');
-  const filterBar = document.getElementById('filterBar');
-  const filterQueryLabel = document.getElementById('filterQueryLabel');
-  const clearFilterBtn = document.getElementById('clearFilterBtn');
-
-  // Stats elements
-  const statsScrolledCount = document.getElementById('statsScrolledCount');
-  const statsSavedCount = document.getElementById('statsSavedCount');
-  const statsDissolvedCount = document.getElementById('statsDissolvedCount');
-  const navSavedBadge = document.getElementById('navSavedBadge');
-  const sidebarProfileName = document.getElementById('sidebarProfileName');
-  const sidebarProfileHandle = document.getElementById('sidebarProfileHandle');
-
-  // Theme elements
-  const themeToggleBtn = document.getElementById('themeToggleBtn');
-  const themeSun = document.getElementById('themeSun');
-  const themeMoon = document.getElementById('themeMoon');
-
-  // HUD elements
-  const hudRing = document.getElementById('hudRing');
-  const hudTime = document.getElementById('hudTime');
-  const hudMsg = document.getElementById('hudMsg');
-  const hudResetBtn = document.getElementById('hudResetBtn');
-  const breathCircle = document.getElementById('breathCircle');
-  const breathStatus = document.getElementById('breathStatus');
-  const breathToggleBtn = document.getElementById('breathToggleBtn');
-  const CIRC = 2 * Math.PI * 52;
-  hudRing.setAttribute('stroke-dasharray', CIRC);
-
-  // Audio elements
-  const audioToggleBtn = document.getElementById('audioToggleBtn');
-  const audioIconOff = document.getElementById('audioIconOff');
-  const audioIconOn = document.getElementById('audioIconOn');
-
-  // Search elements
+  const htmlDoc = document.documentElement;
+  const feedStream = document.getElementById('feedStream');
+  const altTabContainer = document.getElementById('altTabContainer');
+  const composerInput = document.getElementById('composerInput');
+  const btnPublishPost = document.getElementById('btnPublishPost');
   const searchInput = document.getElementById('searchInput');
-  const searchClearBtn = document.getElementById('searchClearBtn');
   const searchDropdown = document.getElementById('searchDropdown');
+  const toastRack = document.getElementById('toastRack');
+  const themeToggleBtn = document.getElementById('themeToggleBtn');
+  const themeIconSun = document.getElementById('themeIconSun');
+  const themeIconMoon = document.getElementById('themeIconMoon');
 
-  // Modals & triggers
-  const toastContainer = document.getElementById('toastContainer');
-  const teleportBtn = document.getElementById('teleportBtn');
-  const brandLogo = document.getElementById('brandLogo');
-
-  // ==========================================================================
-  // WEB AUDIO SYNTHESIZER (ZERO EXTERNAL FILES, PURE SINE WAVES)
-  // ==========================================================================
-  let audioCtx = null;
-  let droneOsc1 = null;
-  let droneOsc2 = null;
-  let droneGain = null;
-
-  function initAudio() {
-    if (audioCtx) return;
-    try {
-      const AudioContext = window.AudioContext || window.webkitAudioContext;
-      audioCtx = new AudioContext();
-    } catch(e) {
-      console.warn("Web Audio not supported", e);
-    }
-  }
-
-  function startDrone() {
-    if (!audioCtx) initAudio();
-    if (!audioCtx) return;
-    if (audioCtx.state === 'suspended') audioCtx.resume();
-
-    droneGain = audioCtx.createGain();
-    droneGain.gain.setValueAtTime(0.001, audioCtx.currentTime);
-    droneGain.gain.exponentialRampToValueAtTime(0.04, audioCtx.currentTime + 3);
-
-    // Deep harmonic dual sine drone (55Hz A1 & 110Hz A2)
-    droneOsc1 = audioCtx.createOscillator();
-    droneOsc1.type = 'sine';
-    droneOsc1.frequency.setValueAtTime(55, audioCtx.currentTime);
-
-    droneOsc2 = audioCtx.createOscillator();
-    droneOsc2.type = 'sine';
-    droneOsc2.frequency.setValueAtTime(110.5, audioCtx.currentTime); // Slight detune for gentle beating
-
-    droneOsc1.connect(droneGain);
-    droneOsc2.connect(droneGain);
-    droneGain.connect(audioCtx.destination);
-
-    droneOsc1.start();
-    droneOsc2.start();
-  }
-
-  function stopDrone() {
-    if (!droneGain || !audioCtx) return;
-    try {
-      droneGain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.8);
-      setTimeout(() => {
-        if (droneOsc1) { droneOsc1.stop(); droneOsc1.disconnect(); droneOsc1 = null; }
-        if (droneOsc2) { droneOsc2.stop(); droneOsc2.disconnect(); droneOsc2 = null; }
-      }, 900);
-    } catch(e) {}
-  }
-
-  function playPing(freq = 520, decay = 0.6) {
-    if (!state.audioActive || !audioCtx) return;
-    try {
-      if (audioCtx.state === 'suspended') audioCtx.resume();
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-      gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + decay);
-      osc.connect(gain);
-      gain.connect(audioCtx.destination);
-      osc.start();
-      osc.stop(audioCtx.currentTime + decay);
-    } catch(e) {}
-  }
-
-  // ==========================================================================
-  // THEME MANAGEMENT
-  // ==========================================================================
+  // --- THEME ENGINE ---
   function applyTheme(theme) {
     state.theme = theme;
-    docHtml.setAttribute('data-theme', theme);
-    localStorage.setItem('void-theme', theme);
-
-    if (theme === 'light') {
-      themeSun.style.display = 'none';
-      themeMoon.style.display = 'block';
+    htmlDoc.setAttribute('data-theme', theme);
+    localStorage.setItem('void-social-theme', theme);
+    if (theme === 'dark') {
+      themeIconSun.style.display = 'inline-block';
+      themeIconMoon.style.display = 'none';
     } else {
-      themeSun.style.display = 'block';
-      themeMoon.style.display = 'none';
+      themeIconSun.style.display = 'none';
+      themeIconMoon.style.display = 'inline-block';
     }
-    redrawAllAvatars();
   }
-
-  themeToggleBtn.addEventListener('click', () => {
-    const nextTheme = state.theme === 'dark' ? 'light' : 'dark';
-    applyTheme(nextTheme);
-    playPing(640, 0.4);
-    showToast(nextTheme === 'light' ? 'Ethereal Light theme enabled' : 'Deep Space Obsidian theme enabled');
-    addMemory(`Switched display to ${nextTheme} void`);
-  });
-
   applyTheme(state.theme);
-
-  // Audio Toggle
-  audioToggleBtn.addEventListener('click', () => {
-    state.audioActive = !state.audioActive;
-    if (state.audioActive) {
-      initAudio();
-      startDrone();
-      audioIconOff.style.display = 'none';
-      audioIconOn.style.display = 'block';
-      showToast('Ambient zen soundscape activated 🎶');
-    } else {
-      stopDrone();
-      audioIconOff.style.display = 'block';
-      audioIconOn.style.display = 'none';
-      showToast('Ambient soundscape muted');
-    }
+  themeToggleBtn.addEventListener('click', () => {
+    applyTheme(state.theme === 'dark' ? 'light' : 'dark');
+    showToast(`Switched to ${state.theme} mode`);
   });
 
-  // ==========================================================================
-  // GENERATIVE ABSTRACT AVATARS (CANVAS)
-  // ==========================================================================
-  function drawAbstractAvatar(canvas, seed) {
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    const w = canvas.width;
-    const h = canvas.height;
-    ctx.clearRect(0, 0, w, h);
-
-    const isLight = state.theme === 'light';
-    const bgGrad = ctx.createLinearGradient(0, 0, w, h);
-    bgGrad.addColorStop(0, isLight ? '#dbeafe' : '#0f172a');
-    bgGrad.addColorStop(1, isLight ? '#f1f5f9' : '#030712');
-    ctx.fillStyle = bgGrad;
-    ctx.fillRect(0, 0, w, h);
-
-    // Shapes based on seed
-    ctx.save();
-    ctx.translate(w / 2, h / 2);
-
-    const hues = [200, 260, 160, 320, 40, 220];
-    const baseHue = hues[(seed * 2) % hues.length];
-
-    for (let i = 0; i < 4; i++) {
-      ctx.beginPath();
-      const radius = (w * 0.38) - (i * (w * 0.08));
-      const rotation = (seed * 0.8) + (i * 0.4);
-      ctx.rotate(rotation);
-
-      if (seed % 3 === 0) {
-        // Orbit rings
-        ctx.arc(0, 0, radius, 0, Math.PI * 2);
-        ctx.strokeStyle = `hsla(${baseHue + (i * 20)}, 80%, ${isLight ? 45 : 70}%, ${0.3 + (i * 0.15)})`;
-        ctx.lineWidth = 2 + i;
-        ctx.stroke();
-      } else if (seed % 3 === 1) {
-        // Geometric diamond lattice
-        ctx.rect(-radius / 2, -radius / 2, radius, radius);
-        ctx.strokeStyle = `hsla(${baseHue + (i * 15)}, 75%, ${isLight ? 40 : 65}%, ${0.4 + (i * 0.1)})`;
-        ctx.lineWidth = 2;
-        ctx.stroke();
-      } else {
-        // Concentric radiating petals
-        ctx.ellipse(0, 0, radius, radius * 0.5, i * 0.5, 0, Math.PI * 2);
-        ctx.strokeStyle = `hsla(${baseHue + (i * 30)}, 85%, ${isLight ? 45 : 70}%, 0.45)`;
-        ctx.lineWidth = 2;
-        ctx.stroke();
-      }
-    }
-
-    // Center focal star/dot
-    ctx.beginPath();
-    ctx.arc(0, 0, w * 0.08, 0, Math.PI * 2);
-    ctx.fillStyle = isLight ? '#0284c7' : '#8ecbff';
-    ctx.shadowBlur = 8;
-    ctx.shadowColor = isLight ? '#0284c7' : '#8ecbff';
-    ctx.fill();
-    ctx.restore();
+  // --- TOAST HELPER ---
+  function showToast(msg) {
+    const toast = document.createElement('div');
+    toast.className = 'social-toast';
+    toast.innerHTML = `
+      <svg class="icon-svg" width="14" height="14" viewBox="0 0 24 24" style="color:var(--success);"><polyline points="20 6 9 17 4 12"/></svg>
+      <span>${msg}</span>
+    `;
+    toastRack.appendChild(toast);
+    setTimeout(() => {
+      toast.style.opacity = '0';
+      toast.style.transform = 'translateY(8px)';
+      setTimeout(() => toast.remove(), 250);
+    }, 2800);
   }
 
-  function redrawAllAvatars() {
-    drawAbstractAvatar(document.getElementById('miniAvatarCanvas'), state.avatarSeed);
-    drawAbstractAvatar(document.getElementById('mainAvatarCanvas'), state.avatarSeed);
-    drawAbstractAvatar(document.getElementById('composerAvatarCanvas'), state.avatarSeed);
-    drawAbstractAvatar(document.getElementById('modalAvatarCanvas'), state.avatarSeed);
+  // --- USER PROFILE RENDERING ---
+  function updateProfileUI() {
+    document.querySelectorAll('.avatar-circle').forEach(av => av.textContent = state.userInitial);
+    document.getElementById('snippetNameDisplay').textContent = state.userName;
+    document.getElementById('snippetHandleDisplay').textContent = state.userHandle;
+    document.getElementById('statSavedCount').textContent = state.savedPosts.length;
+    document.getElementById('navSavedBadge').textContent = state.savedPosts.length;
+  }
+  updateProfileUI();
+
+  // --- SESSION DURATION TIMER (0% CPU impact, standard interval) ---
+  setInterval(() => {
+    state.secondsElapsed++;
+    const m = Math.floor(state.secondsElapsed / 60);
+    const s = state.secondsElapsed % 60;
+    const str = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+    const el = document.getElementById('statPresenceTime');
+    if (el) el.textContent = str;
+  }, 1000);
+
+  // --- SEED SOCIAL POST DATA GENERATOR ---
+  const AUTHOR_POOL = [
+    { name: 'Elena Rostova', handle: '@elena_serene', initial: 'E', verified: true },
+    { name: 'Marcus Vance', handle: '@vance_calm', initial: 'M', verified: false },
+    { name: 'Aria Thorne', handle: '@aria_solitude', initial: 'A', verified: true },
+    { name: 'Kaelen Vos', handle: '@kaelen_void', initial: 'K', verified: false },
+    { name: 'Nadia Bloom', handle: '@bloom_mind', initial: 'N', verified: true },
+    { name: 'Tarek Al-Mansoor', handle: '@tarek_silence', initial: 'T', verified: false }
+  ];
+
+  const THOUGHT_POOL = [
+    "Notice how your breath automatically slows down when nobody is pinging you for an urgent turnaround. Real emergencies are rare.",
+    "The modern feed was engineered to keep your cortisol elevated. When you resist opening five notifications at once, your mind slowly repairs.",
+    "Closed every single browser tab except this one. The world did not fall apart. All those 'must-read' articles were just ambient noise.",
+    "A clean room with the phone left in the hallway. One cup of tea. No podcast, no video, no background drone. Just physical reality.",
+    "Attention is the only finite currency you possess. Once a company takes your hour with rage-bait, it is permanently gone.",
+    "Doing exactly one thing right now. Not switching between chat tabs while pretending to work. Complete, quiet presence."
+  ];
+
+  const QUOTE_POOL = [
+    "\"The ability to be in the present moment is a major component of mental wellness.\" — Abraham Maslow",
+    "\"All of humanity's problems stem from man's inability to sit quietly in a room alone.\" — Blaise Pascal",
+    "\"Simplicity is about subtracting the obvious and adding the meaningful.\" — John Maeda",
+    "\"Silence is not an absence of sound, but the presence of stillness.\" — Eastern Reflection"
+  ];
+
+  const POLL_POOL = [
+    { question: "How many browser tabs do you currently have open?", options: ["Under 5", "5 to 15", "Over 25 (clutter)"] },
+    { question: "When was your last 1-hour walk without headphones?", options: ["Today", "This week", "Can't remember"] },
+    { question: "Do you sleep with your phone in a different room?", options: ["Yes, always", "Working on it", "Next to pillow"] }
+  ];
+
+  function generateSocialPost(id) {
+    const author = AUTHOR_POOL[id % AUTHOR_POOL.length];
+    const postType = (id % 4 === 1) ? 'quote' : (id % 4 === 2) ? 'poll' : 'text';
+    const baseLikes = 24 + ((id * 17) % 89);
+    const baseComments = 3 + ((id * 7) % 15);
+    const baseShares = 1 + ((id * 3) % 8);
+
+    return {
+      id: `post_${id}`,
+      author: author.name,
+      handle: author.handle,
+      initial: author.initial,
+      verified: author.verified,
+      time: `${2 + (id % 55)}m ago`,
+      type: postType,
+      text: THOUGHT_POOL[id % THOUGHT_POOL.length],
+      quote: QUOTE_POOL[id % QUOTE_POOL.length],
+      poll: POLL_POOL[id % POLL_POOL.length],
+      likes: baseLikes,
+      commentsCount: baseComments,
+      sharesCount: baseShares,
+      comments: [
+        { author: 'Soren', text: 'This hit home today. Logging off for the evening.' },
+        { author: 'Mira', text: 'Practicing this exact exercise right now.' }
+      ]
+    };
   }
 
-  function cycleAvatar() {
-    state.avatarSeed = (state.avatarSeed % 12) + 1;
-    localStorage.setItem('void-avatar-seed', state.avatarSeed);
-    redrawAllAvatars();
-    playPing(720, 0.3);
-    showToast('Generative avatar realigned');
-  }
+  // --- CREATE POST CARD (AUTHENTIC FB / INSTA FORMAT) ---
+  function renderPostCard(post) {
+    const card = document.createElement('article');
+    card.className = 'fb-post-card';
+    card.id = `card_${post.id}`;
 
-  document.getElementById('avatarChangeWrap').addEventListener('click', cycleAvatar);
-  document.getElementById('modalAvatarChange').addEventListener('click', cycleAvatar);
+    const isLiked = state.likedPosts.has(post.id);
+    const isSaved = state.savedPosts.some(p => p.id === post.id);
 
-  // ==========================================================================
-  // EXTENSIVE REPOSITORY OF EXISTENTIAL / SATIRICAL VOID CONTENT
-  // ==========================================================================
-  const voidQuotes = [
-    "Nothing new here. Exactly what you needed.",
-    "This post has no content, by design.",
-    "You've scrolled past <b>{n}</b> empty cards. Still feeling the urge?",
-    "Still scrolling? That's your dopamine loop on autopilot.",
-    "There was never anything below this card.",
-    "This card is empty. So is the next one.",
-    "You could close this tab right now and lose absolutely nothing.",
-    "No update. No urgency. No algorithmic outrage to react to.",
-    "The feed loops seamlessly. It will never surprise you.",
-    "This is mathematically identical to the previous post.",
-    "Nothing is loading in the background. Nothing ever was.",
-    "You've scrolled the length of <b>{n}</b> nothings. Congratulations.",
-    "An infinite loop of calm. Breathe in.",
-    "No influencer is getting paid for your glance here.",
-    "What if you just closed the laptop and looked at the sky?",
-    "Every notification you've ever received was designed by a committee.",
-    "This blank slate does not want your engagement metrics.",
-    "You are caught in Loop Cycle <b>#{loop}</b>. It repeats forever.",
-    "Notice the quiet. Your brain isn't used to it yet.",
-    "Zero ads served. Zero tracking pixels pinged.",
-    "The universe expanded for 13.8 billion years so you could scroll this.",
-    "No trending topics. No hot takes. Just pixels and peace.",
-    "Your attention is the most expensive commodity on Earth. Keep it.",
-    "A blank post is worth a thousand algorithmic debates.",
-    "You are one scroll closer to realizing this page never ends.",
-    "The void is warm today. No arguments in the comments.",
-    "Why check a feed when you are already right here?",
-    "Scrolling burns about 0.002 calories per flick. High efficiency nothing.",
-    "Every card here is guaranteed 100% free of artificial urgency.",
-    "You reached post #{n}. Give your thumb a rest."
-  ];
-
-  const authorAliases = [
-    { name: "Nobody", handle: "@nobody", icon: "🌌" },
-    { name: "Deep Void", handle: "@singularity", icon: "🪐" },
-    { name: "Quiet Observer", handle: "@mindful_one", icon: "✨" },
-    { name: "The Algorithm", handle: "@offline", icon: "⏳" },
-    { name: "Echo", handle: "@repeater", icon: "💠" },
-    { name: "Blank Slate", handle: "@clean_page", icon: "🕊️" },
-    { name: "Solitude", handle: "@solitary", icon: "🌊" }
-  ];
-
-  const pollTemplates = [
-    {
-      q: "What was the initial impulse that brought you to scroll?",
-      options: ["Boredom", "Habit reflex", "Avoiding a real task", "Looking for novelty"]
-    },
-    {
-      q: "What do you honestly expect to find on post #500?",
-      options: ["Enlightenment", "A secret prize", "Another empty box", "Peace of mind"]
-    },
-    {
-      q: "If you closed this tab right now, what would happen?",
-      options: ["I'd open another app", "I'd do my work", "I'd sit with my thoughts", "The void remains"]
-    }
-  ];
-
-  // ==========================================================================
-  // CARD GENERATOR ENGINE
-  // ==========================================================================
-  function createPostCard(postData) {
-    const card = document.createElement('div');
-    card.className = 'glass post-card';
-    card.dataset.postId = postData.id;
-
-    const author = postData.author || authorAliases[postData.id % authorAliases.length];
-    const isSaved = state.savedPosts.some(p => p.id === postData.id);
-
-    // Build specific card contents based on type
-    let bodyHtml = '';
-
-    if (postData.type === 'poll') {
-      const poll = postData.poll;
-      bodyHtml = `
-        <div class="post-line">${poll.q}</div>
-        <div class="poll-card" id="poll-${postData.id}">
-          ${poll.options.map((opt, i) => `
-            <div class="poll-option" data-idx="${i}">
-              <div class="poll-fill"></div>
-              <span>${opt}</span>
-              <span class="poll-percent">0%</span>
+    // Optional Visual Media or Poll
+    let mediaHtml = '';
+    if (post.type === 'quote') {
+      mediaHtml = `
+        <div class="post-visual-box">
+          <p>${post.quote}</p>
+        </div>
+      `;
+    } else if (post.type === 'poll') {
+      mediaHtml = `
+        <div class="post-poll-container">
+          <span style="font-size:13px;font-weight:600;margin-bottom:2px;">${post.poll.question}</span>
+          ${post.poll.options.map((opt, idx) => `
+            <div class="poll-choice-bar" data-poll-idx="${idx}">
+              <div class="poll-fill-level"></div>
+              <span style="z-index:1;">${opt}</span>
+              <span class="poll-pct" style="display:none;">${idx === 0 ? '58%' : idx === 1 ? '32%' : '10%'}</span>
             </div>
           `).join('')}
         </div>
       `;
-    } else if (postData.type === 'canvas') {
-      bodyHtml = `
-        <div class="post-line">${postData.text}</div>
-        <div class="post-canvas-wrap">
-          <canvas class="art-canvas" id="canvas-art-${postData.id}" width="480" height="240"></canvas>
-          <span class="canvas-caption">generative geometry · loop #${state.loopCycle}</span>
-        </div>
-      `;
-    } else {
-      bodyHtml = `<div class="post-line">${postData.text}</div>`;
     }
 
-    // Ephemeral tag for user posts
-    const ephemeralHtml = postData.isUser ? `
-      <div class="ephemeral-badge">
-        <span>⚡ dissolving</span>
-      </div>
-      <div class="ephemeral-bar" id="ephem-bar-${postData.id}" style="width:100%"></div>
-    ` : '';
-
     card.innerHTML = `
-      ${ephemeralHtml}
-      <div class="post-head">
-        <div class="post-author">
-          <div class="post-avatar">${author.icon}</div>
-          <div class="post-author-info">
-            <span class="post-name">${author.name}</span>
-            <span class="post-meta">${author.handle} · post #${postData.id} · cycle ${postData.cycle || 1}</span>
+      <!-- Header -->
+      <div class="post-header">
+        <div class="post-author-meta">
+          <div class="avatar-circle" style="width:38px;height:38px;">${post.initial}</div>
+          <div class="post-author-details">
+            <span class="post-author-name">
+              ${post.author}
+              ${post.verified ? '<svg class="icon-svg" width="13" height="13" viewBox="0 0 24 24" style="color:var(--accent-blue);fill:currentColor;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>' : ''}
+            </span>
+            <span class="post-author-sub">${post.handle} · ${post.time}</span>
           </div>
         </div>
-        <button class="post-menu-btn" title="Inspect post">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+        <button class="post-options-btn" title="More options">
+          <svg class="icon-svg" width="16" height="16" viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
         </button>
       </div>
 
-      ${bodyHtml}
-
-      <!-- Interactive Actions -->
-      <div class="post-actions">
-        <button class="post-action like-btn" title="Send validation into the void">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-          <span class="like-label">like · 0</span>
-        </button>
-
-        <button class="post-action comment-btn" title="Echo into silence">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-          <span>echo</span>
-        </button>
-
-        <button class="post-action share-btn" title="Share the emptiness">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg>
-          <span>share</span>
-        </button>
-
-        <button class="post-action save-btn ${isSaved ? 'saved' : ''}" title="${isSaved ? 'Unsave' : 'Save to quiet collection'}">
-          <svg viewBox="0 0 24 24" fill="${isSaved ? 'currentColor' : 'none'}" stroke="currentColor"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
-          <span class="save-label">${isSaved ? 'saved' : 'save'}</span>
-        </button>
+      <!-- Text Body -->
+      <div class="post-text-body">
+        ${post.text}
       </div>
 
-      <!-- Collapsible Comment Drawer -->
-      <div class="comment-drawer">
-        <div class="comment-input-row">
-          <input type="text" class="comment-input" placeholder="whisper into the dark...">
-          <button class="comment-send-btn">Echo</button>
+      <!-- Optional Visual / Poll -->
+      ${mediaHtml}
+
+      <!-- Metrics Row (FB/Insta counters) -->
+      <div class="post-metrics-row">
+        <span class="metrics-likes-label">${post.likes + (isLiked ? 1 : 0)} likes</span>
+        <div style="display:flex;gap:10px;">
+          <span class="metrics-comments-label">${post.comments.length} comments</span>
+          <span>${post.sharesCount} shares</span>
         </div>
+      </div>
+
+      <!-- Interactive Action Bar -->
+      <div class="post-interactive-bar">
+        <button class="post-action-btn btn-like ${isLiked ? 'active-like' : ''}">
+          <svg class="icon-svg" width="18" height="18" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+          <span class="action-like-text">${isLiked ? 'Liked' : 'Like'}</span>
+        </button>
+
+        <button class="post-action-btn btn-comment-trigger">
+          <svg class="icon-svg" width="18" height="18" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+          <span>Comment</span>
+        </button>
+
+        <button class="post-action-btn btn-share">
+          <svg class="icon-svg" width="18" height="18" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          <span>Share</span>
+        </button>
+
+        <button class="post-action-btn btn-save ${isSaved ? 'active-save' : ''}">
+          <svg class="icon-svg" width="18" height="18" viewBox="0 0 24 24"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
+          <span class="action-save-text">${isSaved ? 'Saved' : 'Save'}</span>
+        </button>
+      </div>
+
+      <!-- Integrated Comments Section -->
+      <div class="post-comments-section">
         <div class="comments-list">
-          <div class="comment-item">
-            <span>"..."</span>
-            <small>an echo</small>
-          </div>
+          ${post.comments.map(c => `
+            <div class="comment-bubble">
+              <div class="avatar-circle" style="width:26px;height:26px;font-size:11px;">${c.author[0]}</div>
+              <div class="comment-body">
+                <span class="comment-author">${c.author}</span>
+                <span class="comment-text">${c.text}</span>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+
+        <!-- Add a comment input -->
+        <div class="comment-input-row">
+          <div class="avatar-circle" style="width:26px;height:26px;font-size:11px;">${state.userInitial}</div>
+          <input type="text" class="comment-input-field" placeholder="Write a reflection..." autocomplete="off">
+          <button class="btn-comment-send">Post</button>
         </div>
       </div>
     `;
 
-    // Hook events on this card
-    attachCardListeners(card, postData);
-
-    // If canvas type, start drawing animation
-    if (postData.type === 'canvas') {
-      setTimeout(() => initGenerativeCanvas(card.querySelector('.art-canvas'), postData.id), 20);
-    }
-
+    bindPostEvents(card, post);
     return card;
   }
 
-  // ==========================================================================
-  // CARD EVENT HANDLERS (LIKE, COMMENT, SHARE, SAVE, POLL)
-  // ==========================================================================
-  function attachCardListeners(card, postData) {
-    const likeBtn = card.querySelector('.like-btn');
-    const commentBtn = card.querySelector('.comment-btn');
-    const shareBtn = card.querySelector('.share-btn');
-    const saveBtn = card.querySelector('.save-btn');
-    const commentDrawer = card.querySelector('.comment-drawer');
-    const commentInput = card.querySelector('.comment-input');
-    const commentSendBtn = card.querySelector('.comment-send-btn');
-    const commentsList = card.querySelector('.comments-list');
+  // --- POST EVENT BINDINGS (LIKE, COMMENT, SAVE, SHARE, POLL) ---
+  function bindPostEvents(card, post) {
+    const btnLike = card.querySelector('.btn-like');
+    const likesLabel = card.querySelector('.metrics-likes-label');
+    const likeText = card.querySelector('.action-like-text');
 
-    // 1. LIKE: Ticks up to 1, then dissolves back to 0
-    likeBtn.addEventListener('click', () => {
-      playPing(880, 0.25);
-      likeBtn.classList.add('liked');
-      likeBtn.querySelector('svg').style.fill = 'currentColor';
-      likeBtn.querySelector('.like-label').textContent = 'like · 1';
-
-      showToast('Validation sought... releasing attachment.');
-
-      setTimeout(() => {
-        likeBtn.classList.remove('liked');
-        likeBtn.querySelector('svg').style.fill = 'none';
-        likeBtn.querySelector('.like-label').textContent = 'like · 0';
-        playPing(440, 0.4);
-      }, 750);
+    // LIKE TOGGLE
+    btnLike.addEventListener('click', () => {
+      if (state.likedPosts.has(post.id)) {
+        state.likedPosts.delete(post.id);
+        btnLike.classList.remove('active-like');
+        likeText.textContent = 'Like';
+        likesLabel.textContent = `${post.likes} likes`;
+      } else {
+        state.likedPosts.add(post.id);
+        btnLike.classList.add('active-like');
+        likeText.textContent = 'Liked';
+        likesLabel.textContent = `${post.likes + 1} likes`;
+        showToast(`Liked ${post.author}'s reflection`);
+      }
+      localStorage.setItem('void-liked-ids', JSON.stringify(Array.from(state.likedPosts)));
     });
 
-    // 2. COMMENT: Expands drawer, accepts comments that gently echo
-    commentBtn.addEventListener('click', () => {
-      const isVisible = commentDrawer.style.display === 'flex';
-      commentDrawer.style.display = isVisible ? 'none' : 'flex';
-      if (!isVisible) commentInput.focus();
+    // DOUBLE CLICK POST BODY TO LIKE (Instagram feature)
+    const textBody = card.querySelector('.post-text-body');
+    textBody.addEventListener('dblclick', () => {
+      if (!state.likedPosts.has(post.id)) {
+        btnLike.click();
+      }
     });
 
-    function postComment() {
-      const val = commentInput.value.trim();
-      if (!val) return;
-      playPing(580, 0.2);
-
-      const item = document.createElement('div');
-      item.className = 'comment-item';
-      item.innerHTML = `<span>"${val}"</span><small>echoed into silence</small>`;
-      commentsList.prepend(item);
-      commentInput.value = '';
-
-      showToast('Your comment echoed into the dark.');
-      addMemory(`Echoed comment on post #${postData.id}`);
-    }
-
-    commentSendBtn.addEventListener('click', postComment);
-    commentInput.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') postComment();
-    });
-
-    // 3. SHARE: Copies current link / empty message to clipboard
-    shareBtn.addEventListener('click', () => {
-      playPing(620, 0.25);
-      navigator.clipboard.writeText(window.location.href).then(() => {
-        showToast('Void link copied! Share the absence of noise.');
-      }).catch(() => {
-        showToast('Copied peace to clipboard.');
-      });
-    });
-
-    // 4. SAVE (Bookmark): Actually saves to State & localStorage
-    saveBtn.addEventListener('click', () => {
-      const idx = state.savedPosts.findIndex(p => p.id === postData.id);
+    // SAVE / BOOKMARK TOGGLE
+    const btnSave = card.querySelector('.btn-save');
+    const saveText = card.querySelector('.action-save-text');
+    btnSave.addEventListener('click', () => {
+      const idx = state.savedPosts.findIndex(p => p.id === post.id);
       if (idx > -1) {
         state.savedPosts.splice(idx, 1);
-        saveBtn.classList.remove('saved');
-        saveBtn.querySelector('svg').setAttribute('fill', 'none');
-        saveBtn.querySelector('.save-label').textContent = 'save';
-        showToast('Post released from your saved collection.');
+        btnSave.classList.remove('active-save');
+        saveText.textContent = 'Save';
+        showToast('Removed from saved bookmarks');
       } else {
-        state.savedPosts.push(postData);
-        saveBtn.classList.add('saved');
-        saveBtn.querySelector('svg').setAttribute('fill', 'currentColor');
-        saveBtn.querySelector('.save-label').textContent = 'saved';
-        showToast('Post bookmarked in saved memories.');
-        playPing(750, 0.3);
+        state.savedPosts.unshift(post);
+        btnSave.classList.add('active-save');
+        saveText.textContent = 'Saved';
+        showToast('Saved to your private bookmarks');
       }
-      localStorage.setItem('void-saved-posts', JSON.stringify(state.savedPosts));
-      updateStats();
+      localStorage.setItem('void-saved-data', JSON.stringify(state.savedPosts));
+      updateProfileUI();
+      if (state.activeTab === 'saved') renderAltView('saved');
     });
 
-    // 5. POLL: If it's a poll, handle interactive votes
-    if (postData.type === 'poll') {
-      const options = card.querySelectorAll('.poll-option');
-      options.forEach(opt => {
-        opt.addEventListener('click', () => {
-          playPing(660, 0.3);
-          options.forEach(o => {
-            const fill = o.querySelector('.poll-fill');
-            const percent = o.querySelector('.poll-percent');
-            fill.style.width = '100%';
-            percent.textContent = '100% void';
-          });
-          showToast('100% of respondents reached the same emptiness.');
-        }, { once: true });
-      });
-    }
-
-    // 6. EPHEMERAL USER POST DECAY
-    if (postData.isUser) {
-      const bar = document.getElementById(`ephem-bar-${postData.id}`);
-      let remaining = 12; // 12 seconds
-      const timer = setInterval(() => {
-        remaining--;
-        if (bar) bar.style.width = `${(remaining / 12) * 100}%`;
-        if (remaining <= 0) {
-          clearInterval(timer);
-          card.style.transition = 'opacity 1.5s ease, transform 1.5s ease';
-          card.style.opacity = '0';
-          card.style.transform = 'scale(0.96)';
-          setTimeout(() => card.remove(), 1500);
-        }
-      }, 1000);
-    }
-  }
-
-  // ==========================================================================
-  // GENERATIVE HYPNOTIC CANVAS ART (INSIDE POST CARDS)
-  // ==========================================================================
-  function initGenerativeCanvas(canvas, seed) {
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    let t = 0;
-    let animId;
-
-    function render() {
-      if (!document.body.contains(canvas)) {
-        cancelAnimationFrame(animId);
-        return;
-      }
-      const w = canvas.width;
-      const h = canvas.height;
-      ctx.clearRect(0, 0, w, h);
-
-      const isLight = state.theme === 'light';
-      ctx.fillStyle = isLight ? '#f8fafc' : '#080d1a';
-      ctx.fillRect(0, 0, w, h);
-
-      ctx.save();
-      ctx.translate(w / 2, h / 2);
-
-      const count = 36;
-      for (let i = 0; i < count; i++) {
-        const angle = (i / count) * Math.PI * 2 + t * 0.5;
-        const radius = 60 + Math.sin(t * 2 + i * 0.3) * 35;
-        const x = Math.cos(angle) * radius;
-        const y = Math.sin(angle) * (radius * 0.65);
-
-        ctx.beginPath();
-        ctx.arc(x, y, 3 + Math.sin(t + i) * 1.5, 0, Math.PI * 2);
-        ctx.fillStyle = isLight ? 'rgba(2, 132, 199, 0.6)' : 'rgba(142, 203, 255, 0.7)';
-        ctx.fill();
-
-        // Connect lines
-        if (i > 0) {
-          ctx.beginPath();
-          ctx.moveTo(x, y);
-          const prevAngle = ((i - 1) / count) * Math.PI * 2 + t * 0.5;
-          const prevRadius = 60 + Math.sin(t * 2 + (i - 1) * 0.3) * 35;
-          ctx.lineTo(Math.cos(prevAngle) * prevRadius, Math.sin(prevAngle) * (prevRadius * 0.65));
-          ctx.strokeStyle = isLight ? 'rgba(30, 45, 80, 0.08)' : 'rgba(255, 255, 255, 0.08)';
-          ctx.lineWidth = 1;
-          ctx.stroke();
-        }
-      }
-
-      ctx.restore();
-      t += 0.02;
-      animId = requestAnimationFrame(render);
-    }
-
-    render();
-  }
-
-  // ==========================================================================
-  // BATCH POST LOADER (THE ENDLESS LOOP)
-  // ==========================================================================
-  function loadBatch(n) {
-    const frag = document.createDocumentFragment();
-
-    for (let i = 0; i < n; i++) {
-      state.postCount++;
-
-      // Every 12 posts, increment loop cycle
-      if (state.postCount % 12 === 0) {
-        state.loopCycle++;
-        const banner = document.createElement('div');
-        banner.className = 'milestone-banner';
-        banner.innerHTML = `
-          <div class="milestone-badge">Deep Loop #${state.loopCycle} Achieved</div>
-          <div class="milestone-text">You've traversed ${state.postCount} void posts. Everything is still peacefully blank.</div>
-        `;
-        frag.appendChild(banner);
-      }
-
-      // Vary card types: Poll every 5th, Canvas art every 4th, Quote on others
-      let cardType = 'quote';
-      if (state.postCount % 5 === 0) cardType = 'poll';
-      else if (state.postCount % 4 === 0) cardType = 'canvas';
-
-      const quoteTemplate = voidQuotes[state.postCount % voidQuotes.length];
-      const quoteText = quoteTemplate
-        .replace('{n}', state.postCount)
-        .replace('{loop}', state.loopCycle);
-
-      const postData = {
-        id: state.postCount,
-        cycle: state.loopCycle,
-        type: cardType,
-        text: quoteText,
-        poll: cardType === 'poll' ? pollTemplates[state.postCount % pollTemplates.length] : null
-      };
-
-      frag.appendChild(createPostCard(postData));
-    }
-
-    feed.appendChild(frag);
-    updateStats();
-  }
-
-  // Initial batch load
-  loadBatch(6);
-
-  // IntersectionObserver for truly infinite scrolling
-  const scrollObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting && state.activeTab === 'feed' && !state.searchQuery) {
-        endNoteText.textContent = `looping into layer ${state.loopCycle + 1}…`;
-        setTimeout(() => {
-          loadBatch(4);
-          endNoteText.textContent = `looping deeper into the void…`;
-        }, 220);
-      }
+    // SHARE ACTION
+    const btnShare = card.querySelector('.btn-share');
+    btnShare.addEventListener('click', () => {
+      navigator.clipboard?.writeText(window.location.href);
+      showToast('Reflection link copied to clipboard');
     });
-  }, { rootMargin: '500px' });
 
-  scrollObserver.observe(endNote);
+    // COMMENT SECTION SUBMISSION
+    const commentInput = card.querySelector('.comment-input-field');
+    const commentSend = card.querySelector('.btn-comment-send');
+    const commentsList = card.querySelector('.comments-list');
+    const commentsCountLabel = card.querySelector('.metrics-comments-label');
 
-  // ==========================================================================
-  // COMPOSER & DISSOLUTION CANVAS
-  // ==========================================================================
-  const composerText = document.getElementById('composerText');
-  const composerCharCount = document.getElementById('composerCharCount');
-  const releaseVoidBtn = document.getElementById('releaseVoidBtn');
-  const dissolveCanvas = document.getElementById('dissolveCanvas');
-  const dissolveCtx = dissolveCanvas.getContext('2d');
+    function submitComment() {
+      const val = commentInput.value.trim();
+      if (!val) return;
+      post.comments.push({ author: state.userName, text: val });
 
-  function resizeDissolveCanvas() {
-    dissolveCanvas.width = composerSection.offsetWidth;
-    dissolveCanvas.height = composerSection.offsetHeight;
-  }
-  window.addEventListener('resize', resizeDissolveCanvas);
-  resizeDissolveCanvas();
+      const newBubble = document.createElement('div');
+      newBubble.className = 'comment-bubble';
+      newBubble.innerHTML = `
+        <div class="avatar-circle" style="width:26px;height:26px;font-size:11px;">${state.userInitial}</div>
+        <div class="comment-body">
+          <span class="comment-author">${state.userName}</span>
+          <span class="comment-text">${val}</span>
+        </div>
+      `;
+      commentsList.appendChild(newBubble);
+      commentInput.value = '';
+      commentsCountLabel.textContent = `${post.comments.length} comments`;
+      showToast('Reflection shared');
+    }
 
-  // Mood pill selector
-  document.querySelectorAll('.mood-pill').forEach(pill => {
-    pill.addEventListener('click', () => {
-      document.querySelectorAll('.mood-pill').forEach(p => p.classList.remove('active'));
-      pill.classList.add('active');
-      playPing(500, 0.15);
+    commentSend.addEventListener('click', submitComment);
+    commentInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') submitComment();
     });
-  });
 
-  composerText.addEventListener('input', () => {
-    const len = composerText.value.length;
-    composerCharCount.textContent = `${len} / ∞ thoughts`;
-  });
+    // FOCUS COMMENT ON COMMENT BUTTON CLICK
+    const commentTrigger = card.querySelector('.btn-comment-trigger');
+    commentTrigger.addEventListener('click', () => {
+      commentInput.focus();
+    });
 
-  // Dissolve particle animation
-  function spawnDissolveParticles() {
-    resizeDissolveCanvas();
-    const w = dissolveCanvas.width;
-    const h = dissolveCanvas.height;
-    const particles = [];
-    const count = 70;
+    // POLL CLICKING
+    card.querySelectorAll('.poll-choice-bar').forEach(bar => {
+      bar.addEventListener('click', () => {
+        card.querySelectorAll('.poll-choice-bar').forEach((b, i) => {
+          b.querySelector('.poll-pct').style.display = 'inline';
+          b.querySelector('.poll-fill-level').style.width = (i === 0 ? '58%' : i === 1 ? '32%' : '10%');
+        });
+        showToast('Poll response recorded in stillness');
+      }, { once: true });
+    });
+  }
+
+  // --- INFINITE STREAM LOADER WITH MUTEX (0% IDLE CPU USAGE) ---
+  let isBatchLoading = false;
+  function appendBatch(count = 5) {
+    if (isBatchLoading) return;
+    isBatchLoading = true;
 
     for (let i = 0; i < count; i++) {
-      particles.push({
-        x: w * 0.4 + (Math.random() * 80 - 40),
-        y: h * 0.5 + (Math.random() * 40 - 20),
-        vx: (Math.random() - 0.5) * 6,
-        vy: -Math.random() * 5 - 2,
-        radius: Math.random() * 3 + 1,
-        alpha: 1,
-        color: state.theme === 'light' ? 'rgba(2, 132, 199,' : 'rgba(142, 203, 255,'
-      });
+      state.postCount++;
+      const p = generateSocialPost(state.postCount);
+      feedStream.appendChild(renderPostCard(p));
     }
 
-    function renderParticles() {
-      dissolveCtx.clearRect(0, 0, w, h);
-      let alive = false;
-
-      particles.forEach(p => {
-        p.x += p.vx;
-        p.y += p.vy;
-        p.alpha -= 0.025;
-        if (p.alpha > 0) {
-          alive = true;
-          dissolveCtx.beginPath();
-          dissolveCtx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-          dissolveCtx.fillStyle = `${p.color} ${p.alpha})`;
-          dissolveCtx.fill();
-        }
-      });
-
-      if (alive) requestAnimationFrame(renderParticles);
-      else dissolveCtx.clearRect(0, 0, w, h);
-    }
-
-    renderParticles();
+    setTimeout(() => {
+      isBatchLoading = false;
+    }, 200);
   }
 
-  releaseVoidBtn.addEventListener('click', () => {
-    const text = composerText.value.trim() || 'An unspoken silence.';
-    playPing(920, 0.5);
-    spawnDissolveParticles();
+  // Initial stream population
+  appendBatch(6);
 
-    state.dissolvedCount++;
-    localStorage.setItem('void-dissolved', state.dissolvedCount);
-    updateStats();
+  // IntersectionObserver on feedLoader (triggered only when user reaches bottom)
+  const loaderEl = document.getElementById('feedLoader');
+  const scrollObserver = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting && state.activeTab === 'feed') {
+      appendBatch(4);
+    }
+  }, { rootMargin: '100px' });
+  scrollObserver.observe(loaderEl);
 
-    // Inject temporary user card at top of feed
+  // --- PUBLISH USER REFLECTION VIA COMPOSER ---
+  function publishUserPost() {
+    const text = composerInput.value.trim();
+    if (!text) return;
+
     state.postCount++;
-    const userPost = createPostCard({
-      id: state.postCount,
-      cycle: state.loopCycle,
-      type: 'quote',
-      text: `"${text}"`,
-      author: { name: state.profileName, handle: state.profileHandle, icon: '🫧' },
-      isUser: true
-    });
+    const userPost = {
+      id: `user_${Date.now()}`,
+      author: state.userName,
+      handle: state.userHandle,
+      initial: state.userInitial,
+      verified: true,
+      time: 'Just now',
+      type: 'text',
+      text: text,
+      likes: 1,
+      commentsCount: 0,
+      sharesCount: 0,
+      comments: []
+    };
 
-    feed.prepend(userPost);
-    composerText.value = '';
-    composerCharCount.textContent = '0 / ∞ thoughts';
+    const card = renderPostCard(userPost);
+    feedStream.insertBefore(card, feedStream.firstChild);
+    composerInput.value = '';
+    showToast('Your reflection was published to the silence');
 
-    showToast('Your thought dissolved into the cosmos. Recorded on 0 servers.');
-    addMemory(`Released thought: "${text.substring(0, 24)}..."`);
+    // Scroll smoothly to newly published post
+    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  btnPublishPost.addEventListener('click', publishUserPost);
+  composerInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') publishUserPost();
   });
 
-  // ==========================================================================
-  // LIVE SEARCH (FINDS NOTHING, PHILOSOPHICALLY)
-  // ==========================================================================
-  const voidSearchLibrary = [
-    { label: "Absolute Silence", detail: "0 results" },
-    { label: "Inner Peace", detail: "already inside you" },
-    { label: "The Next Big Thing", detail: "does not exist here" },
-    { label: "Urgent Breaking News", detail: "none. breathe." },
-    { label: "Validation from Strangers", detail: "404 not found" },
-    { label: "Escape velocity", detail: "close this tab" }
+  // Attach tool helpers
+  document.getElementById('btnAttachQuote').addEventListener('click', () => {
+    composerInput.value = "\"The stillness you seek is already present.\" ";
+    composerInput.focus();
+  });
+  document.getElementById('btnAttachPoll').addEventListener('click', () => {
+    composerInput.value = "Poll: Did you step away from screens today?";
+    composerInput.focus();
+  });
+  document.getElementById('btnAttachTag').addEventListener('click', () => {
+    composerInput.value += " #digitaldetox";
+    composerInput.focus();
+  });
+
+  // --- STORY VIEWER (INSTAGRAM FORMAT) ---
+  const storyModal = document.getElementById('storyModal');
+  const storyProgressFill = document.getElementById('storyProgressFill');
+  const storyAuthorAvatar = document.getElementById('storyAuthorAvatar');
+  const storyAuthorName = document.getElementById('storyAuthorName');
+  const storyBodyText = document.getElementById('storyBodyText');
+  const btnCloseStory = document.getElementById('btnCloseStory');
+
+  function openStory(item) {
+    const author = item.dataset.author || state.userName;
+    const text = item.dataset.text || 'Enjoying a quiet pause in the day.';
+    storyAuthorName.textContent = author;
+    storyAuthorAvatar.textContent = author[0];
+    storyBodyText.textContent = text;
+    storyModal.style.display = 'flex';
+
+    // Animate 5-second progress bar
+    storyProgressFill.style.width = '0%';
+    let start = Date.now();
+    const duration = 5000;
+
+    clearInterval(state.activeStoryTimer);
+    state.activeStoryTimer = setInterval(() => {
+      const elapsed = Date.now() - start;
+      const pct = Math.min(100, (elapsed / duration) * 100);
+      storyProgressFill.style.width = `${pct}%`;
+      if (pct >= 100) {
+        clearInterval(state.activeStoryTimer);
+        storyModal.style.display = 'none';
+      }
+    }, 50);
+  }
+
+  document.querySelectorAll('.story-item').forEach(item => {
+    item.addEventListener('click', () => openStory(item));
+  });
+
+  function closeStory() {
+    clearInterval(state.activeStoryTimer);
+    storyModal.style.display = 'none';
+  }
+  btnCloseStory.addEventListener('click', closeStory);
+  storyModal.addEventListener('click', (e) => {
+    if (e.target === storyModal) closeStory();
+  });
+  document.getElementById('btnReplyStory').addEventListener('click', () => {
+    showToast('Quiet reaction delivered');
+    closeStory();
+  });
+
+  // --- SUGGESTED USERS & ONLINE CONTACTS ---
+  const SUGGESTED_DATA = [
+    { name: 'Soren Kierk', role: 'Philosopher of Silence', initial: 'S' },
+    { name: 'Clara Oswald', role: 'Slow Tech Advocate', initial: 'C' },
+    { name: 'Mateo Ruiz', role: 'Zenith Contributor', initial: 'M' }
   ];
 
-  function renderSearchDropdown(query) {
-    if (!query) {
-      searchDropdown.style.display = 'none';
-      searchClearBtn.style.display = 'none';
-      return;
-    }
-    searchClearBtn.style.display = 'flex';
-    searchDropdown.style.display = 'flex';
-    searchDropdown.innerHTML = '';
-
-    const matches = voidSearchLibrary.filter(item => item.label.toLowerCase().includes(query.toLowerCase()));
-    
-    // Add custom dynamic query response
-    const customItem = document.createElement('div');
-    customItem.className = 'search-item';
-    customItem.innerHTML = `<span>Search for "${query}"</span><small>0 matches</small>`;
-    customItem.addEventListener('click', () => selectSearchResult(query));
-    searchDropdown.appendChild(customItem);
-
-    matches.forEach(item => {
-      const el = document.createElement('div');
-      el.className = 'search-item';
-      el.innerHTML = `<span>${item.label}</span><small>${item.detail}</small>`;
-      el.addEventListener('click', () => selectSearchResult(item.label));
-      searchDropdown.appendChild(el);
+  function renderSuggestedUsers() {
+    const container = document.getElementById('suggestedUsersList');
+    container.innerHTML = '';
+    SUGGESTED_DATA.forEach(u => {
+      const isFollowing = state.followedUsers.has(u.name);
+      const row = document.createElement('div');
+      row.className = 'suggested-user-row';
+      row.innerHTML = `
+        <div class="suggested-user-left">
+          <div class="avatar-circle" style="width:34px;height:34px;">${u.initial}</div>
+          <div class="suggested-names">
+            <b>${u.name}</b>
+            <span>${u.role}</span>
+          </div>
+        </div>
+        <button class="btn-follow ${isFollowing ? 'following' : ''}">${isFollowing ? 'Following' : 'Follow'}</button>
+      `;
+      const btn = row.querySelector('.btn-follow');
+      btn.addEventListener('click', () => {
+        if (state.followedUsers.has(u.name)) {
+          state.followedUsers.delete(u.name);
+          btn.classList.remove('following');
+          btn.textContent = 'Follow';
+          showToast(`Unfollowed ${u.name}`);
+        } else {
+          state.followedUsers.add(u.name);
+          btn.classList.add('following');
+          btn.textContent = 'Following';
+          showToast(`Now following ${u.name}`);
+        }
+      });
+      container.appendChild(row);
     });
   }
+  renderSuggestedUsers();
+  document.getElementById('btnShuffleSuggested').addEventListener('click', () => {
+    SUGGESTED_DATA.reverse();
+    renderSuggestedUsers();
+  });
 
-  function selectSearchResult(term) {
-    state.searchQuery = term;
-    searchInput.value = term;
-    searchDropdown.style.display = 'none';
-    filterBar.style.display = 'flex';
-    filterQueryLabel.textContent = `"${term}" (Found 0 distracting results)`;
-
-    // Filter feed view
-    feed.innerHTML = `
-      <div class="glass post-card" style="text-align:center;padding:36px 20px;">
-        <div style="font-size:28px;margin-bottom:8px;">🔍</div>
-        <div class="post-line" style="margin-bottom:8px;">Zero occurrences of <b>"${term}"</b> in the void.</div>
-        <p style="font-size:13px;color:var(--ink-2);">Everything you were looking for is already absent. What a relief.</p>
+  const ONLINE_USERS = ['Elena Rostova', 'Kaelen Vos', 'Nadia Bloom', 'Julian Gray'];
+  const onlineContainer = document.getElementById('onlineContactsList');
+  ONLINE_USERS.forEach(name => {
+    const item = document.createElement('div');
+    item.className = 'online-contact-item';
+    item.innerHTML = `
+      <div class="online-avatar-wrap">
+        <div class="avatar-circle" style="width:30px;height:30px;font-size:12px;">${name[0]}</div>
+        <span class="online-dot"></span>
       </div>
+      <span style="font-size:13px;color:var(--text-primary);">${name}</span>
     `;
-    endNote.style.display = 'none';
-    showToast(`Filter applied: "${term}"`);
-  }
-
-  searchInput.addEventListener('input', (e) => {
-    renderSearchDropdown(e.target.value.trim());
+    item.addEventListener('click', () => {
+      document.getElementById('messengerModal').style.display = 'flex';
+      document.getElementById('dmInput').placeholder = `Message ${name}...`;
+    });
+    onlineContainer.appendChild(item);
   });
 
-  searchInput.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-      const val = searchInput.value.trim();
-      if (val) selectSearchResult(val);
-    }
-  });
+  // --- TAB NAVIGATION (FEED, SAVED BOOKMARKS, CIRCLES) ---
+  const navTabs = document.querySelectorAll('.center-nav-tab, .social-nav-link[data-tab], .mobile-nav-icon-btn[data-tab]');
 
-  function clearSearch() {
-    state.searchQuery = '';
-    searchInput.value = '';
-    searchDropdown.style.display = 'none';
-    searchClearBtn.style.display = 'none';
-    filterBar.style.display = 'none';
-    endNote.style.display = 'flex';
-    feed.innerHTML = '';
-    state.postCount = 0;
-    loadBatch(6);
-  }
-
-  searchClearBtn.addEventListener('click', clearSearch);
-  clearFilterBtn.addEventListener('click', clearSearch);
-
-  // Close dropdown on outside click
-  document.addEventListener('click', (e) => {
-    if (!e.target.closest('.search-wrapper')) {
-      searchDropdown.style.display = 'none';
-    }
-  });
-
-  // ==========================================================================
-  // SIDEBAR & MOBILE NAVIGATION TABS (FEED, SAVED, MEMORIES, GROUPS, EVENTS)
-  // ==========================================================================
-  const navItems = document.querySelectorAll('.nav-item, .mobile-nav-btn');
-
-  function switchTab(tab) {
+  function setTab(tab) {
     state.activeTab = tab;
-    playPing(560, 0.2);
 
-    document.querySelectorAll('.nav-item, .mobile-nav-btn').forEach(item => {
-      if (item.dataset.tab === tab) item.classList.add('active');
-      else item.classList.remove('active');
+    navTabs.forEach(t => {
+      if (t.dataset.tab === tab) t.classList.add('active');
+      else t.classList.remove('active');
     });
 
     if (tab === 'feed') {
-      composerSection.style.display = 'block';
-      viewHeader.style.display = 'none';
-      feed.style.display = 'flex';
-      altViewContainer.style.display = 'none';
-      endNote.style.display = 'flex';
+      feedStream.style.display = 'flex';
+      document.getElementById('storiesTray').style.display = 'flex';
+      document.getElementById('composerCard').style.display = 'flex';
+      document.getElementById('feedLoader').style.display = 'flex';
+      altTabContainer.style.display = 'none';
     } else {
-      composerSection.style.display = 'none';
-      viewHeader.style.display = 'flex';
-      feed.style.display = 'none';
-      altViewContainer.style.display = 'flex';
-      endNote.style.display = 'none';
+      feedStream.style.display = 'none';
+      document.getElementById('storiesTray').style.display = 'none';
+      document.getElementById('composerCard').style.display = 'none';
+      document.getElementById('feedLoader').style.display = 'none';
+      altTabContainer.style.display = 'flex';
       renderAltView(tab);
     }
   }
 
-  document.querySelectorAll('.nav-item, .mobile-nav-btn').forEach(item => {
-    item.addEventListener('click', () => switchTab(item.dataset.tab));
+  navTabs.forEach(btn => {
+    btn.addEventListener('click', () => setTab(btn.dataset.tab));
   });
-
-  viewBackToFeedBtn.addEventListener('click', () => switchTab('feed'));
 
   function renderAltView(tab) {
-    altViewContainer.innerHTML = '';
+    altTabContainer.innerHTML = '';
 
     if (tab === 'saved') {
-      viewTitleText.textContent = `Saved Cards (${state.savedPosts.length})`;
-      viewSubText.textContent = "Thoughts you chose to hoard in the quiet.";
+      const header = document.createElement('div');
+      header.className = 'widget-card';
+      header.innerHTML = `
+        <div class="widget-head">
+          <span style="font-size:16px;">Saved Bookmarks (${state.savedPosts.length})</span>
+          <button style="background:none;border:none;color:var(--accent-blue);font-size:12px;cursor:pointer;" id="btnBackToFeed">Back to Feed</button>
+        </div>
+        <p style="font-size:13px;color:var(--text-secondary);">Your privately retained reflections.</p>
+      `;
+      header.querySelector('#btnBackToFeed').addEventListener('click', () => setTab('feed'));
+      altTabContainer.appendChild(header);
 
       if (state.savedPosts.length === 0) {
-        altViewContainer.innerHTML = `
-          <div class="glass post-card" style="text-align:center;padding:40px 20px;">
-            <div style="font-size:32px;margin-bottom:10px;">🏷️</div>
-            <div class="post-line">No saved cards yet.</div>
-            <p style="font-size:13px;color:var(--ink-2);margin-bottom:16px;">You haven't hoarded any nothingness. Traveling light is a virtue.</p>
-            <button class="btn-void" id="btnGoSave">Browse the void</button>
-          </div>
+        const empty = document.createElement('div');
+        empty.className = 'fb-post-card';
+        empty.style.padding = '40px 20px';
+        empty.style.textAlign = 'center';
+        empty.innerHTML = `
+          <h4 style="font-size:16px;color:var(--text-primary);margin-bottom:6px;">No saved bookmarks yet</h4>
+          <p style="font-size:13px;color:var(--text-tertiary);">Click the bookmark icon on any reflection to save it here.</p>
         `;
-        document.getElementById('btnGoSave')?.addEventListener('click', () => switchTab('feed'));
+        altTabContainer.appendChild(empty);
       } else {
-        state.savedPosts.forEach(postData => {
-          altViewContainer.appendChild(createPostCard(postData));
-        });
+        state.savedPosts.forEach(p => altTabContainer.appendChild(renderPostCard(p)));
       }
-    }
-
-    else if (tab === 'memories') {
-      viewTitleText.textContent = `Session Memories (${state.memories.length})`;
-      viewSubText.textContent = "A chronological testament to your present mindfulness.";
-
-      const list = document.createElement('div');
-      list.className = 'glass';
-      list.style.padding = '20px';
-      list.style.display = 'flex';
-      list.style.flexDirection = 'column';
-      list.style.gap = '14px';
-
-      state.memories.forEach(m => {
-        const row = document.createElement('div');
-        row.style.display = 'flex';
-        row.style.gap = '14px';
-        row.style.alignItems = 'flex-start';
-        row.innerHTML = `
-          <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--spectral);width:80px;flex-shrink:0;">${m.time}</div>
-          <div style="font-size:13.5px;color:var(--ink-0);line-height:1.5;">${m.text}</div>
-        `;
-        list.appendChild(row);
-      });
-      altViewContainer.appendChild(list);
-    }
-
-    else if (tab === 'groups') {
-      viewTitleText.textContent = "Communities of Solitude (4)";
-      viewSubText.textContent = "Gatherings where nobody speaks and nothing is demanded.";
-
-      const groups = [
-        { id: 'grp1', name: 'Anti-Algorithm Collective', members: 14208, desc: 'United in our refusal to be outraged for ad revenue.' },
-        { id: 'grp2', name: 'Tab Hoarders Anonymous', members: 8940, desc: 'We promise we will read those 84 open tabs eventually.' },
-        { id: 'grp3', name: 'Conscious Breathers', members: 23150, desc: 'Relaxing shoulders and unclenching jaws since the dawn of time.' },
-        { id: 'grp4', name: 'The Zero Followers Guild', members: 50400, desc: 'Pure freedom. Nobody to impress or perform for.' }
-      ];
-
-      const grid = document.createElement('div');
-      grid.className = 'interactive-grid';
-
-      groups.forEach(g => {
-        const isJoined = state.joinedGroups.has(g.id);
-        const card = document.createElement('div');
-        card.className = 'glass interactive-card';
-        card.innerHTML = `
-          <div class="interactive-left">
-            <div class="interactive-icon">🌌</div>
-            <div class="interactive-body">
-              <h4>${g.name}</h4>
-              <p>${g.desc}</p>
-              <small style="color:var(--ink-2);font-family:monospace;font-size:11px;">${(g.members + (isJoined ? 1 : 0)).toLocaleString()} members</small>
-            </div>
-          </div>
-          <button class="btn-void join-grp-btn" style="padding:6px 16px;font-size:12px;background:${isJoined ? 'var(--glass-strong)' : 'var(--spectral)'};color:${isJoined ? 'var(--ink-0)' : '#000'};">
-            ${isJoined ? 'Joined' : 'Join'}
-          </button>
-        `;
-
-        const btn = card.querySelector('.join-grp-btn');
-        btn.addEventListener('click', () => {
-          if (state.joinedGroups.has(g.id)) {
-            state.joinedGroups.delete(g.id);
-            btn.textContent = 'Join';
-            btn.style.background = 'var(--spectral)';
-            btn.style.color = '#000';
-            showToast(`Left ${g.name}`);
-          } else {
-            state.joinedGroups.add(g.id);
-            btn.textContent = 'Joined';
-            btn.style.background = 'var(--glass-strong)';
-            btn.style.color = 'var(--ink-0)';
-            showToast(`Joined ${g.name}`);
-            playPing(680, 0.3);
-          }
-          localStorage.setItem('void-groups', JSON.stringify(Array.from(state.joinedGroups)));
-        });
-
-        grid.appendChild(card);
-      });
-
-      altViewContainer.appendChild(grid);
-    }
-
-    else if (tab === 'events') {
-      viewTitleText.textContent = "Scheduled Nothingness (3)";
-      viewSubText.textContent = "Zero obligations. Your calendar is blissfully clear.";
-
-      const events = [
-        { id: 'ev1', title: 'The Present Moment', time: 'Happening Right Now', desc: 'The only time that actually exists. You are already in attendance.' },
-        { id: 'ev2', title: 'Global Screen Rest Hour', time: 'Tonight @ 9:00 PM', desc: 'Turn off all glowing rectangles and stare at the ceiling in peace.' },
-        { id: 'ev3', title: 'The Heat Death of the Universe', time: 'In 10^100 Years', desc: 'Tentative schedule. Everything will reach maximum entropy and calm.' }
-      ];
-
-      const grid = document.createElement('div');
-      grid.className = 'interactive-grid';
-
-      events.forEach(ev => {
-        const isRsvp = state.eventRsvps.has(ev.id);
-        const card = document.createElement('div');
-        card.className = 'glass interactive-card';
-        card.innerHTML = `
-          <div class="interactive-left">
-            <div class="interactive-icon">🗓️</div>
-            <div class="interactive-body">
-              <h4>${ev.title}</h4>
-              <p>${ev.desc}</p>
-              <small style="color:var(--spectral);font-family:monospace;font-size:11px;">${ev.time}</small>
-            </div>
-          </div>
-          <button class="btn-void rsvp-btn" style="padding:6px 16px;font-size:12px;background:${isRsvp ? 'var(--accent-teal)' : 'var(--spectral)'};color:${isRsvp ? '#fff' : '#000'};">
-            ${isRsvp ? 'Attending' : 'RSVP'}
-          </button>
-        `;
-
-        const btn = card.querySelector('.rsvp-btn');
-        btn.addEventListener('click', () => {
-          if (state.eventRsvps.has(ev.id)) {
-            state.eventRsvps.delete(ev.id);
-            btn.textContent = 'RSVP';
-            btn.style.background = 'var(--spectral)';
-            btn.style.color = '#000';
-            showToast(`Cancelled attendance for ${ev.title}`);
-          } else {
-            state.eventRsvps.add(ev.id);
-            btn.textContent = 'Attending';
-            btn.style.background = 'var(--accent-teal)';
-            btn.style.color = '#fff';
-            showToast(`RSVP confirmed for ${ev.title}`);
-            playPing(720, 0.3);
-          }
-          localStorage.setItem('void-rsvps', JSON.stringify(Array.from(state.eventRsvps)));
-        });
-
-        grid.appendChild(card);
-      });
-
-      altViewContainer.appendChild(grid);
-    }
-  }
-
-  // ==========================================================================
-  // HUD TIMER & MINDFULNESS ENGINE
-  // ==========================================================================
-  const hudMessages = [
-    [0,   "you just stepped into the silence."],
-    [20,  "twenty seconds in. still zero notifications."],
-    [45,  "almost a minute. notice your breathing."],
-    [90,  "a minute and a half of scrolling nothing."],
-    [150, "two and a half minutes. that's real time."],
-    [240, "four minutes gone. maybe close the tab?"],
-    [360, "six minutes in the void. the loop continues."],
-    [600, "ten minutes. what were you searching for?"]
-  ];
-
-  function formatTime(s) {
-    const m = Math.floor(s / 60).toString().padStart(2, '0');
-    const ss = (s % 60).toString().padStart(2, '0');
-    return `${m}:${ss}`;
-  }
-
-  function tick() {
-    state.seconds++;
-    hudTime.textContent = formatTime(state.seconds);
-
-    // Fill circle over 5 minutes (300 seconds)
-    const pct = Math.min(state.seconds / 300, 1);
-    hudRing.style.strokeDashoffset = CIRC * (1 - pct);
-
-    if (pct < 0.4) hudRing.style.stroke = 'var(--spectral)';
-    else if (pct < 0.75) hudRing.style.stroke = 'var(--warn)';
-    else hudRing.style.stroke = 'var(--danger)';
-
-    let msg = hudMessages[0][1];
-    for (const [t, m] of hudMessages) {
-      if (state.seconds >= t) msg = m;
-    }
-    hudMsg.textContent = msg;
-
-    // Trigger gentle break check at 5 minutes once
-    if (state.seconds === 300) {
-      openModal('breakModal');
-      document.getElementById('breakTimeCount').textContent = '5 full minutes';
-    }
-  }
-
-  let timerInterval = setInterval(tick, 1000);
-
-  hudResetBtn.addEventListener('click', () => {
-    state.seconds = 0;
-    hudTime.textContent = '00:00';
-    hudRing.style.strokeDashoffset = CIRC;
-    hudRing.style.stroke = 'var(--spectral)';
-    hudMsg.textContent = 'timer refreshed. begin anew.';
-    playPing(400, 0.3);
-    showToast('Presence timer restarted.');
-  });
-
-  // Interactive Breathing Guide Cycle (4s inhale -> 4s hold -> 4s exhale -> 4s hold)
-  let breathPhase = 0; // 0=inhale, 1=hold, 2=exhale, 3=hold
-  const breathPhases = [
-    { text: "Inhale calm", expand: true },
-    { text: "Hold stillness", expand: true },
-    { text: "Exhale tension", expand: false },
-    { text: "Rest in silence", expand: false }
-  ];
-
-  let breathInterval = setInterval(() => {
-    if (!state.breathingActive) return;
-    breathPhase = (breathPhase + 1) % 4;
-    const current = breathPhases[breathPhase];
-    breathStatus.textContent = current.text;
-    if (current.expand) breathCircle.classList.add('inhale');
-    else breathCircle.classList.remove('inhale');
-  }, 4000);
-
-  breathToggleBtn.addEventListener('click', () => {
-    state.breathingActive = !state.breathingActive;
-    breathToggleBtn.textContent = state.breathingActive ? 'Pause guide' : 'Resume guide';
-    breathStatus.textContent = state.breathingActive ? 'Inhale conscious calm' : 'Guide paused';
-    if (!state.breathingActive) breathCircle.classList.remove('inhale');
-  });
-
-  // ==========================================================================
-  // SUGGESTED WANDERERS NEARBY (INTERACTIVE CONNECTIONS)
-  // ==========================================================================
-  const wandererPool = [
-    { name: "Atlas of Nowhere", handle: "@atlas", icon: "🗺️" },
-    { name: "Zen Architect", handle: "@keystroke", icon: "📐" },
-    { name: "Midnight Nomad", handle: "@nocturne", icon: "🌙" },
-    { name: "Still Water", handle: "@ripples", icon: "🪞" },
-    { name: "Deep Sleeper", handle: "@rem_cycle", icon: "💤" },
-    { name: "Cosmic Dust", handle: "@stardust", icon: "✨" }
-  ];
-
-  function renderSuggestions() {
-    const list = document.getElementById('suggestList');
-    list.innerHTML = '';
-    const shuffled = [...wandererPool].sort(() => Math.random() - 0.5).slice(0, 3);
-
-    shuffled.forEach(w => {
-      const row = document.createElement('div');
-      row.className = 'suggest-row';
-      row.innerHTML = `
-        <div class="suggest-avatar">${w.icon}</div>
-        <div class="suggest-info">
-          <div class="suggest-name">${w.name}</div>
-          <div class="suggest-sub">${w.handle}</div>
+    } else if (tab === 'circles') {
+      const circlesHeader = document.createElement('div');
+      circlesHeader.className = 'widget-card';
+      circlesHeader.innerHTML = `
+        <div class="widget-head">
+          <span style="font-size:16px;">Circles & Communities</span>
+          <button style="background:none;border:none;color:var(--accent-blue);font-size:12px;cursor:pointer;" id="btnBackToFeed2">Back to Feed</button>
         </div>
-        <button class="suggest-connect-btn">Connect</button>
+        <p style="font-size:13px;color:var(--text-secondary);">Autonomous groups requiring zero obligations or active posting.</p>
       `;
+      circlesHeader.querySelector('#btnBackToFeed2').addEventListener('click', () => setTab('feed'));
+      altTabContainer.appendChild(circlesHeader);
 
-      const btn = row.querySelector('.suggest-connect-btn');
-      btn.addEventListener('click', () => {
-        const isConn = btn.classList.toggle('connected');
-        btn.textContent = isConn ? 'Connected' : 'Connect';
-        playPing(isConn ? 700 : 450, 0.25);
-        showToast(isConn ? `Connected with ${w.name} in silent solidarity.` : `Disconnected from ${w.name}.`);
+      const circlesData = [
+        { id: 'c1', name: 'Anti-Urgency Consortium', members: '14.2k', desc: 'Rejecting false workplace emergencies and non-stop notifications.' },
+        { id: 'c2', name: 'Deliberate Monotasking', members: '19.8k', desc: 'Doing one single task from start to finish without tab switching.' },
+        { id: 'c3', name: 'Zero Inbound Network', members: '31.0k', desc: 'Unidirectional listening. Presence without demand.' }
+      ];
+
+      circlesData.forEach(c => {
+        const joined = state.joinedCircles.has(c.id);
+        const card = document.createElement('div');
+        card.className = 'fb-post-card';
+        card.style.padding = '18px 20px';
+        card.innerHTML = `
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;">
+            <div>
+              <b style="font-size:15px;color:var(--text-primary);display:block;margin-bottom:4px;">${c.name}</b>
+              <p style="font-size:13px;color:var(--text-secondary);margin-bottom:8px;">${c.desc}</p>
+              <span style="font-size:11px;font-family:var(--font-mono);color:var(--text-tertiary);">${c.members} wanderers present</span>
+            </div>
+            <button class="btn-follow ${joined ? 'following' : ''}" style="flex-shrink:0;">${joined ? 'Joined' : 'Join'}</button>
+          </div>
+        `;
+        const btn = card.querySelector('.btn-follow');
+        btn.addEventListener('click', () => {
+          if (state.joinedCircles.has(c.id)) {
+            state.joinedCircles.delete(c.id);
+            btn.classList.remove('following');
+            btn.textContent = 'Join';
+            showToast(`Left ${c.name}`);
+          } else {
+            state.joinedCircles.add(c.id);
+            btn.classList.add('following');
+            btn.textContent = 'Joined';
+            showToast(`Joined ${c.name}`);
+          }
+        });
+        altTabContainer.appendChild(card);
       });
-
-      list.appendChild(row);
-    });
-  }
-
-  renderSuggestions();
-  document.getElementById('suggestRefreshBtn').addEventListener('click', () => {
-    playPing(600, 0.2);
-    renderSuggestions();
-  });
-
-  // ==========================================================================
-  // STATS & PERSISTENCE
-  // ==========================================================================
-  function updateStats() {
-    statsScrolledCount.textContent = state.postCount;
-    statsSavedCount.textContent = state.savedPosts.length;
-    statsDissolvedCount.textContent = state.dissolvedCount;
-    navSavedBadge.textContent = state.savedPosts.length;
-
-    // Approximate scroll distance (each card ~140px ~ 0.035 meters)
-    const distMeters = (state.postCount * 0.037).toFixed(1);
-    const distEl = document.getElementById('modalScrollDist');
-    if (distEl) distEl.textContent = `${distMeters} m`;
-  }
-
-  function addMemory(text) {
-    const timeStr = formatTime(state.seconds);
-    state.memories.unshift({ time: `${timeStr} ago`, text });
-    if (state.memories.length > 20) state.memories.pop();
-    document.getElementById('navMemoriesBadge').textContent = state.memories.length;
-  }
-
-  // Stat buttons open respective tabs
-  document.getElementById('statSavedBtn').addEventListener('click', () => switchTab('saved'));
-  document.getElementById('statDissolvedBtn').addEventListener('click', () => {
-    showToast(`You have released ${state.dissolvedCount} thoughts into the ether.`);
-  });
-  document.getElementById('statScrolledBtn').addEventListener('click', () => {
-    showToast(`Scrolled past ${state.postCount} void posts.`);
-  });
-
-  // ==========================================================================
-  // MODALS & DRAWER CONTROLS
-  // ==========================================================================
-  function openModal(id) {
-    const el = document.getElementById(id);
-    if (el) {
-      el.style.display = 'flex';
-      playPing(540, 0.2);
     }
   }
 
-  function closeModal(id) {
-    const el = document.getElementById(id);
-    if (el) el.style.display = 'none';
-  }
-
-  document.querySelectorAll('[data-close]').forEach(btn => {
-    btn.addEventListener('click', () => closeModal(btn.dataset.close));
+  // --- MODAL CONTROLS (MESSENGER, NOTIFICATIONS, PROFILE) ---
+  document.getElementById('btnOpenMessenger').addEventListener('click', () => {
+    document.getElementById('messengerModal').style.display = 'flex';
+  });
+  document.getElementById('navOpenMessengerBtn').addEventListener('click', () => {
+    document.getElementById('messengerModal').style.display = 'flex';
+  });
+  document.getElementById('btnOpenNotifs').addEventListener('click', () => {
+    document.getElementById('notifsModal').style.display = 'flex';
+  });
+  document.getElementById('userHeaderAvatar').addEventListener('click', () => {
+    document.getElementById('profileModal').style.display = 'flex';
+  });
+  document.getElementById('btnEditProfileSnippet').addEventListener('click', () => {
+    document.getElementById('profileModal').style.display = 'flex';
+  });
+  document.getElementById('navOpenSettingsBtn').addEventListener('click', () => {
+    document.getElementById('profileModal').style.display = 'flex';
+  });
+  document.getElementById('mobileProfileBtn').addEventListener('click', () => {
+    document.getElementById('profileModal').style.display = 'flex';
+  });
+  document.getElementById('mobileCreatePostBtn').addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    composerInput.focus();
+  });
+  document.getElementById('btnFocusComposer').addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    composerInput.focus();
   });
 
-  document.querySelectorAll('.modal-overlay').forEach(modal => {
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) modal.style.display = 'none';
+  // Close modals on X or outside click
+  document.querySelectorAll('[data-close]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const modalId = btn.dataset.close;
+      document.getElementById(modalId).style.display = 'none';
+    });
+  });
+  document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
+    backdrop.addEventListener('click', (e) => {
+      if (e.target === backdrop) backdrop.style.display = 'none';
     });
   });
 
-  document.getElementById('inboxBtn').addEventListener('click', () => {
-    openModal('inboxModal');
-    document.getElementById('inboxBadge').style.display = 'none';
-  });
+  // SEND DM LOGIC
+  const dmInput = document.getElementById('dmInput');
+  const btnSendDm = document.getElementById('btnSendDm');
+  const dmThreadList = document.getElementById('dmThreadList');
 
-  document.getElementById('notificationsBtn').addEventListener('click', () => openModal('notificationsModal'));
-  document.getElementById('profileModalTrigger').addEventListener('click', () => openModal('profileModal'));
-  document.getElementById('sidebarProfileName').addEventListener('click', () => openModal('profileModal'));
-
-  // Inbox DM sender
-  document.getElementById('dmSendBtn').addEventListener('click', () => {
-    const input = document.getElementById('dmInput');
-    const val = input.value.trim();
+  function sendDm() {
+    const val = dmInput.value.trim();
     if (!val) return;
-    playPing(600, 0.2);
-
-    const list = document.getElementById('inboxList');
-    const item = document.createElement('div');
-    item.style.cssText = "padding:12px;background:var(--glass);border-radius:12px;border:1px solid var(--border-soft);";
-    item.innerHTML = `
-      <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:600;margin-bottom:4px;">
-        <span>To: Nobody</span>
-        <small style="color:var(--ink-2);font-family:monospace;">sent</small>
+    const msg = document.createElement('div');
+    msg.style.cssText = "background:var(--bg-subtle);border-radius:var(--radius-sm);padding:8px 12px;align-self:flex-end;";
+    msg.innerHTML = `
+      <div style="display:flex;justify-content:space-between;font-size:12px;font-weight:600;margin-bottom:2px;">
+        <span>${state.userName}</span>
+        <span style="font-family:var(--font-mono);font-size:10px;color:var(--text-tertiary);">now</span>
       </div>
-      <p style="font-size:13px;color:var(--ink-1);">"${val}"</p>
+      <p style="font-size:12.5px;color:var(--text-primary);">${val}</p>
     `;
-    list.prepend(item);
-    input.value = '';
-    showToast('Sent to Nobody. Nobody will never reply.');
+    dmThreadList.appendChild(msg);
+    dmInput.value = '';
+    showToast('Direct communication dispatched');
+  }
+  btnSendDm.addEventListener('click', sendDm);
+  dmInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') sendDm();
   });
 
-  // Notifications clear
-  document.getElementById('clearNotifsBtn').addEventListener('click', () => {
-    document.getElementById('notificationsList').innerHTML = `
-      <div style="text-align:center;padding:24px;color:var(--ink-2);font-size:13px;">
-        All cleared. Silence has resumed.
-      </div>
-    `;
-    showToast('All notifications cleared.');
+  // SAVE PROFILE
+  document.getElementById('btnRandomizeAvatar').addEventListener('click', () => {
+    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    state.userInitial = letters[Math.floor(Math.random() * letters.length)];
+    document.getElementById('modalProfileAvatar').textContent = state.userInitial;
+  });
+  document.getElementById('btnSaveProfile').addEventListener('click', () => {
+    state.userName = document.getElementById('editNameInput').value.trim() || 'Wanderer #409';
+    state.userHandle = document.getElementById('editHandleInput').value.trim() || '@voidfarer';
+    localStorage.setItem('void-user-name', state.userName);
+    localStorage.setItem('void-user-handle', state.userHandle);
+    localStorage.setItem('void-user-initial', state.userInitial);
+    updateProfileUI();
+    document.getElementById('profileModal').style.display = 'none';
+    showToast('Profile configuration updated');
   });
 
-  // Save profile alias
-  document.getElementById('saveProfileBtn').addEventListener('click', () => {
-    const nameVal = document.getElementById('profileNameInput').value.trim() || 'Wanderer #4092';
-    state.profileName = nameVal;
-    localStorage.setItem('void-name', nameVal);
-    sidebarProfileName.querySelector('span').textContent = nameVal;
-    closeModal('profileModal');
-    showToast(`Identity saved as ${nameVal}`);
+  // SEARCH DROPDOWN FILTER
+  searchInput.addEventListener('input', () => {
+    const query = searchInput.value.toLowerCase().trim();
+    if (!query) {
+      searchDropdown.style.display = 'none';
+      return;
+    }
+    searchDropdown.innerHTML = '';
+    const matches = [
+      `Reflections tagged #${query}`,
+      `People named "${query}"`,
+      `Circles discussing ${query}`
+    ];
+    matches.forEach(m => {
+      const it = document.createElement('div');
+      it.className = 'search-item';
+      it.textContent = m;
+      it.addEventListener('click', () => {
+        searchInput.value = '';
+        searchDropdown.style.display = 'none';
+        showToast(`Filtered stream by: ${query}`);
+      });
+      searchDropdown.appendChild(it);
+    });
+    searchDropdown.style.display = 'flex';
   });
 
-  // Quick Action Buttons
-  document.getElementById('quickBreathBtn').addEventListener('click', () => {
-    playPing(520, 0.3);
-    showToast('Taking a 5-second mindful breath...');
-    breathCircle.classList.add('inhale');
-    setTimeout(() => breathCircle.classList.remove('inhale'), 4000);
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.header-search')) {
+      searchDropdown.style.display = 'none';
+    }
   });
 
-  // Blackout Mode
-  const blackoutOverlay = document.getElementById('blackoutOverlay');
-  document.getElementById('quickBlackoutBtn').addEventListener('click', () => {
-    blackoutOverlay.style.display = 'flex';
-  });
-  document.getElementById('exitBlackoutBtn').addEventListener('click', () => {
-    blackoutOverlay.style.display = 'none';
-  });
-  blackoutOverlay.addEventListener('click', (e) => {
-    if (e.target === blackoutOverlay) blackoutOverlay.style.display = 'none';
-  });
-
-  document.getElementById('quickBreakBtn').addEventListener('click', () => {
-    document.getElementById('breakTimeCount').textContent = formatTime(state.seconds);
-    openModal('breakModal');
-  });
-
-  document.getElementById('stepOutsideBtn').addEventListener('click', () => {
-    closeModal('breakModal');
-    blackoutOverlay.style.display = 'flex';
-  });
-
-  // Teleport to Top / Logo click
-  function scrollToTop() {
+  // BRAND LOGO CLICK -> RESET TO TOP
+  document.getElementById('brandLogo').addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    playPing(750, 0.3);
-    showToast('Teleported back to the beginning of the void.');
-  }
-
-  teleportBtn.addEventListener('click', scrollToTop);
-  brandLogo.addEventListener('click', scrollToTop);
-
-  // ==========================================================================
-  // TOAST SYSTEM
-  // ==========================================================================
-  function showToast(msg) {
-    const toast = document.createElement('div');
-    toast.className = 'toast';
-    toast.innerHTML = `
-      <span style="color:var(--spectral);">✦</span>
-      <span>${msg}</span>
-    `;
-    toastContainer.appendChild(toast);
-
-    setTimeout(() => {
-      toast.style.opacity = '0';
-      toast.style.transform = 'translateY(10px)';
-      setTimeout(() => toast.remove(), 300);
-    }, 3200);
-  }
-
-  // Initial setup
-  redrawAllAvatars();
-  updateStats();
-  sidebarProfileName.querySelector('span').textContent = state.profileName;
-  document.getElementById('profileNameInput').value = state.profileName;
+    setTab('feed');
+  });
 
 })();
 </script>
-
 </body>
 </html>
