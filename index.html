@@ -4,13 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>void — social presence feed</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 34'><rect width='34' height='34' rx='9.5' fill='%2312141a' stroke='rgba(255,255,255,0.15)' stroke-width='1.2'/><path d='M10.5 11L17 22.5L23.5 11' stroke='%23f8fafc' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round' fill='none'/><circle cx='17' cy='15.5' r='4.2' fill='%23090a0d' stroke='%2338bdf8' stroke-width='1.6'/><circle cx='17' cy='15.5' r='1.6' fill='%2338bdf8'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
   /* ==========================================================================
-     AUTHENTIC SOCIAL FEED DESIGN SYSTEM (FB / INSTA / THREADS AESTHETIC)
+     AUTHENTIC SOCIAL FEED DESIGN SYSTEM (INSTAGRAM / THREADS / FB AESTHETIC)
      ========================================================================== */
   :root {
     --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -27,70 +28,70 @@
     --anim-base: 0.22s var(--ease-tactile);
   }
 
-  /* DARK THEME (Refined Nocturne / Threads Style) */
+  /* DARK THEME (Refined Nocturne Velvet / Threads Studio Noir) */
   [data-theme="dark"] {
-    --bg-base: #0b0c0e;
-    --bg-surface: #121316;
-    --bg-surface-elevated: #181a1f;
-    --bg-subtle: #20232b;
-    --bg-hover: #262933;
+    --bg-base: #090a0d;
+    --bg-surface: #12141a;
+    --bg-surface-elevated: #181b22;
+    --bg-subtle: #20242e;
+    --bg-hover: #272c38;
 
-    --border: rgba(255, 255, 255, 0.08);
-    --border-strong: rgba(255, 255, 255, 0.14);
-    --border-subtle: rgba(255, 255, 255, 0.04);
+    --border: rgba(255, 255, 255, 0.07);
+    --border-strong: rgba(255, 255, 255, 0.13);
+    --border-subtle: rgba(255, 255, 255, 0.035);
 
-    --text-primary: #f3f4f6;
-    --text-secondary: #9ca3af;
-    --text-tertiary: #6b7280;
-    --text-muted: #4b5563;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-tertiary: #64748b;
+    --text-muted: #475569;
 
-    --accent: #f3f4f6;
-    --accent-blue: #3b82f6;
-    --like-red: #ef4444;
-    --like-subtle: rgba(239, 68, 68, 0.12);
-    --save-gold: #f59e0b;
-    --save-subtle: rgba(245, 158, 11, 0.12);
-    --success: #10b981;
+    --accent: #f8fafc;
+    --accent-blue: #38bdf8;
+    --like-red: #ff334b;
+    --like-subtle: rgba(255, 51, 75, 0.1);
+    --save-gold: #fbbf24;
+    --save-subtle: rgba(251, 191, 36, 0.1);
+    --success: #34d399;
 
-    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
-    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
-    --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.6);
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
+    --shadow-md: 0 4px 16px -2px rgba(0, 0, 0, 0.45);
+    --shadow-lg: 0 12px 36px -4px rgba(0, 0, 0, 0.65);
 
-    --topbar-bg: rgba(11, 12, 14, 0.88);
-    --story-ring: linear-gradient(45deg, #f59e0b, #ec4899, #8b5cf6);
+    --topbar-bg: rgba(9, 10, 13, 0.85);
+    --story-ring: linear-gradient(135deg, #f59e0b 0%, #ec4899 50%, #8b5cf6 100%);
   }
 
-  /* LIGHT THEME (Clean Facebook / Instagram White) */
+  /* LIGHT THEME (Editorial Gallery / Apple Pro Canvas) */
   [data-theme="light"] {
-    --bg-base: #f0f2f5;
+    --bg-base: #f8f9fa;
     --bg-surface: #ffffff;
-    --bg-surface-elevated: #f0f2f5;
-    --bg-subtle: #e4e6eb;
-    --bg-hover: #dadde1;
+    --bg-surface-elevated: #f1f3f5;
+    --bg-subtle: #eaedf0;
+    --bg-hover: #e2e6eb;
 
-    --border: rgba(0, 0, 0, 0.08);
-    --border-strong: rgba(0, 0, 0, 0.15);
-    --border-subtle: rgba(0, 0, 0, 0.04);
+    --border: rgba(0, 0, 0, 0.065);
+    --border-strong: rgba(0, 0, 0, 0.12);
+    --border-subtle: rgba(0, 0, 0, 0.035);
 
-    --text-primary: #050505;
-    --text-secondary: #65676b;
-    --text-tertiary: #8a8d91;
-    --text-muted: #bcc0c4;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-tertiary: #8b95a5;
+    --text-muted: #cbd5e1;
 
-    --accent: #050505;
-    --accent-blue: #1877f2;
+    --accent: #0f172a;
+    --accent-blue: #0284c7;
     --like-red: #ed4956;
-    --like-subtle: rgba(237, 73, 86, 0.08);
+    --like-subtle: rgba(237, 73, 86, 0.07);
     --save-gold: #d97706;
-    --save-subtle: rgba(217, 119, 6, 0.08);
+    --save-subtle: rgba(217, 119, 6, 0.07);
     --success: #059669;
 
-    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
-    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
-    --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.1);
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+    --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.09);
 
-    --topbar-bg: rgba(255, 255, 255, 0.92);
-    --story-ring: linear-gradient(45deg, #f59e0b, #e1306c, #833ab4);
+    --topbar-bg: rgba(248, 249, 250, 0.9);
+    --story-ring: linear-gradient(135deg, #f59e0b 0%, #e1306c 50%, #833ab4 100%);
   }
 
   /* Reset & Baseline */
@@ -107,8 +108,8 @@
     color: var(--text-primary);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
-    overflow-x: clip; /* Fixes sticky positioning bugs */
-    line-height: 1.45;
+    overflow-x: clip; /* Fixes sticky navbar breaking */
+    line-height: 1.5;
   }
 
   button, input, textarea {
@@ -116,7 +117,7 @@
     color: inherit;
   }
 
-  /* Custom Clean Scrollbar */
+  /* Smooth Custom Scrollbar */
   ::-webkit-scrollbar { width: 6px; height: 6px; }
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb {
@@ -152,51 +153,95 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 18px;
+    padding: 0 20px;
     box-shadow: var(--shadow-sm);
   }
 
   .header-left {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
   }
 
   .brand-logo {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     cursor: pointer;
     user-select: none;
     text-decoration: none;
-  }
-  .brand-glyph {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: var(--bg-subtle);
-    border: 1.5px solid var(--border-strong);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
     transition: transform var(--anim-fast);
   }
-  .brand-glyph::after {
-    content: '';
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--text-primary);
+  .brand-logo:hover {
+    transform: translateY(-1px);
   }
-  .brand-logo:hover .brand-glyph {
+
+  .void-logo-svg {
+    display: block;
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+    transition: transform var(--anim-fast);
+  }
+  .brand-logo:hover .void-logo-svg {
     transform: scale(1.05);
+  }
+
+  .void-logo-frame {
+    fill: var(--bg-surface-elevated);
+    stroke: var(--border-strong);
+    transition: stroke var(--anim-fast), fill var(--anim-fast);
+  }
+  .brand-logo:hover .void-logo-frame {
+    stroke: var(--accent-blue);
+  }
+
+  .void-logo-orbit {
+    stroke: var(--text-tertiary);
+    transition: stroke var(--anim-fast);
+  }
+
+  .void-logo-chevron {
+    stroke: var(--text-primary);
+    transition: stroke var(--anim-fast);
+  }
+
+  .void-logo-core-bg {
+    fill: var(--bg-base);
+  }
+  .void-logo-core-ring {
+    stroke: var(--accent-blue);
+  }
+  .void-logo-dot {
+    fill: var(--accent-blue);
+  }
+
+  .brand-wordmark-wrap {
+    display: flex;
+    align-items: center;
+    gap: 6px;
   }
   .brand-wordmark {
     font-size: 20px;
-    font-weight: 700;
-    letter-spacing: -0.04em;
+    font-weight: 750;
+    letter-spacing: -0.045em;
     color: var(--text-primary);
+    line-height: 1;
+  }
+  .brand-badge {
+    font-size: 9.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 2.5px 6px;
+    border-radius: var(--radius-xs);
+    background: rgba(56, 189, 248, 0.12);
+    color: var(--accent-blue);
+    line-height: 1;
+  }
+  [data-theme="light"] .brand-badge {
+    background: rgba(2, 132, 199, 0.08);
+    color: var(--accent-blue);
   }
 
   /* Search Pill */
@@ -371,7 +416,7 @@
   .social-container {
     max-width: 1280px;
     margin: 0 auto;
-    padding: 18px 18px 80px;
+    padding: 20px 18px 80px;
     display: grid;
     grid-template-columns: 280px minmax(0, 600px) 300px;
     justify-content: center;
@@ -581,7 +626,7 @@
     border: 2px solid var(--bg-surface);
   }
   .story-item:hover .story-ring-wrap {
-    transform: scale(1.05);
+    transform: scale(1.06);
   }
   .story-inner-avatar {
     width: 100%;
@@ -593,13 +638,13 @@
     align-items: center;
     justify-content: center;
     font-weight: 600;
-    font-size: 13px;
+    font-size: 13.5px;
     color: var(--text-primary);
   }
   .story-label {
     font-size: 11px;
     color: var(--text-secondary);
-    max-width: 62px;
+    max-width: 64px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -705,6 +750,25 @@
     box-shadow: var(--shadow-sm);
     overflow: hidden;
     position: relative;
+    user-select: text;
+  }
+
+  /* Double-tap Floating Heart (Instagram signature) */
+  .insta-heart-burst {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    color: var(--like-red);
+    font-size: 64px;
+    pointer-events: none;
+    z-index: 100;
+    animation: heartBurst 0.6s var(--ease-tactile) forwards;
+  }
+  @keyframes heartBurst {
+    0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+    50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.95; }
+    100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
   }
 
   /* Post Header */
@@ -736,12 +800,15 @@
     font-size: 11.5px;
     color: var(--text-tertiary);
   }
+  .post-options-wrap {
+    position: relative;
+  }
   .post-options-btn {
     background: none;
     border: none;
     color: var(--text-tertiary);
     cursor: pointer;
-    padding: 4px;
+    padding: 6px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -752,6 +819,36 @@
     background: var(--bg-surface-elevated);
   }
 
+  .post-menu-dropdown {
+    position: absolute;
+    top: calc(100% + 4px);
+    right: 0;
+    width: 180px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-lg);
+    display: none;
+    flex-direction: column;
+    padding: 4px;
+    z-index: 300;
+  }
+  .post-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    border-radius: var(--radius-xs);
+    font-size: 12.5px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: background-color var(--anim-fast), color var(--anim-fast);
+  }
+  .post-menu-item:hover {
+    background: var(--bg-surface-elevated);
+    color: var(--text-primary);
+  }
+
   /* Post Body */
   .post-text-body {
     padding: 0 16px 12px;
@@ -759,6 +856,7 @@
     line-height: 1.6;
     color: var(--text-primary);
     word-break: break-word;
+    cursor: pointer;
   }
 
   /* Optional Media/Visual Box */
@@ -769,14 +867,15 @@
     border: 1px solid var(--border-subtle);
     padding: 24px;
     text-align: center;
-    font-size: 14px;
-    color: var(--text-secondary);
+    font-size: 14.5px;
+    color: var(--text-primary);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 8px;
     font-style: italic;
+    line-height: 1.6;
   }
 
   /* Poll widget inside post */
@@ -1200,7 +1299,7 @@
     width: 100%;
     max-width: 380px;
     height: 560px;
-    background: #111;
+    background: #0f1014;
     border-radius: var(--radius-lg);
     border: 1px solid rgba(255, 255, 255, 0.15);
     position: relative;
@@ -1209,6 +1308,7 @@
     justify-content: space-between;
     padding: 16px;
     overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
   }
   .story-progress-bar {
     width: 100%;
@@ -1278,14 +1378,24 @@
 <!-- STICKY TOPBAR HEADER -->
 <header class="social-header">
   <div class="header-left">
-    <div class="brand-logo" id="brandLogo" title="Void Feed">
-      <div class="brand-glyph"></div>
-      <span class="brand-wordmark">void</span>
+    <div class="brand-logo" id="brandLogo" title="Void — Mindful Social Feed">
+      <svg class="void-logo-svg" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0.5" y="0.5" width="33" height="33" rx="9.5" class="void-logo-frame" stroke-width="1.2"/>
+        <circle cx="17" cy="17" r="10" class="void-logo-orbit" stroke-width="1.3" stroke-dasharray="38 12" stroke-linecap="round" transform="rotate(-45 17 17)"/>
+        <path d="M10.5 11L17 22.5L23.5 11" class="void-logo-chevron" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="17" cy="15.5" r="4.2" class="void-logo-core-bg"/>
+        <circle cx="17" cy="15.5" r="4.2" class="void-logo-core-ring" stroke-width="1.6"/>
+        <circle cx="17" cy="15.5" r="1.6" class="void-logo-dot"/>
+      </svg>
+      <div class="brand-wordmark-wrap">
+        <span class="brand-wordmark">void</span>
+        <span class="brand-badge">presence</span>
+      </div>
     </div>
     <div class="header-search">
       <div class="search-input-wrap">
         <svg class="icon-svg" width="14" height="14" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <input type="text" id="searchInput" placeholder="Search Void reflections, people..." autocomplete="off">
+        <input type="text" id="searchInput" placeholder="Search Void reflections, topics, people..." autocomplete="off">
       </div>
       <div class="search-dropdown" id="searchDropdown"></div>
     </div>
@@ -1296,10 +1406,10 @@
     <button class="center-nav-tab active" data-tab="feed" title="Home Feed">
       <svg class="icon-svg" width="20" height="20" viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
     </button>
-    <button class="center-nav-tab" data-tab="saved" title="Saved Posts">
+    <button class="center-nav-tab" data-tab="saved" title="Saved Bookmarks">
       <svg class="icon-svg" width="20" height="20" viewBox="0 0 24 24"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
     </button>
-    <button class="center-nav-tab" data-tab="circles" title="Circles / Communities">
+    <button class="center-nav-tab" data-tab="circles" title="Circles & Communities">
       <svg class="icon-svg" width="20" height="20" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
     </button>
   </nav>
@@ -1315,13 +1425,13 @@
     <!-- Messenger DM Button -->
     <button class="social-icon-btn" id="btnOpenMessenger" title="Direct Messages">
       <svg class="icon-svg" width="17" height="17" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
-      <span class="badge-count" id="msgBadgeCount">1</span>
+      <span class="badge-count" id="msgBadgeCount">2</span>
     </button>
 
     <!-- Notifications Bell -->
     <button class="social-icon-btn" id="btnOpenNotifs" title="Notifications">
       <svg class="icon-svg" width="17" height="17" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
-      <span class="badge-count" id="notifBadgeCount">3</span>
+      <span class="badge-count" id="notifBadgeCount">4</span>
     </button>
 
     <!-- Profile Circle -->
@@ -1345,8 +1455,8 @@
       </div>
       <div class="snippet-stats-row">
         <div class="snippet-stat-item">
-          <b id="statReflectionsCount">14</b>
-          <span>Posts</span>
+          <b id="statReflectionsCount">18</b>
+          <span>Reflections</span>
         </div>
         <div class="snippet-stat-item">
           <b id="statSavedCount">0</b>
@@ -1354,7 +1464,7 @@
         </div>
         <div class="snippet-stat-item">
           <b id="statPresenceTime">00:00</b>
-          <span>Session</span>
+          <span>Presence</span>
         </div>
       </div>
     </div>
@@ -1389,13 +1499,13 @@
           <svg class="icon-svg" width="18" height="18" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
           <span>Direct Messages</span>
         </div>
-        <span class="nav-pill-badge" style="background:var(--accent-blue);color:#fff;">1</span>
+        <span class="nav-pill-badge" style="background:var(--accent-blue);color:#fff;">2</span>
       </button>
 
       <button class="social-nav-link" id="navOpenSettingsBtn">
         <div class="social-nav-link-left">
           <svg class="icon-svg" width="18" height="18" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-          <span>Preferences</span>
+          <span>Identity Preferences</span>
         </div>
       </button>
     </nav>
@@ -1403,7 +1513,7 @@
     <!-- Quick Post Button -->
     <button class="btn-quick-post" id="btnFocusComposer">
       <svg class="icon-svg" width="16" height="16" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
-      <span>Post a Reflection</span>
+      <span>Share a Reflection</span>
     </button>
   </aside>
 
@@ -1421,40 +1531,40 @@
         <span class="story-label">Your story</span>
       </div>
 
-      <!-- Other Contacts' Stories -->
-      <div class="story-item" data-story-id="s1" data-author="Kaelen Vos" data-text="Disconnecting from cellular towers for the next 4 hours. Absolute silence is medicine.">
+      <!-- Real Dynamic Stories -->
+      <div class="story-item" data-story-id="s1" data-author="Mira Chen" data-text="Took the morning commuter train without glancing at my phone screen once. Watching the sun break through the mist over the river was better than any algorithmic reel.">
+        <div class="story-ring-wrap">
+          <div class="story-inner-avatar">M</div>
+        </div>
+        <span class="story-label">mira</span>
+      </div>
+
+      <div class="story-item" data-story-id="s2" data-author="Dr. Aris Thorne" data-text="Your attention span is not permanently broken. It was strip-mined by 4,000 behavioral engineers in Silicon Valley. You can reclaim it, one intentional hour at a time.">
+        <div class="story-ring-wrap">
+          <div class="story-inner-avatar">A</div>
+        </div>
+        <span class="story-label">dr_aris</span>
+      </div>
+
+      <div class="story-item" data-story-id="s3" data-author="Kaelen Vos" data-text="Studio quiet hours from 8 AM to 1 PM. Airplane mode on, doors closed. It's astonishing what you can design when the world is muted.">
         <div class="story-ring-wrap">
           <div class="story-inner-avatar">K</div>
         </div>
         <span class="story-label">kaelen</span>
       </div>
 
-      <div class="story-item" data-story-id="s2" data-author="Nadia Bloom" data-text="Exhaling longer than inhaling. Your nervous system resets in 90 seconds.">
+      <div class="story-item" data-story-id="s4" data-author="Nadia Bloom" data-text="Unsubscribed from 34 automated marketing newsletters before breakfast. An inbox is a workspace, not a billboard for strangers.">
         <div class="story-ring-wrap">
           <div class="story-inner-avatar">N</div>
         </div>
         <span class="story-label">nadia</span>
       </div>
 
-      <div class="story-item" data-story-id="s3" data-author="The Silent Sea" data-text="Waves breaking in Newfoundland with zero listeners. The universe needs no audience.">
-        <div class="story-ring-wrap">
-          <div class="story-inner-avatar">S</div>
-        </div>
-        <span class="story-label">silence</span>
-      </div>
-
-      <div class="story-item" data-story-id="s4" data-author="Julian Gray" data-text="Closed 48 browser tabs without checking them once. The world continued turning.">
+      <div class="story-item" data-story-id="s5" data-author="Julian Gray" data-text="35mm analogue photograph of dawn rain in Kyoto. No filters, zero digital noise, no post-processing. Just light reacting with silver halide.">
         <div class="story-ring-wrap">
           <div class="story-inner-avatar">J</div>
         </div>
         <span class="story-label">julian</span>
-      </div>
-
-      <div class="story-item" data-story-id="s5" data-author="Zenith Archive" data-text="Nothing you scrolled today will matter in 100 years. Breathe.">
-        <div class="story-ring-wrap">
-          <div class="story-inner-avatar">Z</div>
-        </div>
-        <span class="story-label">zenith</span>
       </div>
     </div>
 
@@ -1462,7 +1572,7 @@
     <div class="fb-composer-card" id="composerCard">
       <div class="composer-top-row">
         <div class="avatar-circle" id="composerUserAvatar">V</div>
-        <input type="text" class="composer-dummy-input" id="composerInput" placeholder="What reflection is occupying your silence?" autocomplete="off">
+        <input type="text" class="composer-dummy-input" id="composerInput" placeholder="What thought or reflection is occupying your mind?" autocomplete="off">
       </div>
       <div class="composer-actions-bar">
         <div class="composer-attach-tools">
@@ -1476,10 +1586,10 @@
           </button>
           <button class="attach-tool-btn" id="btnAttachTag">
             <svg class="icon-svg" width="16" height="16" viewBox="0 0 24 24" style="color:#f59e0b;"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" x2="9.01" y1="9" y2="9"/><line x1="15" x2="15.01" y1="9" y2="9"/></svg>
-            <span>Mood</span>
+            <span>Topic</span>
           </button>
         </div>
-        <button class="btn-submit-post" id="btnPublishPost">Post</button>
+        <button class="btn-submit-post" id="btnPublishPost">Share</button>
       </div>
     </div>
 
@@ -1494,7 +1604,7 @@
     <!-- INFINITE STREAM LOADER -->
     <div class="feed-loader" id="feedLoader">
       <span class="feed-loader-dot"></span>
-      <span>Traversing infinite quiet stream…</span>
+      <span>Traversing the infinite thoughtful stream…</span>
     </div>
   </section>
 
@@ -1503,8 +1613,8 @@
     <!-- Suggested Wanderers (Follow/Following) -->
     <div class="widget-card">
       <div class="widget-head">
-        <span>Suggested for You</span>
-        <span style="font-size:12px;color:var(--text-tertiary);cursor:pointer;" id="btnShuffleSuggested">Refresh</span>
+        <span>Suggested Thinkers</span>
+        <span style="font-size:12px;color:var(--text-tertiary);cursor:pointer;" id="btnShuffleSuggested">Shuffle</span>
       </div>
       <div style="display:flex;flex-direction:column;gap:12px;" id="suggestedUsersList">
         <!-- Rendered via JS -->
@@ -1514,31 +1624,14 @@
     <!-- Trending Reflections / Topics -->
     <div class="widget-card">
       <div class="widget-head">
-        <span>Trending in Silence</span>
+        <span>Trending Discussions</span>
       </div>
-      <div style="display:flex;flex-direction:column;gap:4px;">
-        <div class="trending-tag-row" data-tag="digitaldetox">
-          <div class="trending-tag-info">
-            <b>#digitaldetox</b>
-            <span>12.4k wanderers present</span>
-          </div>
-        </div>
-        <div class="trending-tag-row" data-tag="deepfocus">
-          <div class="trending-tag-info">
-            <b>#deepfocus</b>
-            <span>8.1k wanderers present</span>
-          </div>
-        </div>
-        <div class="trending-tag-row" data-tag="monotasking">
-          <div class="trending-tag-info">
-            <b>#monotasking</b>
-            <span>19.8k wanderers present</span>
-          </div>
-        </div>
+      <div style="display:flex;flex-direction:column;gap:4px;" id="trendingTopicsContainer">
+        <!-- Rendered via JS -->
       </div>
     </div>
 
-    <!-- Active Contacts / Silent Observers -->
+    <!-- Active Contacts / Online Thinkers -->
     <div class="widget-card">
       <div class="widget-head">
         <span>Online Contacts</span>
@@ -1551,8 +1644,17 @@
 
     <!-- Mini Footer -->
     <div class="mini-footer-links">
-      Privacy · Terms · Serenity Guidelines · Void Social © 2026<br>
-      No algorithms. No ad tracking. Pure unidirectional feed.
+      <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
+        <svg style="width:16px;height:16px;" viewBox="0 0 34 34" fill="none">
+          <rect x="0.5" y="0.5" width="33" height="33" rx="9.5" fill="var(--bg-surface-elevated)" stroke="var(--border-strong)" stroke-width="1.2"/>
+          <path d="M10.5 11L17 22.5L23.5 11" stroke="var(--text-primary)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="17" cy="15.5" r="4.2" stroke="var(--accent-blue)" stroke-width="1.8"/>
+        </svg>
+        <b style="color:var(--text-primary);font-size:12px;letter-spacing:-0.03em;">void</b>
+        <span style="font-size:11px;color:var(--text-tertiary);">· deliberate social presence</span>
+      </div>
+      Privacy · Terms · Digital Health Guidelines · Void Feed © 2026<br>
+      Zero algorithmic ranking. Zero data brokering. Pure intentionality.
     </div>
   </aside>
 
@@ -1597,7 +1699,7 @@
         <div class="avatar-circle" id="storyAuthorAvatar" style="width:34px;height:34px;">K</div>
         <div>
           <b style="font-size:13.5px;color:#fff;" id="storyAuthorName">Kaelen Vos</b>
-          <small style="display:block;font-size:11px;color:rgba(255,255,255,0.6);">2h ago</small>
+          <small style="display:block;font-size:11px;color:rgba(255,255,255,0.6);" id="storyTimestamp">2h ago</small>
         </div>
       </div>
       <button class="modal-close-x" id="btnCloseStory" style="color:#fff;top:auto;right:auto;position:static;">✕</button>
@@ -1605,13 +1707,13 @@
 
     <!-- Story Main Content -->
     <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:24px;text-align:center;">
-      <p style="font-size:18px;font-weight:500;line-height:1.6;color:#fff;" id="storyBodyText">
-        Disconnecting from cellular towers for the next 4 hours. Absolute silence is medicine.
+      <p style="font-size:17.5px;font-weight:500;line-height:1.65;color:#fff;" id="storyBodyText">
+        Story thought goes here.
       </p>
     </div>
 
     <div style="display:flex;gap:8px;">
-      <input type="text" placeholder="Send a quiet reply..." style="flex:1;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:999px;padding:8px 14px;color:#fff;font-size:13px;outline:none;">
+      <input type="text" id="storyReplyInput" placeholder="Send a quiet reply..." style="flex:1;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:999px;padding:8px 14px;color:#fff;font-size:13px;outline:none;">
       <button style="background:#fff;border:none;border-radius:999px;padding:8px 16px;font-size:12.5px;font-weight:600;color:#000;cursor:pointer;" id="btnReplyStory">Send</button>
     </div>
   </div>
@@ -1624,21 +1726,28 @@
     <div style="display:flex;align-items:center;gap:10px;">
       <div class="avatar-circle" style="width:34px;height:34px;">V</div>
       <div>
-        <h3 style="font-size:15px;font-weight:600;">Direct Messages</h3>
-        <span style="font-size:11.5px;color:var(--text-tertiary);">Zero algorithmic notifications or read receipts.</span>
+        <h3 style="font-size:15px;font-weight:600;">Direct Conversations</h3>
+        <span style="font-size:11.5px;color:var(--text-tertiary);">Private, ephemeral messaging with zero typing pressure.</span>
       </div>
     </div>
-    <div style="display:flex;flex-direction:column;gap:8px;max-height:240px;overflow-y:auto;padding-right:4px;" id="dmThreadList">
+    <div style="display:flex;flex-direction:column;gap:8px;max-height:260px;overflow-y:auto;padding-right:4px;" id="dmThreadList">
       <div style="background:var(--bg-surface-elevated);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px;">
         <div style="display:flex;justify-content:space-between;font-size:12px;font-weight:600;margin-bottom:2px;">
-          <span>The Void</span>
-          <span style="font-family:var(--font-mono);font-size:10px;color:var(--text-tertiary);">just now</span>
+          <span>Elena Rostova</span>
+          <span style="font-family:var(--font-mono);font-size:10px;color:var(--text-tertiary);">14m ago</span>
         </div>
-        <p style="font-size:12.5px;color:var(--text-secondary);">Your attention belongs to you. No urgent reply expected.</p>
+        <p style="font-size:12.5px;color:var(--text-secondary);">Welcome to Void. Loved your reflection on digital boundaries earlier today.</p>
+      </div>
+      <div style="background:var(--bg-surface-elevated);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px;">
+        <div style="display:flex;justify-content:space-between;font-size:12px;font-weight:600;margin-bottom:2px;">
+          <span>Dr. Aris Thorne</span>
+          <span style="font-family:var(--font-mono);font-size:10px;color:var(--text-tertiary);">1h ago</span>
+        </div>
+        <p style="font-size:12.5px;color:var(--text-secondary);">If you ever need the paper on cognitive residue from tab switching, let me know.</p>
       </div>
     </div>
     <div style="display:flex;gap:6px;margin-top:4px;">
-      <input type="text" id="dmInput" placeholder="Message nobody..." style="flex:1;padding:8px 14px;border-radius:var(--radius-full);background:var(--bg-surface-elevated);border:1px solid var(--border);font-size:13px;outline:none;">
+      <input type="text" id="dmInput" placeholder="Type a message..." style="flex:1;padding:8px 14px;border-radius:var(--radius-full);background:var(--bg-surface-elevated);border:1px solid var(--border);font-size:13px;outline:none;">
       <button class="btn-submit-post" id="btnSendDm">Send</button>
     </div>
   </div>
@@ -1648,19 +1757,23 @@
 <div class="modal-backdrop" id="notifsModal">
   <div class="modal-window">
     <button class="modal-close-x" data-close="notifsModal">✕</button>
-    <h3 style="font-size:15px;font-weight:600;">Activity & Alerts</h3>
+    <h3 style="font-size:15px;font-weight:600;">Activity & Notifications</h3>
     <div style="display:flex;flex-direction:column;gap:8px;" id="notifsList">
       <div style="padding:10px 12px;background:var(--bg-surface-elevated);border-radius:var(--radius-sm);font-size:13px;display:flex;align-items:center;gap:10px;">
         <svg class="icon-svg" width="16" height="16" viewBox="0 0 24 24" style="color:var(--like-red);fill:currentColor;"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
-        <span><b>Nadia Bloom</b> and 4 others liked your reflection.</span>
+        <span><b>Elena Rostova</b> and 14 others liked your reflection on <b>#DeepWork</b>.</span>
       </div>
       <div style="padding:10px 12px;background:var(--bg-surface-elevated);border-radius:var(--radius-sm);font-size:13px;display:flex;align-items:center;gap:10px;">
-        <svg class="icon-svg" width="16" height="16" viewBox="0 0 24 24" style="color:var(--success);"><polyline points="20 6 9 17 4 12"/></svg>
-        <span>Zero targeted behavioral advertisements served today.</span>
+        <svg class="icon-svg" width="16" height="16" viewBox="0 0 24 24" style="color:var(--accent-blue);"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <span><b>Dr. Aris Thorne</b> started following your thoughts.</span>
       </div>
       <div style="padding:10px 12px;background:var(--bg-surface-elevated);border-radius:var(--radius-sm);font-size:13px;display:flex;align-items:center;gap:10px;">
         <svg class="icon-svg" width="16" height="16" viewBox="0 0 24 24" style="color:var(--save-gold);"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        <span>Quiet Milestone: 20 minutes of serene screen time.</span>
+        <span><b>Julian Gray</b> commented: <i>"This perspective completely shifted my morning routine."</i></span>
+      </div>
+      <div style="padding:10px 12px;background:var(--bg-surface-elevated);border-radius:var(--radius-sm);font-size:13px;display:flex;align-items:center;gap:10px;">
+        <svg class="icon-svg" width="16" height="16" viewBox="0 0 24 24" style="color:var(--success);"><polyline points="20 6 9 17 4 12"/></svg>
+        <span>Mindful Milestone: 30 minutes of undisturbed presence achieved.</span>
       </div>
     </div>
   </div>
@@ -1670,7 +1783,7 @@
 <div class="modal-backdrop" id="profileModal">
   <div class="modal-window">
     <button class="modal-close-x" data-close="profileModal">✕</button>
-    <h3 style="font-size:15px;font-weight:600;">Edit Profile</h3>
+    <h3 style="font-size:15px;font-weight:600;">Edit Profile Identity</h3>
     <div style="display:flex;align-items:center;gap:12px;">
       <div class="avatar-circle" id="modalProfileAvatar" style="width:54px;height:54px;font-size:18px;">V</div>
       <button style="padding:6px 12px;background:var(--bg-surface-elevated);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;cursor:pointer;" id="btnRandomizeAvatar">Cycle Initial</button>
@@ -1707,10 +1820,10 @@
     postCount: 0,
     likedPosts: new Set(JSON.parse(localStorage.getItem('void-liked-ids') || '[]')),
     savedPosts: JSON.parse(localStorage.getItem('void-saved-data') || '[]'),
-    followedUsers: new Set(['Elena Rostova']),
+    followedUsers: new Set(['Elena Rostova', 'Dr. Aris Thorne']),
     secondsElapsed: 0,
     activeStoryTimer: null,
-    joinedCircles: new Set(['c1'])
+    joinedCircles: new Set(['c1', 'c2'])
   };
 
   // --- DOM SELECTORS ---
@@ -1742,7 +1855,7 @@
   applyTheme(state.theme);
   themeToggleBtn.addEventListener('click', () => {
     applyTheme(state.theme === 'dark' ? 'light' : 'dark');
-    showToast(`Switched to ${state.theme} mode`);
+    showToast(`Theme switched to ${state.theme} mode`);
   });
 
   // --- TOAST HELPER ---
@@ -1771,7 +1884,7 @@
   }
   updateProfileUI();
 
-  // --- SESSION DURATION TIMER (0% CPU impact, standard interval) ---
+  // --- SESSION DURATION TIMER (0% CPU impact) ---
   setInterval(() => {
     state.secondsElapsed++;
     const m = Math.floor(state.secondsElapsed / 60);
@@ -1781,44 +1894,81 @@
     if (el) el.textContent = str;
   }, 1000);
 
-  // --- SEED SOCIAL POST DATA GENERATOR ---
+  // ==========================================================================
+  // ENRICHED SEED CONTENT POOLS (THOUGHTS, QUOTES, POLLS, AUTHORS, COMMENTS)
+  // ==========================================================================
   const AUTHOR_POOL = [
-    { name: 'Elena Rostova', handle: '@elena_serene', initial: 'E', verified: true },
-    { name: 'Marcus Vance', handle: '@vance_calm', initial: 'M', verified: false },
-    { name: 'Aria Thorne', handle: '@aria_solitude', initial: 'A', verified: true },
+    { name: 'Elena Rostova', handle: '@elena_mind', initial: 'E', verified: true },
+    { name: 'Dr. Aris Thorne', handle: '@aris_neuro', initial: 'A', verified: true },
     { name: 'Kaelen Vos', handle: '@kaelen_void', initial: 'K', verified: false },
-    { name: 'Nadia Bloom', handle: '@bloom_mind', initial: 'N', verified: true },
-    { name: 'Tarek Al-Mansoor', handle: '@tarek_silence', initial: 'T', verified: false }
+    { name: 'Nadia Bloom', handle: '@nadia_bloom', initial: 'N', verified: true },
+    { name: 'Julian Gray', handle: '@juliangray', initial: 'J', verified: false },
+    { name: 'Soren Lindqvist', handle: '@soren_craft', initial: 'S', verified: true },
+    { name: 'Mira Chen', handle: '@mirachen', initial: 'M', verified: true },
+    { name: 'Tarek Al-Mansoor', handle: '@tarek_still', initial: 'T', verified: false }
   ];
 
   const THOUGHT_POOL = [
-    "Notice how your breath automatically slows down when nobody is pinging you for an urgent turnaround. Real emergencies are rare.",
-    "The modern feed was engineered to keep your cortisol elevated. When you resist opening five notifications at once, your mind slowly repairs.",
-    "Closed every single browser tab except this one. The world did not fall apart. All those 'must-read' articles were just ambient noise.",
-    "A clean room with the phone left in the hallway. One cup of tea. No podcast, no video, no background drone. Just physical reality.",
-    "Attention is the only finite currency you possess. Once a company takes your hour with rage-bait, it is permanently gone.",
-    "Doing exactly one thing right now. Not switching between chat tabs while pretending to work. Complete, quiet presence."
+    "The single most liberating realization of my 30s: Almost nothing in your notifications requires a response within 10 minutes. If the building is on fire, someone will call. Everything else is manufactured urgency.",
+    "The Tab Bankruptcy Protocol: Closed 74 open browser tabs today. Not a single idea was lost. What we call 'saving for later' is usually just hoarding information we're too exhausted to digest.",
+    "Spent 90 minutes sketching in a physical notebook with my phone in the kitchen drawer. The density of thought you experience without the micro-distraction of a screen is astonishing.",
+    "We replaced the front porch with a hyper-optimized feed engineered by behavioral psychologists to maximize our time-on-screen. Stepping away isn't anti-technology — it's pro-human.",
+    "You don't need a new task management framework or a 5th productivity app. You need an empty afternoon and the courage to say no to three meetings.",
+    "A silent walk through the park at dusk. No podcasts, no audiobooks, no calls. Just the sound of cold wind in the pine branches. Your brain has a natural defragmentation cycle if you let it run.",
+    "Notice how physical conversations don't have algorithmic rankings or like buttons. You just speak, listen, and the words dissolve into the room. We need more ephemeral moments.",
+    "The best feature on any modern operating system is 'Do Not Disturb'. It should probably be the default state.",
+    "Morning routine experiment: No phone until 8:30 AM. First 2 hours dedicated to natural sunlight, physical coffee, and handwritten journaling. Productivity doubled; anxiety halved.",
+    "If an app is free, your nervous system is the commodity. Guard your attention with the same ferocity you guard your bank account."
   ];
 
   const QUOTE_POOL = [
-    "\"The ability to be in the present moment is a major component of mental wellness.\" — Abraham Maslow",
-    "\"All of humanity's problems stem from man's inability to sit quietly in a room alone.\" — Blaise Pascal",
-    "\"Simplicity is about subtracting the obvious and adding the meaningful.\" — John Maeda",
-    "\"Silence is not an absence of sound, but the presence of stillness.\" — Eastern Reflection"
+    "“The ability to observe without evaluating is the highest form of intelligence.” — J. Krishnamurti",
+    "“To be everywhere is to be nowhere. People who spend their whole life traveling end up having plenty of places where they can find hospitality, but no real friendships.” — Seneca",
+    "“You have power over your mind — not outside events. Realize this, and you will find strength.” — Marcus Aurelius",
+    "“Simplicity is about subtracting the obvious and adding the meaningful.” — John Maeda",
+    "“Attention is the rarest and purest form of generosity.” — Simone Weil",
+    "“Deep work is the superpower of the 21st century. In an economy of distraction, the quiet mind produces disproportionate value.” — Cal Newport"
   ];
 
   const POLL_POOL = [
-    { question: "How many browser tabs do you currently have open?", options: ["Under 5", "5 to 15", "Over 25 (clutter)"] },
-    { question: "When was your last 1-hour walk without headphones?", options: ["Today", "This week", "Can't remember"] },
-    { question: "Do you sleep with your phone in a different room?", options: ["Yes, always", "Working on it", "Next to pillow"] }
+    {
+      question: "What is your primary phone habit the minute you wake up?",
+      options: ["Check notifications immediately (Cortisol spike)", "Look at time, then leave it on nightstand", "Keep phone in another room overnight (Serene)"]
+    },
+    {
+      question: "How many open browser tabs are currently running on your machine?",
+      options: ["Under 10 (Clean focus)", "10 to 30 (Organized chaos)", "50+ (Complete tab bankruptcy)"]
+    },
+    {
+      question: "When was your last 60-minute walk with ZERO headphones or screens?",
+      options: ["Earlier today / yesterday", "Sometime this week", "Honestly can't remember"]
+    },
+    {
+      question: "Which distraction steals the most hours of your week?",
+      options: ["Short-form video reels & infinite scrolls", "Work messaging (Slack/Teams/Email)", "Group chats & social feeds"]
+    }
+  ];
+
+  const COMMENT_POOL = [
+    "I tried leaving my phone in the kitchen overnight last week. My sleep quality score jumped by 30%. Never going back.",
+    "The 'close all tabs' shortcut (Ctrl+Shift+W) is the ultimate liberating button.",
+    "We don't have an attention deficit crisis; we have an attention exploitation crisis.",
+    "Golden reminder. Closing this tab now and going for a sunset walk.",
+    "So true. It's funny how when you don't reply in 5 minutes, people actually figure things out on their own.",
+    "Needed this reminder today. Screen time was creeping up to 6 hours.",
+    "Physical notebooks have zero push notifications. Still the best invention in human history.",
+    "Practicing this exact exercise right now. Deep breath."
   ];
 
   function generateSocialPost(id) {
     const author = AUTHOR_POOL[id % AUTHOR_POOL.length];
     const postType = (id % 4 === 1) ? 'quote' : (id % 4 === 2) ? 'poll' : 'text';
-    const baseLikes = 24 + ((id * 17) % 89);
-    const baseComments = 3 + ((id * 7) % 15);
-    const baseShares = 1 + ((id * 3) % 8);
+    const baseLikes = 28 + ((id * 23) % 115);
+    const baseComments = 4 + ((id * 7) % 18);
+    const baseShares = 1 + ((id * 4) % 11);
+
+    const c1 = COMMENT_POOL[(id * 2) % COMMENT_POOL.length];
+    const c2 = COMMENT_POOL[(id * 2 + 1) % COMMENT_POOL.length];
 
     return {
       id: `post_${id}`,
@@ -1826,7 +1976,7 @@
       handle: author.handle,
       initial: author.initial,
       verified: author.verified,
-      time: `${2 + (id % 55)}m ago`,
+      time: `${3 + (id % 52)}m ago`,
       type: postType,
       text: THOUGHT_POOL[id % THOUGHT_POOL.length],
       quote: QUOTE_POOL[id % QUOTE_POOL.length],
@@ -1835,8 +1985,8 @@
       commentsCount: baseComments,
       sharesCount: baseShares,
       comments: [
-        { author: 'Soren', text: 'This hit home today. Logging off for the evening.' },
-        { author: 'Mira', text: 'Practicing this exact exercise right now.' }
+        { author: 'Marcus Vance', text: c1 },
+        { author: 'Aria Thorne', text: c2 }
       ]
     };
   }
@@ -1861,12 +2011,12 @@
     } else if (post.type === 'poll') {
       mediaHtml = `
         <div class="post-poll-container">
-          <span style="font-size:13px;font-weight:600;margin-bottom:2px;">${post.poll.question}</span>
+          <span style="font-size:13.5px;font-weight:600;margin-bottom:4px;">${post.poll.question}</span>
           ${post.poll.options.map((opt, idx) => `
             <div class="poll-choice-bar" data-poll-idx="${idx}">
               <div class="poll-fill-level"></div>
               <span style="z-index:1;">${opt}</span>
-              <span class="poll-pct" style="display:none;">${idx === 0 ? '58%' : idx === 1 ? '32%' : '10%'}</span>
+              <span class="poll-pct" style="display:none;">${idx === 0 ? '62%' : idx === 1 ? '26%' : '12%'}</span>
             </div>
           `).join('')}
         </div>
@@ -1886,9 +2036,25 @@
             <span class="post-author-sub">${post.handle} · ${post.time}</span>
           </div>
         </div>
-        <button class="post-options-btn" title="More options">
-          <svg class="icon-svg" width="16" height="16" viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
-        </button>
+        <div class="post-options-wrap">
+          <button class="post-options-btn" title="Options">
+            <svg class="icon-svg" width="16" height="16" viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+          </button>
+          <div class="post-menu-dropdown">
+            <div class="post-menu-item opt-save">
+              <svg class="icon-svg" width="13" height="13" viewBox="0 0 24 24"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
+              <span>Save reflection</span>
+            </div>
+            <div class="post-menu-item opt-copy">
+              <svg class="icon-svg" width="13" height="13" viewBox="0 0 24 24"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+              <span>Copy link</span>
+            </div>
+            <div class="post-menu-item opt-hide">
+              <svg class="icon-svg" width="13" height="13" viewBox="0 0 24 24"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" x2="22" y1="2" y2="22"/></svg>
+              <span>Hide reflection</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- Text Body -->
@@ -1948,7 +2114,7 @@
         <!-- Add a comment input -->
         <div class="comment-input-row">
           <div class="avatar-circle" style="width:26px;height:26px;font-size:11px;">${state.userInitial}</div>
-          <input type="text" class="comment-input-field" placeholder="Write a reflection..." autocomplete="off">
+          <input type="text" class="comment-input-field" placeholder="Add a mindful thought..." autocomplete="off">
           <button class="btn-comment-send">Post</button>
         </div>
       </div>
@@ -1958,7 +2124,7 @@
     return card;
   }
 
-  // --- POST EVENT BINDINGS (LIKE, COMMENT, SAVE, SHARE, POLL) ---
+  // --- POST EVENT BINDINGS (LIKE, DOUBLE TAP, COMMENT, SAVE, OPTIONS) ---
   function bindPostEvents(card, post) {
     const btnLike = card.querySelector('.btn-like');
     const likesLabel = card.querySelector('.metrics-likes-label');
@@ -1981,12 +2147,43 @@
       localStorage.setItem('void-liked-ids', JSON.stringify(Array.from(state.likedPosts)));
     });
 
-    // DOUBLE CLICK POST BODY TO LIKE (Instagram feature)
+    // DOUBLE TAP / DOUBLE CLICK TO LIKE (Instagram heart burst)
     const textBody = card.querySelector('.post-text-body');
-    textBody.addEventListener('dblclick', () => {
+    textBody.addEventListener('dblclick', (e) => {
+      const heartBurst = document.createElement('div');
+      heartBurst.className = 'insta-heart-burst';
+      heartBurst.innerHTML = '❤️';
+      card.appendChild(heartBurst);
+      setTimeout(() => heartBurst.remove(), 600);
+
       if (!state.likedPosts.has(post.id)) {
         btnLike.click();
       }
+    });
+
+    // OPTIONS MENU TOGGLE
+    const optionsBtn = card.querySelector('.post-options-btn');
+    const menuDropdown = card.querySelector('.post-menu-dropdown');
+    optionsBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isVisible = menuDropdown.style.display === 'flex';
+      document.querySelectorAll('.post-menu-dropdown').forEach(d => d.style.display = 'none');
+      menuDropdown.style.display = isVisible ? 'none' : 'flex';
+    });
+
+    card.querySelector('.opt-save').addEventListener('click', () => {
+      card.querySelector('.btn-save').click();
+      menuDropdown.style.display = 'none';
+    });
+    card.querySelector('.opt-copy').addEventListener('click', () => {
+      card.querySelector('.btn-share').click();
+      menuDropdown.style.display = 'none';
+    });
+    card.querySelector('.opt-hide').addEventListener('click', () => {
+      card.style.opacity = '0';
+      card.style.transform = 'scale(0.95)';
+      setTimeout(() => card.remove(), 250);
+      showToast('Reflection hidden from feed');
     });
 
     // SAVE / BOOKMARK TOGGLE
@@ -2040,7 +2237,7 @@
       commentsList.appendChild(newBubble);
       commentInput.value = '';
       commentsCountLabel.textContent = `${post.comments.length} comments`;
-      showToast('Reflection shared');
+      showToast('Your perspective was shared');
     }
 
     commentSend.addEventListener('click', submitComment);
@@ -2059,12 +2256,19 @@
       bar.addEventListener('click', () => {
         card.querySelectorAll('.poll-choice-bar').forEach((b, i) => {
           b.querySelector('.poll-pct').style.display = 'inline';
-          b.querySelector('.poll-fill-level').style.width = (i === 0 ? '58%' : i === 1 ? '32%' : '10%');
+          b.querySelector('.poll-fill-level').style.width = (i === 0 ? '62%' : i === 1 ? '26%' : '12%');
         });
-        showToast('Poll response recorded in stillness');
+        showToast('Poll vote recorded in stillness');
       }, { once: true });
     });
   }
+
+  // Close menus on outside click
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.post-options-wrap')) {
+      document.querySelectorAll('.post-menu-dropdown').forEach(d => d.style.display = 'none');
+    }
+  });
 
   // --- INFINITE STREAM LOADER WITH MUTEX (0% IDLE CPU USAGE) ---
   let isBatchLoading = false;
@@ -2119,7 +2323,7 @@
     const card = renderPostCard(userPost);
     feedStream.insertBefore(card, feedStream.firstChild);
     composerInput.value = '';
-    showToast('Your reflection was published to the silence');
+    showToast('Your reflection was posted to the network');
 
     // Scroll smoothly to newly published post
     card.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -2132,15 +2336,15 @@
 
   // Attach tool helpers
   document.getElementById('btnAttachQuote').addEventListener('click', () => {
-    composerInput.value = "\"The stillness you seek is already present.\" ";
+    composerInput.value = "\"The stillness you seek is already present within you.\" ";
     composerInput.focus();
   });
   document.getElementById('btnAttachPoll').addEventListener('click', () => {
-    composerInput.value = "Poll: Did you step away from screens today?";
+    composerInput.value = "Poll: Did you take a digital-free walk today?";
     composerInput.focus();
   });
   document.getElementById('btnAttachTag').addEventListener('click', () => {
-    composerInput.value += " #digitaldetox";
+    composerInput.value += " #DeepWork";
     composerInput.focus();
   });
 
@@ -2150,14 +2354,18 @@
   const storyAuthorAvatar = document.getElementById('storyAuthorAvatar');
   const storyAuthorName = document.getElementById('storyAuthorName');
   const storyBodyText = document.getElementById('storyBodyText');
+  const storyTimestamp = document.getElementById('storyTimestamp');
   const btnCloseStory = document.getElementById('btnCloseStory');
+  const storyReplyInput = document.getElementById('storyReplyInput');
 
   function openStory(item) {
     const author = item.dataset.author || state.userName;
-    const text = item.dataset.text || 'Enjoying a quiet pause in the day.';
+    const text = item.dataset.text || 'Enjoying a mindful pause from the online noise.';
     storyAuthorName.textContent = author;
     storyAuthorAvatar.textContent = author[0];
     storyBodyText.textContent = text;
+    storyTimestamp.textContent = '2h ago';
+    storyReplyInput.value = '';
     storyModal.style.display = 'flex';
 
     // Animate 5-second progress bar
@@ -2196,9 +2404,10 @@
 
   // --- SUGGESTED USERS & ONLINE CONTACTS ---
   const SUGGESTED_DATA = [
-    { name: 'Soren Kierk', role: 'Philosopher of Silence', initial: 'S' },
-    { name: 'Clara Oswald', role: 'Slow Tech Advocate', initial: 'C' },
-    { name: 'Mateo Ruiz', role: 'Zenith Contributor', initial: 'M' }
+    { name: 'Elena Rostova', role: 'Author of \'The Quiet Mind\'', initial: 'E' },
+    { name: 'Dr. Aris Thorne', role: 'Cognitive Neuroscientist, Oxford', initial: 'A' },
+    { name: 'Soren Lindqvist', role: 'Minimalist Architecture, Oslo', initial: 'S' },
+    { name: 'Nadia Bloom', role: 'Slow Technology Advocate, Tokyo', initial: 'N' }
   ];
 
   function renderSuggestedUsers() {
@@ -2241,7 +2450,33 @@
     renderSuggestedUsers();
   });
 
-  const ONLINE_USERS = ['Elena Rostova', 'Kaelen Vos', 'Nadia Bloom', 'Julian Gray'];
+  // TRENDING TOPICS CONTAINER
+  const TRENDING_TOPICS = [
+    { tag: 'DeepWork', count: '18.4k reflections' },
+    { tag: 'DigitalSabbath', count: '9.2k wanderers offline' },
+    { tag: 'Monotasking', count: '14.1k focused right now' },
+    { tag: 'TabBankruptcy', count: '6.5k tabs closed' },
+    { tag: 'SlowLiving', count: '22.7k quiet discussions' }
+  ];
+
+  const trendingContainer = document.getElementById('trendingTopicsContainer');
+  TRENDING_TOPICS.forEach(t => {
+    const el = document.createElement('div');
+    el.className = 'trending-tag-row';
+    el.innerHTML = `
+      <div class="trending-tag-info">
+        <b>#${t.tag}</b>
+        <span>${t.count}</span>
+      </div>
+    `;
+    el.addEventListener('click', () => {
+      showToast(`Filtered feed by #${t.tag}`);
+    });
+    trendingContainer.appendChild(el);
+  });
+
+  // ONLINE USERS
+  const ONLINE_USERS = ['Elena Rostova', 'Dr. Aris Thorne', 'Kaelen Vos', 'Nadia Bloom', 'Julian Gray'];
   const onlineContainer = document.getElementById('onlineContactsList');
   ONLINE_USERS.forEach(name => {
     const item = document.createElement('div');
@@ -2302,7 +2537,7 @@
           <span style="font-size:16px;">Saved Bookmarks (${state.savedPosts.length})</span>
           <button style="background:none;border:none;color:var(--accent-blue);font-size:12px;cursor:pointer;" id="btnBackToFeed">Back to Feed</button>
         </div>
-        <p style="font-size:13px;color:var(--text-secondary);">Your privately retained reflections.</p>
+        <p style="font-size:13px;color:var(--text-secondary);">Your privately retained reflections and ideas.</p>
       `;
       header.querySelector('#btnBackToFeed').addEventListener('click', () => setTab('feed'));
       altTabContainer.appendChild(header);
@@ -2328,7 +2563,7 @@
           <span style="font-size:16px;">Circles & Communities</span>
           <button style="background:none;border:none;color:var(--accent-blue);font-size:12px;cursor:pointer;" id="btnBackToFeed2">Back to Feed</button>
         </div>
-        <p style="font-size:13px;color:var(--text-secondary);">Autonomous groups requiring zero obligations or active posting.</p>
+        <p style="font-size:13px;color:var(--text-secondary);">Thoughtful groups requiring zero obligations or active posting.</p>
       `;
       circlesHeader.querySelector('#btnBackToFeed2').addEventListener('click', () => setTab('feed'));
       altTabContainer.appendChild(circlesHeader);
@@ -2336,7 +2571,8 @@
       const circlesData = [
         { id: 'c1', name: 'Anti-Urgency Consortium', members: '14.2k', desc: 'Rejecting false workplace emergencies and non-stop notifications.' },
         { id: 'c2', name: 'Deliberate Monotasking', members: '19.8k', desc: 'Doing one single task from start to finish without tab switching.' },
-        { id: 'c3', name: 'Zero Inbound Network', members: '31.0k', desc: 'Unidirectional listening. Presence without demand.' }
+        { id: 'c3', name: 'Slow Technology Society', members: '24.5k', desc: 'Advocating for humane software, offline hobbies, and analogue habits.' },
+        { id: 'c4', name: 'Zero Inbound Network', members: '31.0k', desc: 'Unidirectional listening. Presence without demand.' }
       ];
 
       circlesData.forEach(c => {
@@ -2470,8 +2706,8 @@
     searchDropdown.innerHTML = '';
     const matches = [
       `Reflections tagged #${query}`,
-      `People named "${query}"`,
-      `Circles discussing ${query}`
+      `Thinkers named "${query}"`,
+      `Discussions on ${query}`
     ];
     matches.forEach(m => {
       const it = document.createElement('div');
