@@ -1375,6 +1375,53 @@
   /* ==========================================================================
      REELS FEATURE DESIGN SYSTEM (INSTAGRAM / TIKTOK STYLE FULL-SCREEN SNAP)
      ========================================================================== */
+  .reels-feed-wrapper {
+    width: 100%;
+    max-width: 440px;
+    margin: 0 auto;
+    position: relative;
+  }
+  @media (max-width: 768px) {
+    .reels-feed-wrapper {
+      max-width: 100%;
+    }
+  }
+
+  .reels-nav-arrows {
+    position: absolute;
+    right: -62px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 25;
+  }
+  @media (max-width: 900px) {
+    .reels-nav-arrows {
+      display: none;
+    }
+  }
+
+  .reels-arrow-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-strong);
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: var(--shadow-md);
+    transition: transform var(--anim-fast), background-color var(--anim-fast);
+  }
+  .reels-arrow-btn:hover {
+    transform: scale(1.08);
+    background: var(--bg-surface-elevated);
+  }
+
   .reels-feed-container {
     width: 100%;
     max-width: 440px;
@@ -1980,21 +2027,33 @@
     <div class="social-feed-stream" id="altTabContainer" style="display:none;"></div>
 
     <!-- DEDICATED REELS FEED CONTAINER (VERTICAL SNAP SCROLL & INFINITE FEED) -->
-    <div class="reels-feed-container" id="reelsContainer" style="display:none;">
-      <!-- Top header bar for Reels -->
-      <div class="reels-top-bar">
-        <button class="reels-back-btn" id="btnExitReels" title="Back to Feed">
-          <svg class="icon-svg" width="14" height="14" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-          <span>Feed</span>
-        </button>
-        <span style="font-size:13px;font-weight:600;color:rgba(255,255,255,0.9);letter-spacing:0.02em;">Void Reels</span>
+    <div class="reels-feed-wrapper" id="reelsWrapper" style="display:none;">
+      <div class="reels-feed-container" id="reelsContainer">
+        <!-- Top header bar for Reels -->
+        <div class="reels-top-bar">
+          <button class="reels-back-btn" id="btnExitReels" title="Back to Feed">
+            <svg class="icon-svg" width="14" height="14" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+            <span>Feed</span>
+          </button>
+          <span style="font-size:13px;font-weight:600;color:rgba(255,255,255,0.9);letter-spacing:0.02em;">Void Reels</span>
+        </div>
+
+        <!-- Reels items stream -->
+        <div id="reelsStreamList"></div>
+
+        <!-- Sentinel for infinite auto-loading -->
+        <div id="reelsSentinel" style="height:40px;width:100%;"></div>
       </div>
 
-      <!-- Reels items stream -->
-      <div id="reelsStreamList"></div>
-
-      <!-- Sentinel for infinite auto-loading -->
-      <div id="reelsSentinel" style="height:40px;width:100%;"></div>
+      <!-- Desktop Floating Nav Arrows -->
+      <div class="reels-nav-arrows">
+        <button class="reels-arrow-btn" id="btnReelPrev" title="Previous Reel (Up Arrow / K)">
+          <svg class="icon-svg" width="18" height="18" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+        </button>
+        <button class="reels-arrow-btn" id="btnReelNext" title="Next Reel (Down Arrow / J)">
+          <svg class="icon-svg" width="18" height="18" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+      </div>
     </div>
 
     <!-- INFINITE STREAM LOADER -->
@@ -2206,20 +2265,47 @@
 (function() {
   'use strict';
 
+  // --- ROBUST STORAGE WRAPPER (GUARANTEED ZERO CRASHES IN PRIVATE BROWSING) ---
+  const safeStorage = {
+    get: function(key, fallback) {
+      try {
+        const val = localStorage.getItem(key);
+        return val !== null ? val : fallback;
+      } catch (e) {
+        return fallback;
+      }
+    },
+    set: function(key, val) {
+      try {
+        localStorage.setItem(key, typeof val === 'string' ? val : JSON.stringify(val));
+      } catch (e) {}
+    },
+    getJSON: function(key, fallback) {
+      try {
+        const val = localStorage.getItem(key);
+        return val ? JSON.parse(val) : fallback;
+      } catch (e) {
+        return fallback;
+      }
+    }
+  };
+
   // --- STATE SYSTEM ---
   const state = {
-    theme: localStorage.getItem('void-social-theme') || 'dark',
-    userName: localStorage.getItem('void-user-name') || 'Wanderer #409',
-    userHandle: localStorage.getItem('void-user-handle') || '@voidfarer',
-    userInitial: localStorage.getItem('void-user-initial') || 'V',
+    theme: safeStorage.get('void-social-theme', 'dark'),
+    userName: safeStorage.get('void-user-name', 'Wanderer #409'),
+    userHandle: safeStorage.get('void-user-handle', '@voidfarer'),
+    userInitial: safeStorage.get('void-user-initial', 'V'),
+    userReflectionsCount: parseInt(safeStorage.get('void-reflections-count', '18'), 10) || 18,
     activeTab: 'feed',
     postCount: 0,
-    likedPosts: new Set(JSON.parse(localStorage.getItem('void-liked-ids') || '[]')),
-    savedPosts: JSON.parse(localStorage.getItem('void-saved-data') || '[]'),
-    followedUsers: new Set(['Elena Rostova', 'Dr. Aris Thorne']),
+    likedPosts: new Set(safeStorage.getJSON('void-liked-ids', [])),
+    savedPosts: safeStorage.getJSON('void-saved-data', []),
+    followedUsers: new Set(safeStorage.getJSON('void-followed-users', ['Elena Rostova', 'Dr. Aris Thorne'])),
     secondsElapsed: 0,
     activeStoryTimer: null,
-    joinedCircles: new Set(['c1', 'c2'])
+    joinedCircles: new Set(safeStorage.getJSON('void-joined-circles', ['c1', 'c2'])),
+    activeDmContact: 'Elena Rostova'
   };
 
   // --- DOM SELECTORS ---
@@ -2239,7 +2325,7 @@
   function applyTheme(theme) {
     state.theme = theme;
     htmlDoc.setAttribute('data-theme', theme);
-    localStorage.setItem('void-social-theme', theme);
+    safeStorage.set('void-social-theme', theme);
     if (theme === 'dark') {
       themeIconSun.style.display = 'inline-block';
       themeIconMoon.style.display = 'none';
@@ -2272,11 +2358,24 @@
 
   // --- USER PROFILE RENDERING ---
   function updateProfileUI() {
-    document.querySelectorAll('.avatar-circle').forEach(av => av.textContent = state.userInitial);
-    document.getElementById('snippetNameDisplay').textContent = state.userName;
-    document.getElementById('snippetHandleDisplay').textContent = state.userHandle;
-    document.getElementById('statSavedCount').textContent = state.savedPosts.length;
-    document.getElementById('navSavedBadge').textContent = state.savedPosts.length;
+    const userAvatars = [
+      document.getElementById('userHeaderAvatar'),
+      document.getElementById('snippetAvatar'),
+      document.getElementById('composerUserAvatar'),
+      document.getElementById('modalProfileAvatar'),
+      document.querySelector('.story-item.self .story-inner-avatar')
+    ];
+    userAvatars.forEach(av => { if (av) av.textContent = state.userInitial; });
+    const snName = document.getElementById('snippetNameDisplay');
+    if (snName) snName.textContent = state.userName;
+    const snHandle = document.getElementById('snippetHandleDisplay');
+    if (snHandle) snHandle.textContent = state.userHandle;
+    const statRef = document.getElementById('statReflectionsCount');
+    if (statRef) statRef.textContent = state.userReflectionsCount;
+    const statSav = document.getElementById('statSavedCount');
+    if (statSav) statSav.textContent = state.savedPosts.length;
+    const navSav = document.getElementById('navSavedBadge');
+    if (navSav) navSav.textContent = state.savedPosts.length;
   }
   updateProfileUI();
 
@@ -2468,13 +2567,13 @@
   ];
 
   // Persistent Set of shown posts to guarantee zero duplicates across sessions and infinite scrolls
-  const seenFeedTexts = new Set(JSON.parse(localStorage.getItem('void-seen-feed-texts') || '[]'));
+  const seenFeedTexts = new Set(safeStorage.getJSON('void-seen-feed-texts', []));
 
   function recordSeenFeedText(text) {
     seenFeedTexts.add(text);
     if (seenFeedTexts.size > 500) {
       const arr = Array.from(seenFeedTexts).slice(-500);
-      try { localStorage.setItem('void-seen-feed-texts', JSON.stringify(arr)); } catch (e) {}
+      safeStorage.set('void-seen-feed-texts', JSON.stringify(arr));
     }
   }
 
@@ -2703,7 +2802,7 @@
         likesLabel.textContent = `${post.likes + 1} likes`;
         showToast(`Liked ${post.author}'s reflection`);
       }
-      localStorage.setItem('void-liked-ids', JSON.stringify(Array.from(state.likedPosts)));
+      safeStorage.set('void-liked-ids', JSON.stringify(Array.from(state.likedPosts)));
     });
 
     // DOUBLE TAP / DOUBLE CLICK TO LIKE (Instagram heart burst)
@@ -2761,7 +2860,7 @@
         saveText.textContent = 'Saved';
         showToast('Saved to your private bookmarks');
       }
-      localStorage.setItem('void-saved-data', JSON.stringify(state.savedPosts));
+      safeStorage.set('void-saved-data', JSON.stringify(state.savedPosts));
       updateProfileUI();
       if (state.activeTab === 'saved') renderAltView('saved');
     });
@@ -2864,6 +2963,25 @@
     if (!text) return;
 
     state.postCount++;
+    state.userReflectionsCount++;
+    safeStorage.set('void-reflections-count', state.userReflectionsCount.toString());
+    updateProfileUI();
+
+    let postType = 'text';
+    let quoteStr = '';
+    let pollObj = null;
+
+    if (text.startsWith('"') || text.startsWith('“')) {
+      postType = 'quote';
+      quoteStr = text;
+    } else if (text.toLowerCase().startsWith('poll:')) {
+      postType = 'poll';
+      pollObj = {
+        question: text.replace(/^poll:\s*/i, ''),
+        options: ['Yes, completely mindful', 'Partially', 'No, remained connected']
+      };
+    }
+
     const userPost = {
       id: `user_${Date.now()}`,
       author: state.userName,
@@ -2871,8 +2989,10 @@
       initial: state.userInitial,
       verified: true,
       time: 'Just now',
-      type: 'text',
+      type: postType,
       text: text,
+      quote: quoteStr,
+      poll: pollObj,
       likes: 1,
       commentsCount: 0,
       sharesCount: 0,
@@ -2945,7 +3065,20 @@
   }
 
   document.querySelectorAll('.story-item').forEach(item => {
-    item.addEventListener('click', () => openStory(item));
+    item.addEventListener('click', () => {
+      if (item.id === 'btnCreateStory') {
+        const current = item.dataset.text || '';
+        const newStory = prompt('Share a quiet ephemeral reflection for your story:', current || 'Taking an intentional pause today. Zero outbound communications.');
+        if (newStory && newStory.trim()) {
+          item.dataset.text = newStory.trim();
+          item.dataset.author = state.userName;
+          showToast('Your presence story is live for 24 hours');
+          openStory(item);
+        }
+      } else {
+        openStory(item);
+      }
+    });
   });
 
   function closeStory() {
@@ -2960,6 +3093,11 @@
     showToast('Quiet reaction delivered');
     closeStory();
   });
+  if (storyReplyInput) {
+    storyReplyInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') document.getElementById('btnReplyStory').click();
+    });
+  }
 
   // --- SUGGESTED USERS & ONLINE CONTACTS ---
   const SUGGESTED_DATA = [
@@ -2999,6 +3137,7 @@
           btn.textContent = 'Following';
           showToast(`Now following ${u.name}`);
         }
+        safeStorage.set('void-followed-users', JSON.stringify(Array.from(state.followedUsers)));
       });
       container.appendChild(row);
     });
@@ -3028,7 +3167,10 @@
         <span>${t.count}</span>
       </div>
     `;
+    el.style.cursor = 'pointer';
     el.addEventListener('click', () => {
+      searchInput.value = '#' + t.tag;
+      filterFeedStream(t.tag);
       showToast(`Filtered feed by #${t.tag}`);
     });
     trendingContainer.appendChild(el);
@@ -3047,21 +3189,44 @@
       </div>
       <span style="font-size:13px;color:var(--text-primary);">${name}</span>
     `;
+    item.style.cursor = 'pointer';
     item.addEventListener('click', () => {
-      document.getElementById('messengerModal').style.display = 'flex';
-      document.getElementById('dmInput').placeholder = `Message ${name}...`;
+      state.activeDmContact = name;
+      const modal = document.getElementById('messengerModal');
+      const title = modal.querySelector('h3');
+      if (title) title.textContent = `Direct Conversation with ${name}`;
+      modal.style.display = 'flex';
+      const input = document.getElementById('dmInput');
+      input.placeholder = `Message ${name}...`;
+      input.focus();
+      const b1 = document.getElementById('msgBadgeCount');
+      if (b1) b1.style.display = 'none';
     });
     onlineContainer.appendChild(item);
   });
 
   // --- TAB NAVIGATION (FEED, REELS, SAVED BOOKMARKS, CIRCLES) ---
   const navTabs = document.querySelectorAll('.center-nav-tab, .social-nav-link[data-tab], .mobile-nav-icon-btn[data-tab]');
+  const reelsWrapper = document.getElementById('reelsWrapper');
   const reelsContainer = document.getElementById('reelsContainer');
   const reelsStreamList = document.getElementById('reelsStreamList');
   const reelsSentinel = document.getElementById('reelsSentinel');
   const btnExitReels = document.getElementById('btnExitReels');
+  const btnReelPrev = document.getElementById('btnReelPrev');
+  const btnReelNext = document.getElementById('btnReelNext');
+
   if (btnExitReels) {
     btnExitReels.addEventListener('click', () => setTab('feed'));
+  }
+  if (btnReelPrev) {
+    btnReelPrev.addEventListener('click', () => {
+      reelsContainer.scrollBy({ top: -reelsContainer.clientHeight * 0.9, behavior: 'smooth' });
+    });
+  }
+  if (btnReelNext) {
+    btnReelNext.addEventListener('click', () => {
+      reelsContainer.scrollBy({ top: reelsContainer.clientHeight * 0.9, behavior: 'smooth' });
+    });
   }
 
   function setTab(tab) {
@@ -3078,17 +3243,16 @@
       document.getElementById('composerCard').style.display = 'flex';
       document.getElementById('feedLoader').style.display = 'flex';
       altTabContainer.style.display = 'none';
-      if (reelsContainer) reelsContainer.style.display = 'none';
+      if (reelsWrapper) reelsWrapper.style.display = 'none';
     } else if (tab === 'reels') {
       feedStream.style.display = 'none';
       document.getElementById('storiesTray').style.display = 'none';
       document.getElementById('composerCard').style.display = 'none';
       document.getElementById('feedLoader').style.display = 'none';
       altTabContainer.style.display = 'none';
-      if (reelsContainer) {
-        reelsContainer.style.display = 'block';
+      if (reelsWrapper) {
+        reelsWrapper.style.display = 'block';
         initReelsStream();
-        // Scroll smoothly to top of reels container
         reelsContainer.scrollTop = 0;
       }
     } else {
@@ -3096,7 +3260,7 @@
       document.getElementById('storiesTray').style.display = 'none';
       document.getElementById('composerCard').style.display = 'none';
       document.getElementById('feedLoader').style.display = 'none';
-      if (reelsContainer) reelsContainer.style.display = 'none';
+      if (reelsWrapper) reelsWrapper.style.display = 'none';
       altTabContainer.style.display = 'flex';
       renderAltView(tab);
     }
@@ -3187,13 +3351,13 @@
     "Atacama Starlight Breeze · Infinite Calm"
   ];
 
-  const seenReelsCaptions = new Set(JSON.parse(localStorage.getItem('void-seen-reels-captions') || '[]'));
+  const seenReelsCaptions = new Set(safeStorage.getJSON('void-seen-reels-captions', []));
 
   function recordSeenReelCaption(cap) {
     seenReelsCaptions.add(cap);
     if (seenReelsCaptions.size > 500) {
       const arr = Array.from(seenReelsCaptions).slice(-500);
-      try { localStorage.setItem('void-seen-reels-captions', JSON.stringify(arr)); } catch (e) {}
+      safeStorage.set('void-seen-reels-captions', JSON.stringify(arr));
     }
   }
 
@@ -3369,7 +3533,7 @@
         likeCountLabel.textContent = reel.likes + 1;
         showToast(`Liked ${reel.author}'s reel`);
       }
-      localStorage.setItem('void-liked-ids', JSON.stringify(Array.from(state.likedPosts)));
+      safeStorage.set('void-liked-ids', JSON.stringify(Array.from(state.likedPosts)));
     });
 
     // DOUBLE TAP / DOUBLE CLICK TO LIKE (Instagram Heart Burst)
@@ -3412,7 +3576,7 @@
         btnSave.classList.add('active-save');
         showToast('Reel saved to bookmarks');
       }
-      localStorage.setItem('void-saved-data', JSON.stringify(state.savedPosts));
+      safeStorage.set('void-saved-data', JSON.stringify(state.savedPosts));
       updateProfileUI();
     });
 
@@ -3444,6 +3608,8 @@
         btnFollow.textContent = 'Following';
         showToast(`Following ${reel.author}`);
       }
+      safeStorage.set('void-followed-users', JSON.stringify(Array.from(state.followedUsers)));
+      renderSuggestedUsers();
     });
 
     // COMMENTS DRAWER TOGGLE
@@ -3612,40 +3778,129 @@
             btn.textContent = 'Joined';
             showToast(`Joined ${c.name}`);
           }
+          safeStorage.set('void-joined-circles', JSON.stringify(Array.from(state.joinedCircles)));
         });
         altTabContainer.appendChild(card);
       });
     }
   }
 
+  // --- LIVE FEED SEARCH & TOPIC FILTERING ---
+  function filterFeedStream(query) {
+    const q = (query || '').toLowerCase().trim();
+    let banner = document.getElementById('searchNoticeBanner');
+
+    if (!q) {
+      if (banner) banner.remove();
+      document.querySelectorAll('#feedStream .fb-post-card').forEach(c => c.style.display = '');
+      const emptyState = document.getElementById('searchEmptyState');
+      if (emptyState) emptyState.remove();
+      return;
+    }
+
+    setTab('feed');
+
+    if (!banner) {
+      banner = document.createElement('div');
+      banner.id = 'searchNoticeBanner';
+      banner.style.cssText = "display:flex;align-items:center;justify-content:space-between;background:var(--bg-surface);border:1px solid var(--border-strong);border-radius:var(--radius-md);padding:12px 18px;margin-bottom:14px;box-shadow:var(--shadow-sm);";
+      feedStream.prepend(banner);
+    }
+    banner.innerHTML = `
+      <div style="display:flex;align-items:center;gap:8px;">
+        <svg class="icon-svg" width="16" height="16" viewBox="0 0 24 24" style="color:var(--accent-blue);"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <span style="font-size:13px;color:var(--text-secondary);">Filtered reflections for: <b style="color:var(--text-primary);">${q.replace(/</g, '&lt;')}</b></span>
+      </div>
+      <button id="btnClearSearchFilter" style="background:none;border:none;color:var(--accent-blue);font-size:12px;font-weight:600;cursor:pointer;padding:4px 8px;">Clear filter</button>
+    `;
+    banner.querySelector('#btnClearSearchFilter').addEventListener('click', () => {
+      searchInput.value = '';
+      filterFeedStream('');
+    });
+
+    const cards = document.querySelectorAll('#feedStream .fb-post-card');
+    let visibleCount = 0;
+    cards.forEach(card => {
+      const text = card.textContent.toLowerCase();
+      if (text.includes(q)) {
+        card.style.display = '';
+        visibleCount++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    let emptyState = document.getElementById('searchEmptyState');
+    if (visibleCount === 0) {
+      if (!emptyState) {
+        emptyState = document.createElement('div');
+        emptyState.id = 'searchEmptyState';
+        emptyState.className = 'fb-post-card';
+        emptyState.style.padding = '36px 20px';
+        emptyState.style.textAlign = 'center';
+        feedStream.appendChild(emptyState);
+      }
+      emptyState.innerHTML = `
+        <div style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:var(--bg-subtle);margin-bottom:12px;color:var(--text-tertiary);">
+          <svg class="icon-svg" width="22" height="22" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <h4 style="font-size:15px;color:var(--text-primary);margin-bottom:6px;">No reflections found</h4>
+        <p style="font-size:13px;color:var(--text-secondary);max-width:320px;margin:0 auto 14px;">No posts match "${q.replace(/</g, '&lt;')}". Try another search term or clear the filter.</p>
+        <button class="btn-quick-post" id="btnEmptyClear" style="width:auto;margin:0 auto;padding:8px 20px;">Clear Filter</button>
+      `;
+      emptyState.querySelector('#btnEmptyClear').addEventListener('click', () => {
+        searchInput.value = '';
+        filterFeedStream('');
+      });
+    } else if (emptyState) {
+      emptyState.remove();
+    }
+  }
+
   // --- MODAL CONTROLS (MESSENGER, NOTIFICATIONS, PROFILE) ---
-  document.getElementById('btnOpenMessenger').addEventListener('click', () => {
-    document.getElementById('messengerModal').style.display = 'flex';
-  });
-  document.getElementById('navOpenMessengerBtn').addEventListener('click', () => {
-    document.getElementById('messengerModal').style.display = 'flex';
-  });
+  function openMessengerModal(contactName) {
+    if (contactName) state.activeDmContact = contactName;
+    const modal = document.getElementById('messengerModal');
+    const title = modal.querySelector('h3');
+    if (title) title.textContent = `Direct Conversation with ${state.activeDmContact || 'Elena Rostova'}`;
+    modal.style.display = 'flex';
+    document.getElementById('dmInput').placeholder = `Message ${state.activeDmContact || 'Elena Rostova'}...`;
+    document.getElementById('dmInput').focus();
+    const b1 = document.getElementById('msgBadgeCount');
+    if (b1) b1.style.display = 'none';
+    const b2 = document.querySelector('#navOpenMessengerBtn .nav-pill-badge');
+    if (b2) b2.style.display = 'none';
+  }
+
+  document.getElementById('btnOpenMessenger').addEventListener('click', () => openMessengerModal());
+  document.getElementById('navOpenMessengerBtn').addEventListener('click', () => openMessengerModal());
+
   document.getElementById('btnOpenNotifs').addEventListener('click', () => {
     document.getElementById('notifsModal').style.display = 'flex';
+    const nb = document.getElementById('notifBadgeCount');
+    if (nb) nb.style.display = 'none';
   });
-  document.getElementById('userHeaderAvatar').addEventListener('click', () => {
+
+  function openProfileModal() {
+    document.getElementById('editNameInput').value = state.userName;
+    document.getElementById('editHandleInput').value = state.userHandle;
+    document.getElementById('modalProfileAvatar').textContent = state.userInitial;
     document.getElementById('profileModal').style.display = 'flex';
-  });
-  document.getElementById('btnEditProfileSnippet').addEventListener('click', () => {
-    document.getElementById('profileModal').style.display = 'flex';
-  });
-  document.getElementById('navOpenSettingsBtn').addEventListener('click', () => {
-    document.getElementById('profileModal').style.display = 'flex';
-  });
-  document.getElementById('mobileProfileBtn').addEventListener('click', () => {
-    document.getElementById('profileModal').style.display = 'flex';
-  });
+  }
+
+  document.getElementById('userHeaderAvatar').addEventListener('click', openProfileModal);
+  document.getElementById('btnEditProfileSnippet').addEventListener('click', openProfileModal);
+  document.getElementById('navOpenSettingsBtn').addEventListener('click', openProfileModal);
+  document.getElementById('mobileProfileBtn').addEventListener('click', openProfileModal);
+
   document.getElementById('mobileCreatePostBtn').addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    setTab('feed');
     composerInput.focus();
   });
   document.getElementById('btnFocusComposer').addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    setTab('feed');
     composerInput.focus();
   });
 
@@ -3662,7 +3917,7 @@
     });
   });
 
-  // SEND DM LOGIC
+  // SEND DM LOGIC (WITH AUTO-SCROLL & MINDFUL SIMULATED RESPONSE)
   const dmInput = document.getElementById('dmInput');
   const btnSendDm = document.getElementById('btnSendDm');
   const dmThreadList = document.getElementById('dmThreadList');
@@ -3671,17 +3926,41 @@
     const val = dmInput.value.trim();
     if (!val) return;
     const msg = document.createElement('div');
-    msg.style.cssText = "background:var(--bg-subtle);border-radius:var(--radius-sm);padding:8px 12px;align-self:flex-end;";
+    msg.style.cssText = "background:var(--bg-subtle);border-radius:var(--radius-sm);padding:8px 12px;align-self:flex-end;max-width:85%;";
     msg.innerHTML = `
-      <div style="display:flex;justify-content:space-between;font-size:12px;font-weight:600;margin-bottom:2px;">
+      <div style="display:flex;justify-content:space-between;font-size:12px;font-weight:600;margin-bottom:2px;gap:8px;">
         <span>${state.userName}</span>
-        <span style="font-family:var(--font-mono);font-size:10px;color:var(--text-tertiary);">now</span>
+        <span style="font-family:var(--font-mono);font-size:10px;color:var(--text-tertiary);">just now</span>
       </div>
-      <p style="font-size:12.5px;color:var(--text-primary);">${val}</p>
+      <p style="font-size:12.5px;color:var(--text-primary);word-break:break-word;">${val.replace(/</g, '&lt;')}</p>
     `;
     dmThreadList.appendChild(msg);
     dmInput.value = '';
+    dmThreadList.scrollTop = dmThreadList.scrollHeight;
     showToast('Direct communication dispatched');
+
+    // Mindful simulated asynchronous response
+    const contact = state.activeDmContact || 'Elena Rostova';
+    setTimeout(() => {
+      const responses = [
+        "Thank you for sharing your thoughts. Stepping back into deep focus now, will read with full presence soon.",
+        "Reflecting quietly on your note. In a world of rush, thank you for the thoughtful communication.",
+        "Appreciate the message. Spending the next two hours offline for monotasking, but glad to connect with you.",
+        "That's a resonant thought. Taking a moment to absorb this before responding with intention."
+      ];
+      const replyText = responses[Math.floor(Math.random() * responses.length)];
+      const replyMsg = document.createElement('div');
+      replyMsg.style.cssText = "background:var(--bg-surface-elevated);border:1px solid var(--border);border-radius:var(--radius-sm);padding:8px 12px;align-self:flex-start;max-width:85%;";
+      replyMsg.innerHTML = `
+        <div style="display:flex;justify-content:space-between;font-size:12px;font-weight:600;margin-bottom:2px;gap:8px;">
+          <span style="color:var(--accent-blue);">${contact}</span>
+          <span style="font-family:var(--font-mono);font-size:10px;color:var(--text-tertiary);">just now</span>
+        </div>
+        <p style="font-size:12.5px;color:var(--text-secondary);word-break:break-word;">${replyText}</p>
+      `;
+      dmThreadList.appendChild(replyMsg);
+      dmThreadList.scrollTop = dmThreadList.scrollHeight;
+    }, 1100);
   }
   btnSendDm.addEventListener('click', sendDm);
   dmInput.addEventListener('keydown', (e) => {
@@ -3697,19 +3976,20 @@
   document.getElementById('btnSaveProfile').addEventListener('click', () => {
     state.userName = document.getElementById('editNameInput').value.trim() || 'Wanderer #409';
     state.userHandle = document.getElementById('editHandleInput').value.trim() || '@voidfarer';
-    localStorage.setItem('void-user-name', state.userName);
-    localStorage.setItem('void-user-handle', state.userHandle);
-    localStorage.setItem('void-user-initial', state.userInitial);
+    safeStorage.set('void-user-name', state.userName);
+    safeStorage.set('void-user-handle', state.userHandle);
+    safeStorage.set('void-user-initial', state.userInitial);
     updateProfileUI();
     document.getElementById('profileModal').style.display = 'none';
     showToast('Profile configuration updated');
   });
 
-  // SEARCH DROPDOWN FILTER
+  // SEARCH DROPDOWN & INPUT FILTER
   searchInput.addEventListener('input', () => {
     const query = searchInput.value.toLowerCase().trim();
     if (!query) {
       searchDropdown.style.display = 'none';
+      filterFeedStream('');
       return;
     }
     searchDropdown.innerHTML = '';
@@ -3723,13 +4003,22 @@
       it.className = 'search-item';
       it.textContent = m;
       it.addEventListener('click', () => {
-        searchInput.value = '';
+        searchInput.value = query;
         searchDropdown.style.display = 'none';
+        filterFeedStream(query);
         showToast(`Filtered stream by: ${query}`);
       });
       searchDropdown.appendChild(it);
     });
     searchDropdown.style.display = 'flex';
+  });
+
+  searchInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      const query = searchInput.value.toLowerCase().trim();
+      searchDropdown.style.display = 'none';
+      filterFeedStream(query);
+    }
   });
 
   document.addEventListener('click', (e) => {
@@ -3738,10 +4027,31 @@
     }
   });
 
+  // GLOBAL KEYBOARD SHORTCUTS (ESCAPE TO CLOSE MODALS, ARROW KEYS FOR REELS ON DESKTOP)
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal-backdrop').forEach(m => m.style.display = 'none');
+      document.querySelectorAll('.reel-comments-drawer').forEach(d => d.classList.remove('open'));
+      document.querySelectorAll('.post-menu-dropdown').forEach(m => m.style.display = 'none');
+      searchDropdown.style.display = 'none';
+    }
+    if (['INPUT', 'TEXTAREA'].includes(document.activeElement?.tagName)) return;
+    if (state.activeTab === 'reels') {
+      if (e.key === 'ArrowDown' || e.key === 'j') {
+        e.preventDefault();
+        btnReelNext?.click();
+      } else if (e.key === 'ArrowUp' || e.key === 'k') {
+        e.preventDefault();
+        btnReelPrev?.click();
+      }
+    }
+  });
+
   // BRAND LOGO CLICK -> RESET TO TOP
   document.getElementById('brandLogo').addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     setTab('feed');
+    filterFeedStream('');
   });
 
 })();
