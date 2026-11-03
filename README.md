@@ -24,7 +24,7 @@
 
 **Void** is a calm, intentional digital sanctuary engineered as an antidote to algorithmic outrage, engagement traps, and sensory overload.
 
-Instead of hijacking your dopamine through infinite novelty and red notification badges, Void provides a serene, low-stimulation environment with mindful reflections, ambient vertical reels, distraction-free messaging, and a procedural digital detox void — satisfying the subconscious reflex of checking a feed while gently guiding your focus back to deep, meaningful work.
+Instead of hijacking your dopamine through infinite novelty and red notification badges, Void provides a serene, low-stimulation environment with mindful reflections, ambient vertical reels, distraction-free messaging, and a procedural digital detox void - satisfying the subconscious reflex of checking a feed while gently guiding your focus back to deep, meaningful work.
 
 <br/>
 
