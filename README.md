@@ -3,7 +3,7 @@
 A calm, intentional social interface engineered to eliminate dopamine traps, endless outrage, and algorithmic pressure.
 
 ### 🌐 Live Demo
-[Launch Void](https://resteq.github.io/void-dusk/)
+[Launch Void](https://rasteq.github.io/void-dusk/)
 
 ### ✨ Highlights
 - **Home Feed:** Mindful, low-stimulation reflections and monotasking nudges.
